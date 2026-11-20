@@ -35,9 +35,14 @@ class Brief:
 
 
 class LocalLLM:
-    """A small instruct model run with transformers (GPU if available)."""
+    """A small instruct model run with transformers (GPU if available).
 
-    def __init__(self, name: str = DEFAULT_MODEL, max_new_tokens: int = 320):
+    `adapter` loads a LoRA adapter trained with `pr-radar brief-train`.
+    """
+
+    def __init__(
+        self, name: str = DEFAULT_MODEL, adapter: str | None = None, max_new_tokens: int = 320
+    ):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -46,26 +51,41 @@ class LocalLLM:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         dtype = torch.bfloat16 if self.device == "cuda" else torch.float32
         self.tok = AutoTokenizer.from_pretrained(name)
-        self.model = AutoModelForCausalLM.from_pretrained(name, dtype=dtype).to(self.device)
-        self.model.eval()
+        self.tok.padding_side = "left"
+        model = AutoModelForCausalLM.from_pretrained(name, dtype=dtype).to(self.device)
+        if adapter:
+            from peft import PeftModel
+
+            model = PeftModel.from_pretrained(model, adapter).merge_and_unload()
+        self.model = model.eval()
 
     def __call__(self, msgs: list[dict[str, str]], sample: bool) -> str:
+        return self.batch([msgs], sample)[0]
+
+    def batch(
+        self, convs: list[list[dict[str, str]]], sample: bool, temperature: float = 0.7
+    ) -> list[str]:
         import torch
 
-        prompt = self.tok.apply_chat_template(
-            msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False
-        )
-        inputs = self.tok(prompt, return_tensors="pt").to(self.device)
+        prompts = [
+            self.tok.apply_chat_template(
+                m, tokenize=False, add_generation_prompt=True, enable_thinking=False
+            )
+            for m in convs
+        ]
+        inputs = self.tok(prompts, return_tensors="pt", padding=True).to(self.device)
         opts: dict[str, Any] = {"max_new_tokens": self.max_new_tokens, "do_sample": sample}
         if sample:
-            opts.update(temperature=0.7, top_p=0.8, top_k=20)
+            opts.update(temperature=temperature, top_p=0.9, top_k=50)
         with torch.no_grad():
             out = self.model.generate(**inputs, **opts, pad_token_id=self.tok.eos_token_id)
-        new = out[0, inputs["input_ids"].shape[1] :]
-        return self.tok.decode(new, skip_special_tokens=True).strip()
+        new = out[:, inputs["input_ids"].shape[1] :]
+        return [t.strip() for t in self.tok.batch_decode(new, skip_special_tokens=True)]
 
 
-def write_brief(facts: dict[str, Any], generate: Generate, model: str, tries: int = 4) -> Brief:
+def write_brief(
+    facts: dict[str, Any], generate: Generate, model: str, tries: int = 4, few_shot: bool = True
+) -> Brief:
     """Draft, check, and revise with the failed checks as feedback.
 
     Even attempts revise the best draft so far; odd retries sample a fresh draft
@@ -73,7 +93,7 @@ def write_brief(facts: dict[str, Any], generate: Generate, model: str, tries: in
     error check.
     """
     sheet = fact_sheet(facts)
-    msgs = messages(facts["primary"], sheet)
+    msgs = messages(facts["primary"], sheet, example=few_shot)
     best: tuple[str, CheckResult] | None = None
     attempts = 0
     drafts: list[dict[str, Any]] = []

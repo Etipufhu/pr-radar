@@ -98,3 +98,31 @@ def test_failed_brief_is_not_published(store, settings, tmp_path):
     save_brief(brief, tmp_path)
     html = render(build_context(store.con, settings, W, briefs_dir=tmp_path))
     assert "Weekly brief" not in html
+
+
+def test_training_weeks_vary_the_brand_and_avoid_eval_seeds():
+    from pr_radar.narrative.distill import TRAIN_SEED_OFFSET, content_score, training_weeks
+
+    weeks = training_weeks(["FOREO", "NuFACE", "Therabody", "PMD Beauty"], 20)
+    assert len({w["primary"] for w in weeks}) > 1
+    assert TRAIN_SEED_OFFSET >= 1000  # brief-eval uses seeds 0..weeks-1
+    w = weeks[0]
+    assert content_score(f"{w['primary']} and more", w) >= 1
+
+
+def test_encode_masks_the_prompt():
+    from pr_radar.narrative.lora import encode
+
+    class Tok:
+        eos_token = "<eos>"
+
+        def apply_chat_template(self, conv, **kw):
+            return "".join(m["content"] for m in conv) + "|"
+
+        def __call__(self, text, add_special_tokens=False):
+            return {"input_ids": [ord(c) for c in text]}
+
+    conv = [{"role": "user", "content": "abc"}, {"role": "assistant", "content": "xy"}]
+    row = encode(Tok(), conv, max_length=100)
+    assert row["input_ids"] == [ord(c) for c in "abc|xy<eos>"]
+    assert row["labels"][:4] == [-100] * 4 and row["labels"][4:6] == [ord("x"), ord("y")]

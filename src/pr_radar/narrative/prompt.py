@@ -51,11 +51,15 @@ Actions:
 - Offer reviews coverage, where competitors get 25% of their coverage and Acme 8%."""
 
 
-def messages(brand: str, sheet: str) -> list[dict[str, str]]:
-    return [
-        {"role": "system", "content": SYSTEM.format(brand=brand)},
+def messages(brand: str, sheet: str, example: bool = True) -> list[dict[str, str]]:
+    """Chat messages for one brief. The fine-tuned model is prompted without the example."""
+    shot = [
         {"role": "user", "content": USER.format(sheet=EXAMPLE_SHEET)},
         {"role": "assistant", "content": EXAMPLE_BRIEF},
+    ]
+    return [
+        {"role": "system", "content": SYSTEM.format(brand=brand)},
+        *(shot if example else []),
         {"role": "user", "content": USER.format(sheet=sheet)},
     ]
 

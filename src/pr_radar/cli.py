@@ -138,8 +138,9 @@ def cmd_brief(args: argparse.Namespace) -> int:
         facts = weekly_facts(store.con, settings, window)
     finally:
         store.close()
-    llm = LocalLLM(args.model)
-    brief = write_brief(facts, llm, args.model, tries=args.tries)
+    llm = LocalLLM(args.model, adapter=args.adapter)
+    name = f"{args.model} + LoRA" if args.adapter else args.model
+    brief = write_brief(facts, llm, name, tries=args.tries, few_shot=not args.adapter)
     path = save_brief(brief, args.out)
     print(brief.text)
     print(f"\nattempts={brief.attempts} errors={brief.errors} style={brief.style}")
@@ -161,7 +162,9 @@ def cmd_brief_eval(args: argparse.Namespace) -> int:
         fact_sets.insert(0, weekly_facts(store.con, settings, default_window(7)))
     finally:
         store.close()
-    result = evaluate(fact_sets, LocalLLM(args.model), args.model, tries=args.tries)
+    llm = LocalLLM(args.model, adapter=args.adapter)
+    name = args.adapter or args.model
+    result = evaluate(fact_sets, llm, name, tries=args.tries, few_shot=not args.adapter)
     path = write_results(result, args.results)
     print(
         f"weeks={result['weeks']} first_attempt_pass={result['first_attempt_pass_rate']:.0%} "
@@ -171,6 +174,34 @@ def cmd_brief_eval(args: argparse.Namespace) -> int:
     print(f"errors={result['error_counts']}")
     print(f"style={result['style_counts']}")
     print(f"-> {path}")
+    return 0
+
+
+BRIEF_SFT = "data/brief_sft/train.jsonl"
+BRIEF_ADAPTER = "models/brief-lora-qwen3-1.7b"
+
+
+def cmd_brief_distill(args: argparse.Namespace) -> int:
+    import json
+
+    from .narrative.distill import build_dataset, training_weeks
+    from .narrative.writer import LocalLLM
+
+    settings = load_config(args.config)
+    weeks = training_weeks(list(settings.brand_names.values()), args.weeks, args.start)
+    stats = build_dataset(
+        LocalLLM(args.model), weeks, args.out, args.samples, append=args.start > 0
+    )
+    Path(args.out).with_suffix(".stats.json").write_text(json.dumps(stats, indent=2))
+    print(stats)
+    return 0
+
+
+def cmd_brief_train(args: argparse.Namespace) -> int:
+    from .narrative.lora import train_lora
+
+    stats = train_lora(args.model, args.data, args.out, epochs=args.epochs, lr=args.lr)
+    print(stats)
     return 0
 
 
@@ -303,6 +334,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--end", type=_date, help="last day of the window, YYYY-MM-DD")
     p.add_argument("--model", default="Qwen/Qwen3-1.7B", help="Hugging Face model id or path")
     p.add_argument("--tries", type=int, default=4)
+    p.add_argument("--adapter", help="LoRA adapter dir; the prompt then has no example")
     p.add_argument("--out", default=DEFAULT_BRIEFS)
     p.set_defaults(func=cmd_brief)
 
@@ -311,7 +343,24 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--weeks", type=int, default=40, help="number of synthetic weeks")
     p.add_argument("--tries", type=int, default=4)
     p.add_argument("--results", default="results")
+    p.add_argument("--adapter", help="LoRA adapter dir; the prompt then has no example")
     p.set_defaults(func=cmd_brief_eval)
+
+    p = sub.add_parser("brief-distill", help="sample briefs and keep those that pass the checks")
+    p.add_argument("--model", default="Qwen/Qwen3-1.7B")
+    p.add_argument("--weeks", type=int, default=500)
+    p.add_argument("--samples", type=int, default=8, help="candidates per week")
+    p.add_argument("--start", type=int, default=0, help="resume: first week index, appends")
+    p.add_argument("--out", default=BRIEF_SFT)
+    p.set_defaults(func=cmd_brief_distill)
+
+    p = sub.add_parser("brief-train", help="LoRA fine-tune on the distilled briefs")
+    p.add_argument("--model", default="Qwen/Qwen3-1.7B")
+    p.add_argument("--data", default=BRIEF_SFT)
+    p.add_argument("--out", default=BRIEF_ADAPTER)
+    p.add_argument("--epochs", type=int, default=3)
+    p.add_argument("--lr", type=float, default=2e-4)
+    p.set_defaults(func=cmd_brief_train)
 
     p = sub.add_parser("dashboard", help="open the Streamlit dashboard")
     p.set_defaults(func=cmd_dashboard)

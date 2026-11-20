@@ -143,7 +143,11 @@ def _kind(error: str) -> str:
 
 
 def evaluate(
-    fact_sets: list[dict[str, Any]], generate: Generate, model: str, tries: int = 4
+    fact_sets: list[dict[str, Any]],
+    generate: Generate,
+    model: str,
+    tries: int = 4,
+    few_shot: bool = True,
 ) -> dict[str, Any]:
     """First-attempt (greedy) quality, and the publish rate after revisions."""
     first_ok = published = 0
@@ -152,7 +156,7 @@ def evaluate(
     style_kinds: Counter[str] = Counter()
     samples = []
     for f in fact_sets:
-        brief = write_brief(f, generate, model, tries=tries)
+        brief = write_brief(f, generate, model, tries=tries, few_shot=few_shot)
         first = brief.drafts[0]
         first_ok += not first["errors"]
         published += brief.published
@@ -169,6 +173,7 @@ def evaluate(
         "first_attempt_pass_rate": first_ok / n,
         "published_rate_with_retries": published / n,
         "tries": tries,
+        "few_shot": few_shot,
         "mean_words": sum(words) / n,
         "error_counts": dict(error_kinds.most_common()),
         "style_counts": dict(style_kinds.most_common()),
@@ -179,7 +184,7 @@ def evaluate(
 def write_results(result: dict[str, Any], out_dir: str | Path) -> Path:
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    slug = result["model"].split("/")[-1]
+    slug = Path(result["model"]).name
     path = out / f"brief_eval_{slug}.json"
     path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     return path
