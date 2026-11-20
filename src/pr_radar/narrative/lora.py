@@ -77,14 +77,15 @@ def train_lora(
     lr: float = 2e-4,
     rank: int = 16,
     alpha: int = 32,
-    batch_size: int = 4,
-    grad_accum: int = 4,
+    batch_size: int = 2,
+    grad_accum: int = 8,
     max_length: int = 1024,
     val_fraction: float = 0.1,
     seed: int = 0,
 ) -> dict[str, Any]:
     import torch
     from peft import LoraConfig, get_peft_model
+    from tqdm.auto import tqdm
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     torch.manual_seed(seed)
@@ -125,6 +126,7 @@ def train_lora(
     log.info("before training: val loss %.4f", history[0]["val_loss"])
     model.train()
     start = time.time()
+    bar = tqdm(total=epochs * math.ceil(len(train) / batch_size), desc="LoRA", unit="batch")
     step = 0
     for epoch in range(1, epochs + 1):
         running, micro = 0.0, 0
@@ -137,6 +139,8 @@ def train_lora(
             (out.loss / grad_accum).backward()
             running += float(out.loss)
             micro += 1
+            bar.update(1)
+            bar.set_postfix(epoch=f"{epoch}/{epochs}", loss=f"{float(out.loss):.3f}")
             if micro % grad_accum == 0:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
                 opt.step()
@@ -152,6 +156,7 @@ def train_lora(
         log.info("epoch %d: train %.4f val %.4f", epoch, running / micro, val_loss)
 
     out_dir = Path(out_dir)
+    bar.close()
     model.save_pretrained(out_dir)
     stats = {
         "base_model": base,

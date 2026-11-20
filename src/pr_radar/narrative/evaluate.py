@@ -155,7 +155,9 @@ def evaluate(
     error_kinds: Counter[str] = Counter()
     style_kinds: Counter[str] = Counter()
     samples = []
-    for f in fact_sets:
+    from tqdm.auto import tqdm
+
+    for f in tqdm(fact_sets, desc="brief-eval", unit="week"):
         brief = write_brief(f, generate, model, tries=tries, few_shot=few_shot)
         first = brief.drafts[0]
         first_ok += not first["errors"]

@@ -63,6 +63,12 @@ def test_checks_catch_made_up_facts(store, settings):
     assert "country not in the fact sheet: JP" in errors
     assert "copied from the prompt example: review units" in errors
 
+    wrong = GOOD.replace("behind NuFACE", "third behind NuFACE")
+    wrong += "\n- Pitch NuFACE's deals to bild.de."
+    errors = " | ".join(check_brief(wrong, fact_sheet(f), f).errors)
+    assert "wrong rank: 'third'" in errors
+    assert "action promotes a competitor's story: NuFACE" in errors
+
 
 def test_checks_flag_stock_phrases(store, settings):
     f = _facts(store, settings)

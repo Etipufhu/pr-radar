@@ -45,6 +45,8 @@ STOCK_PHRASES = [
     "key takeaway",
     "dive into",
 ]
+ORDINALS = ["first", "second", "third", "fourth", "fifth", "sixth"]
+PROMOTE = re.compile(r"^\s*[-*]\s*(?:pitch|re-?pitch|offer|promote|share)\b", re.I)
 STRENGTH = re.compile(r"\b(?:strong|lead|leads|leading|dominat\w*|ahead)\b", re.I)
 PASSIVE_ACTION = re.compile(
     r"^\s*[-*]\s*(?:monitor|track|follow|watch|keep an eye|stay)", re.I | re.M
@@ -161,6 +163,21 @@ def check_brief(text: str, sheet: str, facts: dict) -> CheckResult:
             res.errors.append(f"topic not in the fact sheet: {topic}")
     if re.search(r"\bre-?pitch", text, re.I) and not facts.get("outlet_gaps", {}).get("warm"):
         res.errors.append("says re-pitch, but no listed outlet covered the brand before")
+
+    # Rank words next to the brand must match its share-of-voice rank.
+    if row:
+        for m in re.finditer(rf"{re.escape(primary)}\b[^.\n]{{0,60}}?\b({'|'.join(ORDINALS)})\b",
+                             summary, re.I):  # fmt: skip
+            if ORDINALS.index(m[1].lower()) + 1 != row["rank"]:
+                res.errors.append(f"wrong rank: '{m[1]}', the fact sheet says #{row['rank']}")
+
+    # Actions are for the PR team's own brand, not for promoting a competitor's story.
+    competitors = [b["brand"] for b in facts.get("brands", []) if not b.get("primary")]
+    for a in actions:
+        if PROMOTE.search(a):
+            for c in competitors:
+                if re.search(rf"\b{re.escape(c)}['’]s\b", a):
+                    res.errors.append(f"action promotes a competitor's story: {c}")
 
     countries = {m["country"] for m in facts.get("market_gaps", [])}
     for code, words_re in COUNTRY_WORDS.items():
