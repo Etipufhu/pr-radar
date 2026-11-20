@@ -59,7 +59,25 @@ def _records(df: pd.DataFrame) -> list[dict]:
     ]
 
 
-def build_context(con, settings: Settings, window: an.Window) -> dict:
+def load_published_brief(briefs_dir: str | Path, window: an.Window) -> dict | None:
+    """The LLM brief for this window, if one was generated and passed the checks."""
+    from .narrative.writer import load_brief
+
+    end = (window.end - timedelta(seconds=1)).date().isoformat()
+    brief = load_brief(briefs_dir, window.start.date().isoformat(), end)
+    if brief is None or not brief.published:
+        return None
+    summary, _, actions = brief.text.partition("Actions:")
+    return {
+        "summary": summary.replace("Summary:", "", 1).strip(),
+        "actions": [a.strip()[1:].strip() for a in actions.splitlines() if a.strip()[:1] in "-*"],
+        "model": brief.model,
+    }
+
+
+def build_context(
+    con, settings: Settings, window: an.Window, briefs_dir: str | Path = "data/briefs"
+) -> dict:
     names = settings.brand_names
     primary = settings.primary_brand
     sov = an.share_of_voice(con, window)
@@ -76,6 +94,7 @@ def build_context(con, settings: Settings, window: an.Window) -> dict:
         "primary": primary,
         "names": names,
         "baseline": baseline,
+        "brief": load_published_brief(briefs_dir, window),
         "insights": an.insights(con, window, primary, names, settings.lookback_days),
         "kpis": {
             "mentions": int(primary_stats["mentions"]) if primary_stats else 0,

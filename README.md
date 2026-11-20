@@ -8,6 +8,8 @@ Tracks news coverage of a brand and its competitors in 12 Google News market edi
 - **Topic gaps:** topics (launches, deals, gift guides, skin science...) that take a larger share of competitor coverage.
 - **Headline tone and risk alerts:** valence/arousal per brand mention (DimABSA model) and keyword alerts for recalls, lawsuits and similar.
 
+A small local LLM also writes a short weekly brief from these numbers. The brief is checked against the data before it is published.
+
 Outputs: a weekly HTML report (built and published to GitHub Pages by a scheduled GitHub Action), a static web dashboard and a Streamlit app.
 
 > Independent student project, not affiliated with or endorsed by any brand named in the configuration or reports. It uses only public news headlines and metadata. The brands in `config/brands.yaml` are a demo; edit the file to track another market. Matching is automatic and can be wrong, so check a report before sharing it.
@@ -112,6 +114,43 @@ pr-radar dimabsa-adapt             # k-fold comparison on headlines + domain-ada
 pr-radar score-sentiment           # score new headline brand mentions
 ```
 
+## Weekly brief (local LLM)
+
+`pr-radar brief` turns the week's numbers into a short note for the PR team: two or three sentences on where the brand stands, then two to four actions that name an outlet, market or topic. It runs a small open model (Qwen3-1.7B) locally on the GPU, so no data leaves the machine and there is no API cost.
+
+A 1.7B model will invent things if left alone, so the brief goes through these steps:
+
+1. **Fact sheet.** The model only sees a short text sheet built from the report tables (`narrative/facts.py`). Every number is already rounded and formatted there.
+2. **Checks** (`narrative/checks.py`). A brief is rejected if it contains a number or an outlet domain that is not in the sheet, describes a change over time when there is no previous period, skips a risk headline, or breaks the Summary/Actions format. Stock phrases ("crucial", "landscape", "it's worth noting"...) are counted as style issues.
+3. **Retries.** The first attempt is greedy. If it fails, the model samples up to three more candidates and the one with the fewest problems is kept. A brief that still has errors is saved to `data/briefs/` for inspection but is not published; the report then shows only the rule-based takeaways.
+
+```bash
+pip install -e ".[sentiment]"      # torch + transformers
+pr-radar brief                     # writes data/briefs/brief-<start>_<end>.json
+pr-radar report                    # includes the brief if it passed the checks
+pr-radar brief-eval --weeks 40     # pass rates on the real week + synthetic weeks
+```
+
+**Results with the base model.** `brief-eval` ran on the real week and 20 synthetic weeks (random but consistent fact sets for the same brands), with up to 3 attempts each. Raw output: [`results/brief_eval_Qwen3-1.7B.json`](results/brief_eval_Qwen3-1.7B.json).
+
+| Qwen3-1.7B, no fine-tuning | |
+|---|---:|
+| First draft passes every check | 14% (3 of 21) |
+| Published after revisions | 24% (5 of 21) |
+
+Errors in the first drafts:
+
+| Error | Drafts |
+|---|---:|
+| Copied a name or phrase from the prompt example | 14 |
+| Topic not in the fact sheet | 11 |
+| Country not in the fact sheet | 10 |
+| "Re-pitch" for an outlet that never covered the brand | 9 |
+| Number not in the data | 4 |
+| Topic gap described as a strength | 2 |
+
+The model rarely invents numbers. Its main problem is copying the worked example in the prompt instead of reading the fact sheet. Asking it to fix the problems the checks found helped little: it usually returned the same text. For this week the brief failed the checks, so the report falls back to the rule-based takeaways. The next step is a LoRA fine-tune of the 1.7B model on briefs that pass the checks, which removes the need for the example in the prompt, measured with the same `brief-eval`.
+
 ## Automation
 
 | Workflow | Trigger | What it does |
@@ -132,6 +171,7 @@ src/pr_radar/
   storage.py                DuckDB + Parquet archive
   analytics.py              share of voice, market/outlet/topic gaps, sentiment, insights
   sentiment/                DimABSA data, metrics, XLM-R model, experiments, scoring
+  narrative/                weekly brief: fact sheet, prompt, local LLM, checks, evaluation
   report.py, templates/     weekly HTML report (inline SVG, no JS)
   web_export.py             data.json for the static web dashboard
   dashboard.py              Streamlit app

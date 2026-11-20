@@ -157,6 +157,19 @@
     <div class="kpi glass"><div class="v">{{ kpis.markets }}</div><div class="l">Markets</div></div>
   </section>
 
+  {% if brief %}
+  <section class="card glass">
+    <h2>Weekly brief</h2>
+    <p>{{ brief.summary }}</p>
+    {% if brief.actions %}
+    <ul class="insights">
+      {% for a in brief.actions %}<li>{{ a }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    <p class="muted">Written by {{ brief.model }} running locally, from the numbers in this report only. Every number, outlet and trend claim was checked against the data before publishing.</p>
+  </section>
+
+  {% endif %}
   <section class="card glass">
     <h2>Key takeaways</h2>
     <p class="muted">Generated from this period's coverage.</p>

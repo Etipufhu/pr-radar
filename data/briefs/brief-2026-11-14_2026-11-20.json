@@ -1,0 +1,189 @@
+{
+  "text": "Summary: FOREO had 17 mentions and 20% share of voice, second behind Therabody at 47%. Therabody leads in AU with 100% against FOREO's 0%. CurrentBody leads in skin science with 22% against FOREO's 12%. Therabody has a recall headline on ccpc.ie.\nActions:\n- Re-pitch shopping.yahoo.com, popsugar.com, uk.style.yahoo.com, wareable.com, and menshealth.com, which have covered Therabody but not FOREO.\n- Send review units to Australian outlets to close the AU gap.\n- Offer reviews coverage, where competitors get 22% of their coverage and FOREO 12%.",
+  "model": "Qwen/Qwen3-1.7B",
+  "published": false,
+  "errors": [
+    "topic not in the fact sheet: reviews",
+    "says re-pitch, but no listed outlet covered the brand before"
+  ],
+  "style": [],
+  "attempts": 4,
+  "facts": {
+    "primary": "FOREO",
+    "start": "2026-11-14",
+    "end": "2026-11-20",
+    "baseline": false,
+    "total_mentions": 85,
+    "brands": [
+      {
+        "brand": "Therabody",
+        "primary": false,
+        "rank": 1,
+        "mentions": 40,
+        "share_pct": 47,
+        "headline_mentions": 19,
+        "change_pts": null
+      },
+      {
+        "brand": "FOREO",
+        "primary": true,
+        "rank": 2,
+        "mentions": 17,
+        "share_pct": 20,
+        "headline_mentions": 6,
+        "change_pts": null
+      },
+      {
+        "brand": "CurrentBody",
+        "primary": false,
+        "rank": 3,
+        "mentions": 15,
+        "share_pct": 18,
+        "headline_mentions": 6,
+        "change_pts": null
+      },
+      {
+        "brand": "Solawave",
+        "primary": false,
+        "rank": 4,
+        "mentions": 9,
+        "share_pct": 11,
+        "headline_mentions": 0,
+        "change_pts": null
+      },
+      {
+        "brand": "NuFACE",
+        "primary": false,
+        "rank": 5,
+        "mentions": 3,
+        "share_pct": 4,
+        "headline_mentions": 0,
+        "change_pts": null
+      },
+      {
+        "brand": "PMD Beauty",
+        "primary": false,
+        "rank": 6,
+        "mentions": 1,
+        "share_pct": 1,
+        "headline_mentions": 0,
+        "change_pts": null
+      }
+    ],
+    "market_gaps": [
+      {
+        "country": "AU",
+        "leader": "Therabody",
+        "leader_pct": 100,
+        "primary_pct": 0
+      },
+      {
+        "country": "US",
+        "leader": "Therabody",
+        "leader_pct": 40,
+        "primary_pct": 13
+      }
+    ],
+    "outlet_gaps": {
+      "count": 50,
+      "warm": 0,
+      "top": [
+        {
+          "outlet": "shopping.yahoo.com",
+          "competitor_articles": 4,
+          "warm": false
+        },
+        {
+          "outlet": "popsugar.com",
+          "competitor_articles": 2,
+          "warm": false
+        },
+        {
+          "outlet": "uk.style.yahoo.com",
+          "competitor_articles": 2,
+          "warm": false
+        },
+        {
+          "outlet": "wareable.com",
+          "competitor_articles": 2,
+          "warm": false
+        },
+        {
+          "outlet": "menshealth.com",
+          "competitor_articles": 2,
+          "warm": false
+        }
+      ]
+    },
+    "topic_gaps": [
+      {
+        "topic": "skin science",
+        "competitor_pct": 22,
+        "primary_pct": 12,
+        "leader": "CurrentBody"
+      },
+      {
+        "topic": "business",
+        "competitor_pct": 14,
+        "primary_pct": 6,
+        "leader": "Therabody"
+      },
+      {
+        "topic": "gift guides",
+        "competitor_pct": 17,
+        "primary_pct": 12,
+        "leader": "Therabody"
+      }
+    ],
+    "risks": [
+      {
+        "title": "Therabody Recalls Therabody Theragun G4PRO Charger",
+        "outlet": "ccpc.ie",
+        "brands": [
+          "Therabody"
+        ]
+      }
+    ],
+    "tone": [
+      {
+        "brand": "FOREO",
+        "valence": 7.5,
+        "scored": 6
+      },
+      {
+        "brand": "CurrentBody",
+        "valence": 7.4,
+        "scored": 6
+      },
+      {
+        "brand": "Therabody",
+        "valence": 6.8,
+        "scored": 19
+      }
+    ],
+    "stories": [
+      {
+        "title": "CurrentBody Black Friday Deals 2026: Best Offers & Discounts",
+        "outlets": 2,
+        "brands": [
+          "CurrentBody"
+        ]
+      },
+      {
+        "title": "Our editors use Therabody recovery gear every single day and it’s up to $230 off for Black Friday",
+        "outlets": 2,
+        "brands": [
+          "Therabody"
+        ]
+      },
+      {
+        "title": "Therabody Acquires Embr Labs' Thermal Technology Portfolio to Expand Women's Health Offerings",
+        "outlets": 2,
+        "brands": [
+          "Therabody"
+        ]
+      }
+    ]
+  },
+  "created_at": "2026-11-20T19:03:23+00:00"
+}

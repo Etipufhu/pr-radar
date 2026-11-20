@@ -1,4 +1,4 @@
-"""Command line interface: pr-radar collect | report | stats | export-web | dashboard."""
+"""Command line interface: pr-radar collect | report | brief | stats | export-web | dashboard."""
 
 from __future__ import annotations
 
@@ -121,6 +121,56 @@ def cmd_score_sentiment(args: argparse.Namespace) -> int:
     finally:
         store.close()
     print(f"scored {n} headline brand mentions")
+    return 0
+
+
+DEFAULT_BRIEFS = "data/briefs"
+
+
+def cmd_brief(args: argparse.Namespace) -> int:
+    from .narrative.facts import weekly_facts
+    from .narrative.writer import LocalLLM, save_brief, write_brief
+
+    settings = load_config(args.config)
+    window = default_window(args.days or settings.lookback_days, args.end)
+    store = _open(args, settings)
+    try:
+        facts = weekly_facts(store.con, settings, window)
+    finally:
+        store.close()
+    llm = LocalLLM(args.model)
+    brief = write_brief(facts, llm, args.model, tries=args.tries)
+    path = save_brief(brief, args.out)
+    print(brief.text)
+    print(f"\nattempts={brief.attempts} errors={brief.errors} style={brief.style}")
+    print(f"{'published' if brief.published else 'NOT published (failed checks)'}: {path}")
+    return 0 if brief.published else 1
+
+
+def cmd_brief_eval(args: argparse.Namespace) -> int:
+    from .narrative.evaluate import evaluate, synthetic_facts, write_results
+    from .narrative.facts import weekly_facts
+    from .narrative.writer import LocalLLM
+
+    settings = load_config(args.config)
+    primary = settings.brand_names[settings.primary_brand]
+    competitors = [n for b, n in settings.brand_names.items() if b != settings.primary_brand]
+    fact_sets = [synthetic_facts(primary, competitors, seed) for seed in range(args.weeks)]
+    store = _open(args, settings)
+    try:
+        fact_sets.insert(0, weekly_facts(store.con, settings, default_window(7)))
+    finally:
+        store.close()
+    result = evaluate(fact_sets, LocalLLM(args.model), args.model, tries=args.tries)
+    path = write_results(result, args.results)
+    print(
+        f"weeks={result['weeks']} first_attempt_pass={result['first_attempt_pass_rate']:.0%} "
+        f"published_with_retries={result['published_rate_with_retries']:.0%} "
+        f"mean_words={result['mean_words']:.0f}"
+    )
+    print(f"errors={result['error_counts']}")
+    print(f"style={result['style_counts']}")
+    print(f"-> {path}")
     return 0
 
 
@@ -247,6 +297,21 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("score-sentiment", help="score headline brand mentions with the model")
     p.add_argument("--model-dir", default=DEFAULT_SENTIMENT_MODEL)
     p.set_defaults(func=cmd_score_sentiment)
+
+    p = sub.add_parser("brief", help="write the weekly brief with a local LLM and check it")
+    p.add_argument("--days", type=int, help="window length (default: lookback_days)")
+    p.add_argument("--end", type=_date, help="last day of the window, YYYY-MM-DD")
+    p.add_argument("--model", default="Qwen/Qwen3-1.7B", help="Hugging Face model id or path")
+    p.add_argument("--tries", type=int, default=4)
+    p.add_argument("--out", default=DEFAULT_BRIEFS)
+    p.set_defaults(func=cmd_brief)
+
+    p = sub.add_parser("brief-eval", help="check rate of LLM briefs on real + synthetic weeks")
+    p.add_argument("--model", default="Qwen/Qwen3-1.7B")
+    p.add_argument("--weeks", type=int, default=40, help="number of synthetic weeks")
+    p.add_argument("--tries", type=int, default=4)
+    p.add_argument("--results", default="results")
+    p.set_defaults(func=cmd_brief_eval)
 
     p = sub.add_parser("dashboard", help="open the Streamlit dashboard")
     p.set_defaults(func=cmd_dashboard)
