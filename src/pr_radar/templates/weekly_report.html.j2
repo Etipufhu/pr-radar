@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>PR Radar · {{ names[primary] }} · {{ start.strftime('%d %b') }}–{{ end.strftime('%d %b %Y') }}</title>
+<style>
+  :root {
+    --bg: #030407; --ink: #f4f7fb; --ink-2: rgba(232, 240, 250, .74); --muted: rgba(214, 226, 242, .58);
+    --line: rgba(255, 255, 255, .14); --line-soft: rgba(255, 255, 255, .08);
+    --glass: rgba(18, 22, 32, .45); --glass-hi: rgba(46, 58, 82, .45);
+    --us: #1d96d6; --us-hi: #45c8ff; --bar: rgba(214, 226, 242, .32);
+    --good: #7ee2a8; --bad: #ff9b7a; --warm: #ffd27a;
+    --radius: 26px;
+    --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font); overflow-x: hidden; }
+
+  /* Background: glowing swirl + giant type (pure CSS/SVG, no JS) */
+  .backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+    background: radial-gradient(60% 50% at 70% 72%, rgba(29, 110, 220, .28), transparent 70%),
+                radial-gradient(40% 35% at 18% 12%, rgba(90, 130, 255, .10), transparent 70%), var(--bg); }
+  .backdrop svg { position: absolute; width: 125vmax; height: 125vmax; left: 50%; top: 50%; transform: translate(-50%, -52%); }
+  .backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(3, 4, 7, .65)); }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 36px clamp(16px, 4vw, 32px) 64px; position: relative; }
+  .hero { position: relative; padding-top: clamp(40px, 9vw, 110px); }
+  .hero-type { position: absolute; z-index: -1; left: 50%; top: 0; transform: translateX(-50%); white-space: nowrap;
+    font-size: clamp(80px, 19vw, 210px); font-weight: 800; letter-spacing: -.065em; line-height: .9; user-select: none;
+    background: linear-gradient(180deg, rgba(150, 190, 255, .34), rgba(70, 110, 190, .06) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-accent { position: absolute; z-index: -1; right: 0; top: 0; font-size: clamp(20px, 3.6vw, 40px); font-weight: 700; letter-spacing: -.03em;
+    background: linear-gradient(100deg, #7fe0ff, #2b8cff 45%, #b9f3ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .16em; font-weight: 600; color: var(--muted); margin: 0; }
+  h1 { font-size: clamp(30px, 5vw, 46px); margin: 10px 0 6px; letter-spacing: -.04em; line-height: 1.1; }
+  h2 { font-size: 20px; margin: 0 0 6px; letter-spacing: -.02em; }
+  .muted { color: var(--muted); }
+  .lede { color: var(--ink-2); margin: 0; }
+
+  .glass { background: linear-gradient(160deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .015) 55%), var(--glass);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 30px 60px -30px rgba(0, 0, 0, .7); }
+  .card { padding: clamp(18px, 3vw, 28px); margin-top: 22px; }
+  .card > p.muted { margin: 0 0 16px; font-size: 14px; }
+  .scroll { overflow-x: auto; }
+
+  .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 30px; }
+  .kpi { padding: 18px 18px 16px; border-radius: 22px; }
+  .kpi.featured { background: linear-gradient(160deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .03) 60%), var(--glass-hi);
+    border-color: rgba(255, 255, 255, .26); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 30px 60px -28px rgba(10, 80, 180, .55); }
+  .kpi .v { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; letter-spacing: -.04em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .kpi .l { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+  .up { color: var(--good); } .down { color: var(--bad); }
+
+  ul.insights { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  ul.insights li { position: relative; padding-left: 32px; }
+  ul.insights li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff;
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .2); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.hl td { color: #fff; font-weight: 650; }
+  tr.hl td:first-child { box-shadow: inset 3px 0 0 var(--us-hi); }
+  tr.warm td:first-child { box-shadow: inset 3px 0 0 var(--warm); }
+  a { color: #bfeaff; text-decoration: none; } a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .warm-badge { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 11px; font-weight: 650; color: #1a1205; background: var(--warm); }
+
+  .chart { width: 100%; max-width: 620px; height: auto; display: block; }
+  .chart .bar { fill: var(--bar); }
+  .chart .bar.hl { fill: url(#pr-hl); }
+  .chart .lbl, .chart .val { fill: var(--ink); font-size: 13px; font-family: var(--font); }
+  .pill { display: inline-block; padding: 1px 9px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .04); color: var(--ink-2); font-size: 11.5px; margin: 1px 3px 1px 0; white-space: nowrap; }
+  .pill.us { color: #fff; border-color: rgba(69, 200, 255, .6); background: rgba(29, 150, 214, .22); }
+  footer { margin-top: 28px; padding: 20px 24px; font-size: 13px; color: var(--ink-2); border-radius: 22px; }
+  footer strong { color: #fff; }
+
+  @media (max-width: 760px) {
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi.featured { grid-column: 1 / -1; order: -1; }
+    .hero-accent { top: 4px; }
+  }
+  @media (prefers-reduced-transparency: reduce) { .glass { -webkit-backdrop-filter: none; backdrop-filter: none; background: #121620; } }
+
+  /* Print: plain, ink-friendly, no glow. */
+  @media print {
+    :root { --ink: #111; --ink-2: #333; --muted: #555; --line: #ccc; --line-soft: #ddd; --bar: #b8bcc6; --good: #146c3c; --bad: #b0361c; }
+    @page { margin: 14mm; }
+    body { background: #fff; color: #111; font-size: 11.5pt; }
+    .backdrop, .hero-type { display: none; }
+    .hero { padding-top: 0; }
+    .hero-accent { position: static; display: block; color: #0b5ea8; background: none; -webkit-text-fill-color: #0b5ea8; font-size: 14pt; }
+    main { max-width: none; padding: 0; }
+    .glass, .kpi.featured { background: #fff; border: 1px solid #ccc; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .card, .kpi, tr { break-inside: avoid; }
+    tr.hl td, footer strong { color: #000; }
+    .chart .bar.hl { fill: #0b5ea8; }
+    a { color: #0b5ea8; }
+    .pill { color: #333; border-color: #bbb; background: none; }
+    .pill.us { color: #0b5ea8; border-color: #0b5ea8; background: none; }
+    .warm-badge { background: none; border: 1px solid #a07000; color: #6b4a00; }
+    ul.insights li::before { color: #111; background: none; border-color: #999; }
+  }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true">
+  <svg viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="pr-core" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#9fe6ff" stop-opacity=".9"/><stop offset=".35" stop-color="#1d7fd6" stop-opacity=".55"/><stop offset="1" stop-color="#05070c" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="pr-arc" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0b2a6b" stop-opacity="0"/><stop offset=".45" stop-color="#2a7bff"/><stop offset=".75" stop-color="#7ee3ff"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/>
+      </linearGradient>
+      <linearGradient id="pr-arc2" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#5b8cff" stop-opacity="0"/><stop offset=".6" stop-color="#1fb6ff"/><stop offset="1" stop-color="#e8fbff"/>
+      </linearGradient>
+      <filter id="pr-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="pr-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    </defs>
+    <circle cx="760" cy="720" r="460" fill="url(#pr-core)" filter="url(#pr-soft)" opacity=".85"/>
+    <path d="M260 980 C 380 520, 820 300, 1120 560 S 900 1180, 560 1000" fill="none" stroke="url(#pr-arc)" stroke-width="130" filter="url(#pr-soft)" opacity=".9"/>
+    <path d="M300 900 C 470 560, 840 420, 1040 620 S 880 1040, 600 940" fill="none" stroke="url(#pr-arc2)" stroke-width="34" filter="url(#pr-glow)" opacity=".9"/>
+    <path d="M420 1060 C 620 760, 980 700, 1180 860" fill="none" stroke="url(#pr-arc)" stroke-width="70" filter="url(#pr-soft)" opacity=".55"/>
+    <path d="M520 860 C 640 700, 860 640, 960 760" fill="none" stroke="#e9fbff" stroke-width="6" filter="url(#pr-glow)" opacity=".7"/>
+  </svg>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="pr-hl" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#1d96d6"/><stop offset="1" stop-color="#45c8ff"/></linearGradient></defs>
+</svg>
+<main>
+  <header class="hero">
+    <div class="hero-type" aria-hidden="true">Coverage</div>
+    <div class="hero-accent">{{ names[primary] }} Radar</div>
+    <p class="eyebrow">PR Radar · weekly coverage report</p>
+    <h1>{{ names[primary] }} vs competitors</h1>
+    <p class="lede">{{ start.strftime('%d %b %Y') }} – {{ end.strftime('%d %b %Y') }} (UTC) · {{ kpis.total }} brand mentions tracked across Google News and GDELT</p>
+  </header>
+
+  <section class="kpis">
+    <div class="kpi glass"><div class="v">{{ kpis.mentions }}</div><div class="l">{{ names[primary] }} mentions</div></div>
+    <div class="kpi glass featured"><div class="v">{{ '%.0f' % (kpis.share * 100) }}%</div><div class="l">Share of voice</div></div>
+    {% if kpis.share_change is none %}
+    <div class="kpi glass"><div class="v muted">–</div><div class="l">SoV change (first period)</div></div>
+    {% else %}
+    <div class="kpi glass"><div class="v {{ 'up' if kpis.share_change > 0 else 'down' if kpis.share_change < 0 else '' }}">{{ '%+.1f' % kpis.share_change }}</div><div class="l">SoV change (pts)</div></div>
+    {% endif %}
+    <div class="kpi glass"><div class="v">{{ kpis.outlets }}</div><div class="l">Outlets</div></div>
+    <div class="kpi glass"><div class="v">{{ kpis.markets }}</div><div class="l">Markets</div></div>
+  </section>
+
+  <section class="card glass">
+    <h2>Key takeaways</h2>
+    <p class="muted">Generated from this period's coverage.</p>
+    <ul class="insights">
+      {% for line in insights %}<li>{{ line }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="card glass">
+    <h2>Share of voice</h2>
+    <p class="muted">Share of all brand mentions in the period. One article naming two brands counts for both. "In headline" counts only articles that name the brand in the title; the rest mention it in the body (gift guides, round-ups).</p>
+    {{ sov_chart }}
+    <div class="scroll">
+    <table style="margin-top:14px">
+      <tr><th>Brand</th><th class="n">Mentions</th><th class="n">In headline</th><th class="n">Prev.</th><th class="n">Share</th><th class="n">Δ pts</th></tr>
+      {% for r in comparison %}
+      <tr class="{{ 'hl' if r.brand == primary else '' }}">
+        <td>{{ names.get(r.brand, r.brand) }}</td>
+        <td class="n">{{ r.mentions }}</td>
+        <td class="n">{{ headline.get(r.brand, 0) }}</td>
+        <td class="n">{{ r.mentions_prev if baseline else '–' }}</td>
+        <td class="n">{{ '%.0f' % (r.share * 100) }}%</td>
+        {% if baseline %}
+        <td class="n {{ 'up' if r.share_change_pts > 0 else 'down' if r.share_change_pts < 0 else '' }}">{{ '%+.1f' % r.share_change_pts }}</td>
+        {% else %}<td class="n muted">–</td>{% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Market gaps</h2>
+    <p class="muted">Markets where a competitor out-shouts {{ names[primary] }} (min. 5 mentions).</p>
+    {% if market_gaps %}
+    <div class="scroll">
+    <table>
+      <tr><th>Market</th><th class="n">Mentions</th><th class="n">{{ names[primary] }}</th><th>Leader</th><th class="n">Leader share</th><th class="n">Gap</th></tr>
+      {% for g in market_gaps %}
+      <tr><td>{{ g.country }}</td><td class="n">{{ g.total }}</td><td class="n">{{ '%.0f' % (g.primary_share * 100) }}%</td>
+          <td>{{ names.get(g.leader, g.leader) }}</td><td class="n">{{ '%.0f' % (g.leader_share * 100) }}%</td><td class="n down">{{ '%.0f' % g.gap_pts }} pts</td></tr>
+      {% endfor %}
+    </table>
+    </div>
+    {% else %}<p class="muted">No market where a competitor leads.</p>{% endif %}
+  </section>
+
+  <section class="card glass">
+    <h2>Outlet gaps: pitch targets</h2>
+    <p class="muted">Outlets that wrote about competitors this period but not about {{ names[primary] }}. "Covered us before" marks warm contacts.</p>
+    {% if outlet_gaps %}
+    <div class="scroll">
+    <table>
+      <tr><th>Outlet</th><th class="n">Competitor articles</th><th>Competitors</th><th class="n">Covered us before</th></tr>
+      {% for o in outlet_gaps %}
+      <tr class="{{ 'warm' if o.primary_all_time else '' }}"><td>{{ o.outlet }}</td><td class="n">{{ o.competitor_articles }}</td>
+          <td>{% for b in o.competitors %}<span class="pill">{{ names.get(b, b) }}</span>{% endfor %}</td>
+          <td class="n">{% if o.primary_all_time %}<span class="warm-badge">{{ o.primary_all_time }}</span>{% else %}–{% endif %}</td></tr>
+      {% endfor %}
+    </table>
+    </div>
+    {% else %}<p class="muted">No outlet gaps this period.</p>{% endif %}
+  </section>
+
+  <section class="card glass">
+    <h2>Narrative gaps by topic</h2>
+    <p class="muted">Share of each side's coverage in a topic. Positive gap = a story competitors own that {{ names[primary] }} is missing.</p>
+    {% if topic_gaps %}
+    <div class="scroll">
+    <table>
+      <tr><th>Topic</th><th class="n">{{ names[primary] }}</th><th class="n">Competitors</th><th class="n">Gap</th><th>Top competitor</th></tr>
+      {% for t in topic_gaps %}
+      <tr><td>{{ t.topic.replace('_', ' ') }}</td>
+          <td class="n">{{ '%.0f' % (t.primary_share * 100) }}% <span class="muted">({{ t.primary_articles }})</span></td>
+          <td class="n">{{ '%.0f' % (t.competitor_share * 100) }}% <span class="muted">({{ t.competitor_articles }})</span></td>
+          <td class="n {{ 'down' if t.gap_pts > 0 else 'up' }}">{{ '%+.0f' % t.gap_pts }} pts</td>
+          <td>{{ names.get(t.top_competitor, t.top_competitor) if t.top_competitor else '–' }}</td></tr>
+      {% endfor %}
+    </table>
+    </div>
+    {% else %}<p class="muted">No topic-tagged coverage this period.</p>{% endif %}
+  </section>
+
+  <section class="card glass">
+    <h2>Headline tone (DimABSA)</h2>
+    <p class="muted">How headlines talk about each brand they name, scored by a multilingual model trained on SemEval-2026 DimABSA data and adapted to news headlines. Valence: 1 very negative, 5 neutral, 9 very positive. Arousal: 1 calm, 9 intense. Indicative only: the model under-rates bad news, so reputational risks are flagged separately by keyword (see Key takeaways).</p>
+    {% if sentiment %}
+    <div class="scroll">
+    <table>
+      <tr><th>Brand</th><th class="n">Scored</th><th class="n">Valence</th><th class="n">Arousal</th><th class="n">Positive</th><th class="n">Negative</th></tr>
+      {% for r in sentiment %}
+      <tr class="{{ 'hl' if r.brand == primary else '' }}"><td>{{ names.get(r.brand, r.brand) }}</td><td class="n">{{ r.scored }}</td>
+          <td class="n">{{ '%.1f' % r.valence }}</td><td class="n">{{ '%.1f' % r.arousal }}</td>
+          <td class="n up">{{ '%.0f' % (r.positive_share * 100) }}%</td><td class="n down">{{ '%.0f' % (r.negative_share * 100) }}%</td></tr>
+      {% endfor %}
+    </table>
+    </div>
+    {% if sentiment_headlines %}
+    <h3 style="margin-top:18px">Lowest-scoring headlines</h3>
+    <div class="scroll">
+    <table>
+      <tr><th>Headline</th><th>Brand</th><th class="n">V</th><th class="n">A</th></tr>
+      {% for h in sentiment_headlines[:5] %}
+      <tr><td><a href="{{ h.url }}" rel="noopener">{{ h.title }}</a> <span class="muted">{{ h.source_domain }}</span></td>
+          <td>{{ names.get(h.brand, h.brand) }}</td><td class="n">{{ '%.1f' % h.valence }}</td><td class="n">{{ '%.1f' % h.arousal }}</td></tr>
+      {% endfor %}
+    </table>
+    </div>
+    {% endif %}
+    {% else %}<p class="muted">No headlines scored yet. Run <code>pr-radar score-sentiment</code> with a trained model.</p>{% endif %}
+  </section>
+
+  <section class="card glass">
+    <h2>Most syndicated stories</h2>
+    <p class="muted">Distinct stories ranked by how many outlets carried them.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Story</th><th>Brands</th><th class="n">Outlets</th><th>Markets</th></tr>
+      {% for s in stories %}
+      <tr><td><a href="{{ s.url }}" rel="noopener">{{ s.title }}</a></td>
+          <td>{% for b in s.brands %}<span class="pill{{ ' us' if b == primary else '' }}">{{ names.get(b, b) }}</span>{% endfor %}</td>
+          <td class="n">{{ s.outlets }}</td><td>{{ s.markets | join(', ') }}</td></tr>
+      {% endfor %}
+    </table>
+    </div>
+  </section>
+
+  <footer class="glass">
+    Generated {{ generated_at }} by PR Radar. Mentions = articles naming a brand (in the headline or matched by the brand's news query);
+    stories = clusters of near-identical headlines. Markets come from Google News editions and GDELT source countries.
+    <br><br>
+    <strong>Independent project:</strong> not affiliated with, endorsed by, or built for any brand named in this report. Based only on publicly available news headlines;
+    automated matching can contain false positives.
+  </footer>
+</main>
+</body>
+</html>

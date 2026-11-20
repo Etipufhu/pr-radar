@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="PR Radar: share of voice, market, outlet and narrative gaps from public news coverage.">
+<title>PR Radar · Coverage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23050608'/%3E%3Cpath d='M16 6a10 10 0 0 1 10 10' stroke='%2345c8ff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M16 11a5 5 0 0 1 5 5' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23fff'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- Background: CSS/SVG swirl. Drop a render at assets/hero.webp and it replaces the swirl. -->
+<div class="backdrop" aria-hidden="true">
+  <div class="hero-image"></div>
+  <svg class="swirl" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="core" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#9fe6ff" stop-opacity=".9"/>
+        <stop offset=".35" stop-color="#1d7fd6" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#05070c" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="arc-a" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0b2a6b" stop-opacity="0"/>
+        <stop offset=".45" stop-color="#2a7bff"/>
+        <stop offset=".75" stop-color="#7ee3ff"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity=".9"/>
+      </linearGradient>
+      <linearGradient id="arc-b" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#5b8cff" stop-opacity="0"/>
+        <stop offset=".6" stop-color="#1fb6ff"/>
+        <stop offset="1" stop-color="#e8fbff"/>
+      </linearGradient>
+      <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+      <filter id="fiberglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.2"/></filter>
+    </defs>
+    <g class="swirl-spin">
+      <circle cx="760" cy="720" r="460" fill="url(#core)" filter="url(#soft)" opacity=".85"/>
+      <path d="M260 980 C 380 520, 820 300, 1120 560 S 900 1180, 560 1000" fill="none" stroke="url(#arc-a)" stroke-width="130" filter="url(#soft)" opacity=".9"/>
+      <path d="M300 900 C 470 560, 840 420, 1040 620 S 880 1040, 600 940" fill="none" stroke="url(#arc-b)" stroke-width="34" filter="url(#glow)" opacity=".9"/>
+      <path d="M420 1060 C 620 760, 980 700, 1180 860" fill="none" stroke="url(#arc-a)" stroke-width="70" filter="url(#soft)" opacity=".55"/>
+      <path d="M520 860 C 640 700, 860 640, 960 760" fill="none" stroke="#e9fbff" stroke-width="6" filter="url(#glow)" opacity=".7"/>
+      <path id="fiber" d="M240 940 C 400 520, 840 330, 1110 580 S 880 1160, 540 990" fill="none" stroke="url(#arc-b)" stroke-width="2.2"/>
+      <g class="fibers" filter="url(#fiberglow)">
+        <use href="#fiber" transform="rotate(-10.0 760 720)" opacity="0.18"/>
+        <use href="#fiber" transform="rotate(-8.4 760 720)" opacity="0.25"/>
+        <use href="#fiber" transform="rotate(-6.8 760 720)" opacity="0.32"/>
+        <use href="#fiber" transform="rotate(-5.2 760 720)" opacity="0.39"/>
+        <use href="#fiber" transform="rotate(-3.6 760 720)" opacity="0.47"/>
+        <use href="#fiber" transform="rotate(-2.0 760 720)" opacity="0.54"/>
+        <use href="#fiber" transform="rotate(-0.4 760 720)" opacity="0.61"/>
+        <use href="#fiber" transform="rotate(1.2 760 720)" opacity="0.68"/>
+        <use href="#fiber" transform="rotate(2.8 760 720)" opacity="0.61"/>
+        <use href="#fiber" transform="rotate(4.4 760 720)" opacity="0.54"/>
+        <use href="#fiber" transform="rotate(6.0 760 720)" opacity="0.47"/>
+        <use href="#fiber" transform="rotate(7.6 760 720)" opacity="0.39"/>
+        <use href="#fiber" transform="rotate(9.2 760 720)" opacity="0.32"/>
+        <use href="#fiber" transform="rotate(10.8 760 720)" opacity="0.25"/>
+      </g>
+    </g>
+  </svg>
+  <div class="grain"></div>
+</div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="logo" href="#top" aria-label="PR Radar home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4a12 12 0 0 1 12 12" /><path d="M16 10a6 6 0 0 1 6 6" /><circle cx="16" cy="16" r="2.6" /><path d="M16 28A12 12 0 0 1 4 16" class="dim"/></svg>
+    <span>PR Radar</span>
+  </a>
+  <nav class="pill-nav" aria-label="Sections">
+    <a href="#overview" class="active">Overview</a>
+    <a href="#gaps">Gaps</a>
+    <a href="#stories" class="opt">Stories</a>
+    <a href="#sentiment" class="opt">Sentiment</a>
+    <a class="pill-btn" href="data.json" download>Data</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="hero-type" aria-hidden="true">Coverage</div>
+    <div class="hero-accent" aria-hidden="true"><span data-bind="brand">FOREO</span> Radar</div>
+
+    <div class="hero-head">
+      <p class="eyebrow" data-bind="period">Loading coverage…</p>
+      <h1><span data-bind="brand">Brand</span> vs competitors</h1>
+      <p class="lede" data-bind="lede">Share of voice, market gaps, pitch targets and narrative gaps from public news headlines.</p>
+    </div>
+
+    <div class="plans" id="overview">
+      <article class="glass plan">
+        <p class="plan-kicker">Volume</p>
+        <p class="plan-value"><span data-kpi="mentions">–</span><small>mentions</small></p>
+        <p class="plan-sub" data-bind="volume-sub">Articles naming the brand.</p>
+        <ul class="checks" data-list="volume"></ul>
+        <a class="cta" href="#sov">Compare brands</a>
+      </article>
+      <article class="glass plan featured">
+        <p class="plan-kicker">Share of voice</p>
+        <p class="plan-value"><span data-kpi="share">–</span><small data-kpi="change">–</small></p>
+        <p class="plan-sub" data-bind="share-sub">Share of all tracked brand mentions.</p>
+        <ul class="checks" data-list="share"></ul>
+        <a class="cta" href="#gaps">See the gaps</a>
+      </article>
+      <article class="glass plan">
+        <p class="plan-kicker">Reach</p>
+        <p class="plan-value"><span data-kpi="outlets">–</span><small>outlets</small></p>
+        <p class="plan-sub" data-bind="reach-sub">Distinct outlets and markets.</p>
+        <ul class="checks" data-list="reach"></ul>
+        <a class="cta" href="#outlets">Pitch targets</a>
+      </article>
+    </div>
+
+    <div class="hero-foot">
+      <button class="toggle" type="button" role="switch" aria-checked="false" id="window-toggle">
+        <span class="track" aria-hidden="true"><span class="knob"></span></span>
+        <span class="toggle-label"><span class="off">7 days</span><span class="sep">/</span><span class="on">28 days</span></span>
+      </button>
+      <p class="muted small" data-bind="generated"></p>
+    </div>
+  </section>
+
+  <section class="glass panel" id="takeaways" aria-labelledby="h-takeaways">
+    <div class="panel-head">
+      <h2 id="h-takeaways">Key takeaways</h2>
+      <p class="muted">Generated from this period's coverage.</p>
+    </div>
+    <ul class="checks large" data-list="insights"></ul>
+  </section>
+
+  <section class="glass panel" id="sov" aria-labelledby="h-sov">
+    <div class="panel-head">
+      <h2 id="h-sov">Share of voice</h2>
+      <p class="muted">Share of all brand mentions in the period. One article naming two brands counts for both.</p>
+    </div>
+    <div class="sov-grid">
+      <div class="bars" data-chart="sov" role="list"></div>
+      <div class="table-wrap">
+        <table class="data" data-table="sov"></table>
+      </div>
+    </div>
+    <div class="trend" data-chart="trend"></div>
+  </section>
+
+  <div class="section-title" id="gaps">
+    <p class="eyebrow">Where to act</p>
+    <h2>Coverage gaps</h2>
+  </div>
+
+  <section class="glass panel" id="markets" aria-labelledby="h-markets">
+    <div class="panel-head">
+      <h2 id="h-markets">Market gaps</h2>
+      <p class="muted" data-bind="markets-note">Markets where a competitor out-shouts the brand (min. 5 mentions).</p>
+    </div>
+    <div class="market-grid" data-chart="markets"></div>
+  </section>
+
+  <section class="glass panel" id="outlets" aria-labelledby="h-outlets">
+    <div class="panel-head">
+      <h2 id="h-outlets">Outlet gaps: pitch targets</h2>
+      <p class="muted" data-bind="outlets-note">Outlets that covered competitors this period but not the brand.</p>
+    </div>
+    <ol class="outlets" data-list="outlets"></ol>
+  </section>
+
+  <section class="glass panel" id="topics" aria-labelledby="h-topics">
+    <div class="panel-head">
+      <h2 id="h-topics">Narrative gaps by topic</h2>
+      <p class="muted">Each topic's share of competitor coverage minus its share of the brand's coverage.</p>
+    </div>
+    <div class="legend" data-legend="topics"></div>
+    <div class="diverging" data-chart="topics" role="list"></div>
+  </section>
+
+  <section class="glass panel" id="stories" aria-labelledby="h-stories">
+    <div class="panel-head">
+      <h2 id="h-stories">Most syndicated stories</h2>
+      <p class="muted">Distinct stories ranked by how many outlets carried them.</p>
+    </div>
+    <ol class="stories" data-list="stories"></ol>
+  </section>
+
+  <section class="glass panel sentiment" id="sentiment" aria-labelledby="h-sentiment">
+    <div class="panel-head">
+      <h2 id="h-sentiment">Aspect sentiment <span class="tag">DimABSA</span></h2>
+      <p class="muted">Valence (negative → positive) and arousal (calm → intense) per product aspect, on the DimABSA 1–9 scale.</p>
+    </div>
+    <div data-chart="sentiment">
+      <div class="soon">
+        <span class="soon-badge">Coming soon</span>
+        <p>Aspect-level sentiment (price, design, efficacy, battery…) scored with continuous valence and arousal instead of one positive/negative label.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="glass footer-card">
+    <p><strong>Independent project.</strong> PR Radar is an independent student project. It is not affiliated with, endorsed by, or built for any of the brands named here. It only uses publicly available news headlines and metadata. Brand names are used to identify coverage and nothing else. Automated results come from headline matching and can contain false positives.</p>
+    <p class="muted small">Mentions = articles naming a brand; stories = clusters of near-identical headlines. Markets come from Google News editions. <span data-bind="footer-generated"></span></p>
+  </div>
+</footer>
+
+<div class="tooltip" role="tooltip" hidden></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "created_at": "2026-11-20T15:01:08+00:00",
+  "model_dir": "models/dimasr-xlmr-base",
+  "domain_set": "data/annotations/foreo_domain_v1.silver.jsonl",
+  "k": 5,
+  "fine_tune": {
+    "epochs": 5,
+    "lr": 1e-05,
+    "batch_size": 16
+  },
+  "scores": {
+    "domain_mean": {
+      "n": 185,
+      "rmse_norm": 0.1205700199269737,
+      "rmse": 1.3640940591705644,
+      "pcc_valence": -0.13011879718159267,
+      "pcc_arousal": -0.14478827951816017
+    },
+    "zero_shot": {
+      "n": 185,
+      "rmse_norm": 0.1714454795119329,
+      "rmse": 1.939684178666673,
+      "pcc_valence": 0.4593582042460581,
+      "pcc_arousal": 0.3546435036407047
+    },
+    "calibrated": {
+      "n": 185,
+      "rmse_norm": 0.11228288054121885,
+      "rmse": 1.2703357798696784,
+      "pcc_valence": 0.39381583235702017,
+      "pcc_arousal": 0.305370965179534
+    },
+    "fine_tuned": {
+      "n": 185,
+      "rmse_norm": 0.1119963314088896,
+      "rmse": 1.267093846515868,
+      "pcc_valence": 0.5261593288998846,
+      "pcc_arousal": 0.6263836947791673
+    }
+  }
+}

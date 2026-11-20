@@ -1,0 +1,12 @@
+{"articles": [
+  {"url": "https://www.example-news.co.uk/beauty/nuface-black-friday", "url_mobile": "",
+   "title": "NuFACE Black Friday deal: microcurrent device gets rare discount",
+   "seendate": "20261118T143000Z", "socialimage": "", "domain": "example-news.co.uk",
+   "language": "English", "sourcecountry": "United Kingdom"},
+  {"url": "https://www.ornek-haber.com.tr/teknoloji/cilt-bakim-cihazlari", "url_mobile": "",
+   "title": "Cilt bakım cihazlarında yeni dönem: NuFACE Türkiye pazarına giriyor",
+   "seendate": "20261117T080000Z", "socialimage": "", "domain": "ornek-haber.com.tr",
+   "language": "Turkish", "sourcecountry": "Turkey"},
+  {"url": "https://broken.example/x", "title": "Bad date", "seendate": "not-a-date",
+   "domain": "broken.example", "language": "English", "sourcecountry": "United States"}
+]}

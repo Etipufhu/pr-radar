@@ -1,0 +1,38 @@
+name: Weekly PR report
+
+# Every Monday: collect the last 7 days of coverage, append it to the Parquet
+# archive, regenerate the report and publish it to GitHub Pages (docs/).
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e .
+      - name: Collect coverage
+        run: pr-radar -v collect
+      - name: Build report
+        run: pr-radar report --publish docs/index.html
+      - name: Commit archive and report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/archive docs
+          git diff --cached --quiet || git commit -m "Weekly report $(date -u +%G-W%V)"
+          git push

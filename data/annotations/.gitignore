@@ -1,0 +1,4 @@
+# The 30-day candidate pool is rebuilt with annotation/README.md step 1; keep it out of git.
+*.duckdb
+*.duckdb.wal
+*.tmp

@@ -1,0 +1,74 @@
+# PR Radar configuration.
+# The tool is brand-agnostic: swap these brands for any market you want to watch.
+# Demo set: consumer beauty-tech devices.
+
+primary_brand: foreo
+lookback_days: 30
+
+brands:
+  - id: foreo
+    name: FOREO
+    query: '"FOREO"'
+    aliases: ["FOREO"]
+  - id: nuface
+    name: NuFACE
+    query: '"NuFACE"'
+    aliases: ["NuFACE"]
+  - id: currentbody
+    name: CurrentBody
+    query: '"CurrentBody"'
+    aliases: ["CurrentBody", "Current Body Skin"]
+  - id: therabody
+    name: Therabody
+    query: '"TheraFace" OR "Therabody"'
+    aliases: ["TheraFace", "Therabody"]
+  - id: pmd
+    name: PMD Beauty
+    query: '"PMD Beauty"'
+    aliases: ["PMD Beauty", "PMD Clean"]
+  - id: solawave
+    name: Solawave
+    query: '"Solawave"'
+    aliases: ["Solawave"]
+
+# Google News market editions (hl = interface language, gl = market, ceid = edition id).
+editions:
+  - { hl: en-US, gl: US, ceid: "US:en" }
+  - { hl: en-GB, gl: GB, ceid: "GB:en" }
+  - { hl: en-AU, gl: AU, ceid: "AU:en" }
+  - { hl: de, gl: DE, ceid: "DE:de" }
+  - { hl: fr, gl: FR, ceid: "FR:fr" }
+  - { hl: es, gl: ES, ceid: "ES:es" }
+  - { hl: it, gl: IT, ceid: "IT:it" }
+  - { hl: pl, gl: PL, ceid: "PL:pl" }
+  - { hl: tr, gl: TR, ceid: "TR:tr" }
+  - { hl: sv, gl: SE, ceid: "SE:sv" }
+  - { hl: ja, gl: JP, ceid: "JP:ja" }
+  - { hl: pt-BR, gl: BR, ceid: "BR:pt-419" }
+
+# GDELT adds global, non-English sources but rate-limits heavily (one request per
+# 5 s, long bans after bursts). Off by default; when on, it gets a time budget
+# and the run falls back to Google News if GDELT is unavailable.
+gdelt:
+  enabled: false
+  max_records: 250
+  time_budget_seconds: 180
+
+# Topic taxonomy. Keywords are case-insensitive prefixes matched at word starts,
+# so "sustainab" matches "sustainable" and "sustainability".
+topics:
+  launch: [launch, unveil, introduc, debut, "lanza", "lança", "lancia", "lance", "stellt vor",
+           "tanıt", "piyasaya", "wprowadza", "nowość", "lanserar", "発売"]
+  deals_pricing: [deal, discount, sale, "black friday", "cyber monday", "prime day", "% off",
+                  rabatt, angebot, descuento, oferta, soldes, promo, sconto, indirim, fiyat,
+                  promocja, "rea ", セール]
+  reviews: [review, tested, "i tried", "worth it", "test", "probado", reseña, avis, recensione,
+            inceleme, denedim, recenzja, recension, レビュー]
+  gift_guides: [gift, geschenk, regalo, cadeau, hediye, prezent, julklapp, ギフト]
+  skin_science: [clinical, study, dermatolog, collagen, "red light", "led ", microcurrent,
+                 wrinkle, acne, "anti-aging", "anti-ageing", hautarzt, cilt, skóra]
+  sustainability: [sustainab, eco-friendly, recycl, nachhaltig, sostenib, durable,
+                   sürdürülebilir, zrównoważ, hållbar]
+  business: [funding, acquisition, acquire, revenue, partnership, partners, expands, expansion,
+             investment, retail, "ceo", ipo, layoff, umsatz, ingresos, yatırım, przychod]
+  awards: [award, winner, "best of", auszeichnung, premio, prix, ödül, nagroda]

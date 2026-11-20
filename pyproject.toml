@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pr-radar"
+version = "0.1.0"
+description = "Multilingual PR coverage tracker: share of voice, competitor monitoring and coverage-gap analysis from Google News and GDELT."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "duckdb>=1.1",
+  "feedparser>=6.0",
+  "requests>=2.31",
+  "pydantic>=2.6",
+  "pyyaml>=6.0",
+  "pandas>=2.1",
+  "langdetect>=1.0.9",
+  "pycountry>=23.12",
+  "jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+dashboard = ["streamlit>=1.38", "altair>=5"]
+# PyTorch: install a CUDA build first if you have a GPU, see README
+sentiment = ["torch>=2.4", "transformers>=4.45", "sentencepiece>=0.2"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+pr-radar = "pr_radar.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pr_radar = ["templates/*.j2"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["data/external"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]  # long lines are left to the formatter (SQL and HTML strings stay readable)
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

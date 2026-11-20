@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title>"FOREO" when:7d - Google News</title>
+<link>https://news.google.com/search?q=%22FOREO%22+when:7d</link>
+<item>
+  <title>FOREO unveils a new facial cleansing device for sensitive skin - Example Beauty</title>
+  <link>https://news.google.com/rss/articles/CBMiAAA?oc=5</link>
+  <guid isPermaLink="false">CBMiAAA</guid>
+  <pubDate>Tue, 17 Nov 2026 09:30:00 GMT</pubDate>
+  <description>FOREO unveils a new facial cleansing device</description>
+  <source url="https://www.examplebeauty.com">Example Beauty</source>
+</item>
+<item>
+  <title>Die besten Gesichtsreinigungsbürsten im Test: Diese Geräte überzeugen - stern.de</title>
+  <link>https://news.google.com/rss/articles/CBMiBBB?oc=5</link>
+  <guid isPermaLink="false">CBMiBBB</guid>
+  <pubDate>Mon, 16 Nov 2026 18:00:00 GMT</pubDate>
+  <description>Test</description>
+  <source url="https://www.stern.de">stern.de</source>
+</item>
+<item>
+  <title>Item without a date is skipped - Nowhere</title>
+  <link>https://news.google.com/rss/articles/CBMiCCC?oc=5</link>
+  <source url="https://nowhere.example">Nowhere</source>
+</item>
+</channel>
+</rss>
