@@ -25,7 +25,7 @@ dependencies = [
 dashboard = ["streamlit>=1.38", "altair>=5"]
 # PyTorch: install a CUDA build first if you have a GPU, see README
 sentiment = ["torch>=2.4", "transformers>=4.45", "sentencepiece>=0.2"]
-dev = ["pytest>=8", "ruff>=0.6"]
+dev = ["pytest>=8", "ruff>=0.6", "matplotlib>=3.8"]
 
 [project.scripts]
 pr-radar = "pr_radar.cli:main"

@@ -2,17 +2,50 @@
 
 Media monitoring for a PR team: it collects public news coverage of a brand and its competitors in 14 markets, finds where competitors get coverage the brand does not, scores the tone of each brand mention, and has a small local LLM write a weekly brief that is checked against the data before it is published.
 
-**[Live dashboard](https://etipufhu.github.io/pr-radar/)** · **[Latest report](https://etipufhu.github.io/pr-radar/report.html)** · updated daily by GitHub Actions
+**[Live dashboard](https://etipufhu.github.io/pr-radar/)** · **[Latest report](https://etipufhu.github.io/pr-radar/report.html)** · **[Brief model card](adapters/brief-lora-qwen3-1.7b)**
 
 ![Dashboard: share of voice, reach and volume for the last 7 days](docs/img/dashboard.png)
 
 | | What was built | Result |
 |---|---|---|
+| Weekly brief (LLM fine-tuning) | Qwen3-1.7B with a LoRA adapter distilled from Qwen3-4B, plus rule checks for every number, outlet and piece of advice | First drafts that pass every check: 1 of 21 → 11 of 21, level with the 4B teacher; LLM judge 3.5 → 4.2 out of 5 |
+| Sentiment (encoder fine-tuning) | XLM-R fine-tuned on DimABSA (SemEval-2026), valence and arousal per brand mention, then adapted to news headlines | 6–53% lower error than the baseline on all 10 official test sets; on news headlines (labels still being reviewed), Pearson 0.53 for valence and 0.63 for arousal |
 | Collection | Google News (14 market editions, brand and product-line queries) and 97 outlet RSS feeds, deduplicated and clustered into stories | About 280 articles in the last 30 days, history kept as Parquet in the repo |
-| Sentiment | XLM-R fine-tuned on DimABSA (SemEval-2026), valence and arousal per brand mention, then adapted to news headlines | 6–53% lower error than the baseline on all 10 official test sets; on news headlines (labels still being reviewed), Pearson 0.53 for valence and 0.63 for arousal |
-| Weekly brief | Qwen3-1.7B with a LoRA adapter distilled from Qwen3-4B, plus rule checks for every number, outlet and piece of advice | First drafts that pass every check: 1 of 21 → 11 of 21, level with the 4B teacher; LLM judge 3.5 → 4.2 out of 5 |
 
 ![The weekly brief card on the dashboard](docs/img/brief.png)
+
+## Fine-tuning a small LLM to write the brief
+
+The brief has to run on a laptop GPU (8 GB) with no API, so the model is small: Qwen3-1.7B. Out of the box it copied the example in its prompt and gave advice that helped competitors. The fix was knowledge distillation with rule-checked targets:
+
+```mermaid
+flowchart LR
+    S[Synthetic weeks<br/>random brand, seeds 1000+] --> T[Teacher: Qwen3-4B<br/>4-bit, 4 drafts per week]
+    T --> C{Rule checks<br/>numbers, outlets, countries,<br/>leaders, advice}
+    C -- pass --> D[154 training briefs]
+    C -- fail --> X[dropped]
+    D --> L[LoRA on Qwen3-1.7B<br/>r=16, 17M params, 10 min]
+    L --> E[Held-out weeks<br/>checks + LLM judge]
+```
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/brief-results-dark.png">
+  <img alt="First drafts passing every check: base 1, self-distilled 2, teacher-distilled LoRA 11, teacher 10 of 21. Judge mean: 3.52, 3.52, 4.19, 4.52." src="docs/img/brief-results-light.png">
+</picture>
+
+- **What worked:** training on a larger model's outputs, filtered by the same checks that guard production. Training on the small model's own best outputs did not help (2 of 21), because the targets shared its blind spots.
+- **What did not:** labelling outlets in the prompt and rebalancing the training data. Both are written up with their numbers below, since 21 test weeks cannot separate small differences.
+- **Guardrails stay on:** every brief, from any model, goes through the checks and is published only if it passes.
+
+The adapter (35 MB) is in the repo, with every draft, judge reply and training example, so the results can be checked or rerun:
+
+```bash
+pr-radar brief --adapter adapters/brief-lora-qwen3-1.7b     # write this week's brief
+python scripts/rescore_briefs.py results/brief_eval_*.json    # re-check the saved drafts
+powershell scripts/brief_pipeline.ps1                         # rebuild it all (~2.5 h on 8 GB)
+```
+
+Details, error tables and limits: [Weekly brief (local LLM)](#weekly-brief-local-llm).
 
 Tracks news coverage of a brand and its competitors in 14 Google News market editions and about 100 outlet RSS feeds (GDELT is optional). The dashboard and report show:
 
@@ -215,7 +248,7 @@ With 21 test weeks a difference of one or two drafts is within noise. The next u
 | `ci.yml` | push / PR | `ruff format --check`, `ruff check`, `pytest` |
 | `publish.yml` | daily 06:00 UTC + manual | collect → append to Parquet archive → build report → copy the dashboard → commit to `docs/` (GitHub Pages) |
 
-The dashboard data is exported locally (`pr-radar score-sentiment`, `pr-radar brief`, `pr-radar export-web`), because the sentiment model and the brief need a GPU, and committed in `web/`. The workflow copies it to `docs/` as is, next to the daily report (`docs/report.html`). To publish, enable **Settings → Pages → Deploy from branch → `main` / `docs`**.
+The dashboard on GitHub Pages is a snapshot: its data was exported once on a local GPU, where the sentiment model and the brief run (`pr-radar score-sentiment`, `pr-radar brief --adapter …`, `pr-radar export-web`), and committed in `web/`. The workflow only copies it to `docs/`; the report next to it (`docs/report.html`) is rebuilt from the collected headlines on every run, with no models involved. Pages serves `main` / `docs`.
 
 ## Project layout
 
