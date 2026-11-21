@@ -1,0 +1,18 @@
+{
+  "items": 30,
+  "answered": 30,
+  "unsure": 0,
+  "agree": 24,
+  "agreement": 0.8,
+  "cohen_kappa": 0.41,
+  "always_good_baseline": 0.7666666666666667,
+  "llm_vs_human": {
+    "bad->bad": 1,
+    "bad->neutral": 1,
+    "good->good": 22,
+    "good->neutral": 3,
+    "neutral->bad": 1,
+    "neutral->good": 1,
+    "neutral->neutral": 1
+  }
+}

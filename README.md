@@ -9,7 +9,7 @@ Media monitoring for a PR team: it collects public news coverage of a brand and 
 | | What was built | Result |
 |---|---|---|
 | Weekly brief (LLM fine-tuning) | Qwen3-1.7B with a LoRA adapter distilled from Qwen3-4B, plus rule checks for every number, outlet and piece of advice | First drafts that pass every check: 1 of 21 → 11 of 21, level with the 4B teacher; LLM judge 3.5 → 4.2 out of 5 |
-| Sentiment (encoder fine-tuning) | XLM-R fine-tuned on DimABSA (SemEval-2026), valence and arousal per brand mention, then adapted to news headlines | 6–53% lower error than the baseline on all 10 official test sets; on news headlines (labels still being reviewed), Pearson 0.53 for valence and 0.63 for arousal |
+| Sentiment (encoder fine-tuning) | XLM-R fine-tuned on DimABSA (SemEval-2026), valence and arousal per brand mention, then adapted to news headlines | 6–53% lower error than the baseline on all 10 official test sets; on news headlines (LLM labels, spot-checked by a person), Pearson 0.53 for valence and 0.63 for arousal |
 | Collection | Google News (14 market editions, brand and product-line queries) and 97 outlet RSS feeds, deduplicated and clustered into stories | About 280 articles in the last 30 days, history kept as Parquet in the repo |
 
 ![The weekly brief card on the dashboard](docs/img/brief.png)
@@ -140,7 +140,7 @@ PR Radar scores how each headline talks about every brand it names, with continu
 | Baseline | 0.200 | 0.210 | 0.137 | 0.107 | 0.202 | 0.202 |
 | Pearson (valence) | 0.84 | 0.85 | 0.91 | 0.86 | 0.86 | 0.67 |
 
-**News headlines.** DimABSA has reviews, not news, and none of PR Radar's main languages besides English. On 185 brand mentions in real beauty-tech headlines (`data/annotations/`, pre-labelled by an LLM and being verified by a human), 5-fold cross-validation gives:
+**News headlines.** DimABSA has reviews, not news, and none of PR Radar's main languages besides English. On 185 brand mentions in real beauty-tech headlines (`data/annotations/`, labelled by an LLM), 5-fold cross-validation gives:
 
 | Approach | RMSE | Pearson V | Pearson A |
 |---|---:|---:|---:|
@@ -150,6 +150,8 @@ PR Radar scores how each headline talks about every brand it names, with continu
 | **+ fine-tuning on headlines** | **0.112** | **0.53** | **0.63** |
 
 Out of the box the model ranks headlines sensibly, but it is miscalibrated: it rates news as far more intense than it is (mean arousal 7.1 vs 5.9), because reviews are more emotional than journalism. A short fine-tune on headlines fixes the scale and improves both correlations. The adapted model (`models/dimasr-xlmr-base-news`) is the one used for scoring.
+
+**How good are the LLM labels?** A person (not a beauty-tech expert) answered one question for 30 English headlines, "good, neutral or bad news for the brand?", without seeing the LLM's label (`annotation/quick_check.py`, result in `results/label_quick_check.json`). They agreed on 24 of 30. In no case did one say good and the other bad; every disagreement involved "neutral", for example "I tried it for two years, here's my review", which the LLM rated mildly positive and the person neutral. The set is mostly positive, so answering "good" every time would already match the person on 23 of 30; corrected for that, agreement is moderate (Cohen's kappa 0.41). The labels are good enough to show that the off-the-shelf model is miscalibrated on news, not to tune fine differences. A full review tool is in the repo (see [Build on it](#build-on-it)).
 
 **Known limitation.** The headline set has few negative examples, and the model scored a product recall as mildly positive (5.8). Reputational risk is therefore flagged by a multilingual keyword rule (the `risk` topic: recall, lawsuit, injury, Rückruf, demanda, geri çağırma…), and sentiment is shown as indicative only.
 
@@ -284,9 +286,35 @@ scripts/fetch_dimabsa.sh    downloads the DimABSA data (not redistributed)
 - **Headline vs body mentions.** Google News matches a query anywhere in an article, so most mentions are in the body (gift guides, round-ups). Reports show both, and only headline mentions get sentiment scores. Outlets in `exclude_domains` are dropped from all history.
 - **No fake trends on day one.** Each run only sees the last 7 days. Week-over-week deltas are shown only once the previous window has actually been collected; until then the report says "first tracked period".
 
+## Build on it
+
+Everything needed to reuse or improve the models is in the repo.
+
+**Use the brief model in your own code.** The adapter works for any brand, since training used a random primary brand per week:
+
+```python
+from pr_radar.narrative.evaluate import synthetic_facts
+from pr_radar.narrative.writer import LocalLLM, write_brief
+
+llm = LocalLLM("Qwen/Qwen3-1.7B", adapter="adapters/brief-lora-qwen3-1.7b")
+facts = synthetic_facts("Lumio", ["Glowra", "Dermix"], seed=7)  # or narrative.facts.weekly_facts(...)
+brief = write_brief(facts, llm, "Qwen3-1.7B + LoRA", few_shot=False)
+print(brief.published, brief.errors, brief.text)
+```
+
+**Track another market.** Brands, aliases, product-line queries, editions, RSS feeds and the topic taxonomy are all in `config/brands.yaml`.
+
+**Verify or extend the headline labels.** The 139 headlines in `data/annotations/` were labelled by an LLM. Two tools let a person check them:
+- `annotation/quick_check.py` asks one question per headline (good, neutral or bad for the brand) and compares the answers with the LLM.
+- `annotation/review_app.py` is the full review: valence and arousal per mention, with the DimABSA fields under "Advanced".
+
+Both take `-- --lang tr` for a Turkish interface. After a review, `pr-radar dimabsa-adapt` retrains on the reviewed file.
+
+**Improve the brief model.** The open problems are listed under [What is left](#weekly-brief-local-llm): more teacher briefs for weeks without a warm outlet, and a larger test set. `scripts/brief_pipeline.ps1` reruns distillation, training, evaluation and judging; `scripts/rescore_briefs.py` and `scripts/plot_brief_results.py` re-check and redraw the results.
+
 ## Roadmap
 
-1. **DimABSA, next steps:** replace the LLM pre-labels with the human-reviewed set and add more negative headlines; score product-level aspects (price, design, efficacy) instead of only the brand; compare with an LLM zero-shot scorer; host the model so the weekly GitHub Action can score too (today scoring runs locally).
+1. **DimABSA, next steps:** a full human review of the headline labels (the tool is ready) and more negative headlines; score product-level aspects (price, design, efficacy) instead of only the brand; compare with an LLM zero-shot scorer; host the model so the weekly GitHub Action can score too (today scoring runs locally).
 2. Full-text extraction (trafilatura) for better topic and sentiment coverage.
 3. LLM-assisted topic classification to replace the keyword taxonomy.
 4. Alerts (Slack/email) when share of voice drops sharply or a negative story spreads to many outlets.

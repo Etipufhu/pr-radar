@@ -7,10 +7,13 @@ score on DimABSA's 1.00–9.00 scale. Its job is to measure how well a model tra
 official DimABSA data (restaurants, laptops, hotels, finance) transfers to beauty-tech
 news.
 
-**Provenance: LLM pre-annotated, human-verified.** Claude (claude-opus-5-5) proposed every
-label (`*.silver.jsonl`); a human reviewer accepts, fixes or skips each item in the review
-tool (`*.reviewed.jsonl`). Only the reviewed file is the evaluation set; the silver file
-is kept so LLM-vs-human agreement can be reported.
+**Provenance: LLM-annotated, spot-checked by a person.** Claude (claude-opus-5-5) proposed
+every label (`*.silver.jsonl`). A non-expert reader checked the tone of 30 English
+headlines with `quick_check.py` (good / neutral / bad, LLM label hidden; Turkish
+translations shown alongside the original): 24 of 30 agree, Cohen's kappa 0.41
+(`results/label_quick_check.json`). A full review, where a reviewer accepts, fixes or
+skips each item in `review_app.py` (`*.reviewed.jsonl`), has not been done yet; when it
+exists it replaces the silver file as the evaluation set.
 
 ## Format followed
 
