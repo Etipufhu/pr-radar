@@ -157,7 +157,11 @@ def train_lora(
 
     out_dir = Path(out_dir)
     bar.close()
+    for param in model.parameters():  # LoRA weights train in fp32; bf16 halves the file
+        if param.requires_grad:
+            param.data = param.data.to(torch.bfloat16)
     model.save_pretrained(out_dir)
+    (Path(out_dir) / "README.md").unlink(missing_ok=True)  # PEFT's empty model card template
     stats = {
         "base_model": base,
         "train_examples": len(train),

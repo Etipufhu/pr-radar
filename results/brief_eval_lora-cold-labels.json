@@ -1,0 +1,3029 @@
+{
+  "model": "adapters/brief-lora-v4",
+  "weeks": 21,
+  "first_attempt_pass_rate": 0.5238095238095238,
+  "published_rate_with_retries": 0.7619047619047619,
+  "tries": 3,
+  "few_shot": false,
+  "mean_words": 83.42857142857143,
+  "error_counts": {
+    "says re-pitch, but no listed outlet covered the brand before": 7,
+    "action promotes a competitor": 5,
+    "re-pitch for an outlet that never covered the brand": 4,
+    "does not mention the risk headline": 1,
+    "country not in the fact sheet": 1
+  },
+  "style_counts": {
+    "two actions say the same thing": 1
+  },
+  "samples": [
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-15",
+        "end": "2026-11-21",
+        "baseline": false,
+        "total_mentions": 80,
+        "brands": [
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 1,
+            "mentions": 39,
+            "share_pct": 49,
+            "headline_mentions": 18,
+            "change_pts": null
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 2,
+            "mentions": 15,
+            "share_pct": 19,
+            "headline_mentions": 6,
+            "change_pts": null
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 3,
+            "mentions": 15,
+            "share_pct": 19,
+            "headline_mentions": 4,
+            "change_pts": null
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 4,
+            "mentions": 7,
+            "share_pct": 9,
+            "headline_mentions": 0,
+            "change_pts": null
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 5,
+            "mentions": 3,
+            "share_pct": 4,
+            "headline_mentions": 0,
+            "change_pts": null
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 6,
+            "mentions": 1,
+            "share_pct": 1,
+            "headline_mentions": 0,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "AU",
+            "leader": "Therabody",
+            "leader_pct": 100,
+            "primary_pct": 0
+          },
+          {
+            "country": "US",
+            "leader": "Therabody",
+            "leader_pct": 40,
+            "primary_pct": 14
+          }
+        ],
+        "outlet_gaps": {
+          "count": 47,
+          "warm": 0,
+          "top": [
+            {
+              "outlet": "shopping.yahoo.com",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "popsugar.com",
+              "competitor_articles": 2,
+              "warm": false
+            },
+            {
+              "outlet": "uk.style.yahoo.com",
+              "competitor_articles": 2,
+              "warm": false
+            },
+            {
+              "outlet": "wareable.com",
+              "competitor_articles": 2,
+              "warm": false
+            },
+            {
+              "outlet": "menshealth.com",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "skin science",
+            "competitor_pct": 23,
+            "primary_pct": 13,
+            "leader": "CurrentBody"
+          },
+          {
+            "topic": "business",
+            "competitor_pct": 15,
+            "primary_pct": 7,
+            "leader": "Therabody"
+          }
+        ],
+        "risks": [
+          {
+            "title": "Therabody Recalls Therabody Theragun G4PRO Charger",
+            "outlet": "ccpc.ie",
+            "brands": [
+              "Therabody"
+            ]
+          }
+        ],
+        "tone": [
+          {
+            "brand": "CurrentBody",
+            "valence": 7.4,
+            "scored": 6
+          },
+          {
+            "brand": "FOREO",
+            "valence": 7.4,
+            "scored": 4
+          },
+          {
+            "brand": "Therabody",
+            "valence": 6.7,
+            "scored": 18
+          }
+        ],
+        "stories": [
+          {
+            "title": "CurrentBody Black Friday Deals 2026: Best Offers & Discounts",
+            "outlets": 2,
+            "brands": [
+              "CurrentBody"
+            ]
+          },
+          {
+            "title": "Our editors use Therabody recovery gear every single day and it’s up to $230 off for Black Friday",
+            "outlets": 2,
+            "brands": [
+              "Therabody"
+            ]
+          },
+          {
+            "title": "Therabody Acquires Embr Labs' Thermal Technology Portfolio to Expand Women's Health Offerings",
+            "outlets": 2,
+            "brands": [
+              "Therabody"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-15 to 2026-11-21\nTotal brand mentions in the period: 80\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 Therabody: 39 mentions, 49%, 18 in the headline\n- #2 CurrentBody: 15 mentions, 19%, 6 in the headline\n- #3 FOREO: 15 mentions, 19%, 4 in the headline\n- #4 Solawave: 7 mentions, 9%, 0 in the headline\n- #5 NuFACE: 3 mentions, 4%, 0 in the headline\n- #6 PMD Beauty: 1 mention, 1%, 0 in the headline\nMarkets where a competitor leads FOREO:\n- AU: Therabody 100%, FOREO 0%\n- US: Therabody 40%, FOREO 14%\nOutlets that covered competitors but not FOREO: 47 (0 of them covered FOREO before)\n- shopping.yahoo.com: 4 competitor articles, never covered FOREO\n- popsugar.com: 2 competitor articles, never covered FOREO\n- uk.style.yahoo.com: 2 competitor articles, never covered FOREO\n- wareable.com: 2 competitor articles, never covered FOREO\n- menshealth.com: 2 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- skin science: competitors 23%, FOREO 13% (led by CurrentBody)\n- business: competitors 15%, FOREO 7% (led by Therabody)\nRisk headlines (recall, lawsuit, injury keywords):\n- Therabody: \"Therabody Recalls Therabody Theragun G4PRO Charger\" (ccpc.ie)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- CurrentBody: 7.4 over 6 headlines\n- FOREO: 7.4 over 4 headlines\n- Therabody: 6.7 over 18 headlines\nStories picked up by several outlets:\n- \"CurrentBody Black Friday Deals 2026: Best Offers & Discounts\" (2 outlets; CurrentBody)\n- \"Our editors use Therabody recovery gear every single day and it’s up to $230 off for Black Friday\" (2 outlets; Therabody)\n- \"Therabody Acquires Embr Labs' Thermal Technology Portfolio to Expand Women's Health Offerings\" (2 outlets; Therabody)",
+      "published": false,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 15 mentions and 19% share of voice, tied with CurrentBody. Therabody leads in AU and US with 100% and 40% respectively. Competitors dominate in skin science and business topics.  \nActions:  \n- Pitch shopping.yahoo.com, which covered 4 competitor articles, with a FOREO skin science story.  \n- Pitch popsugar.com, which covered 2 competitor articles, with a FOREO business story.  \n- Offer a skin science story to uk.style.yahoo.com, which covered 2 competitor articles.",
+          "errors": [
+            "does not mention the risk headline"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 15 mentions and 19% share of voice, tying with CurrentBody. Therabody leads in AU and US, with 100% and 40% respectively. Competitors dominate skin science and business topics.  \nActions:  \n- Pitch shopping.yahoo.com, which covered 4 competitor articles and has not covered FOREO.  \n- Pitch popsugar.com, which covered 2 competitor articles and has not covered FOREO.  \n- Offer a skin science story to outlets in AU and US to counter Therabody’s lead.",
+          "errors": [
+            "does not mention the risk headline"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 15 mentions and 19% share of voice, tied with CurrentBody. Therabody leads in AU and US with 100% and 40% respectively. Competitors dominate in skin science and business topics.  \nActions:  \n- Pitch shopping.yahoo.com, which covered 4 competitor articles, with a FOREO skin science story.  \n- Pitch popsugar.com, which covered 2 competitor articles, with a FOREO business story.  \n- Offer a skin science story to uk.style.yahoo.com, which covered 2 competitor articles.",
+          "errors": [
+            "does not mention the risk headline"
+          ],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 4,
+        "reply": "Score: 4  \nReason: The actions are well-aligned with the data and gap in the fact sheet, but the offer to uk.style.yahoo.com is slightly vague and lacks specificity on how the skin science story would differ from CurrentBody’s coverage."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 88,
+        "brands": [
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 1,
+            "mentions": 28,
+            "share_pct": 32,
+            "headline_mentions": 17,
+            "change_pts": null
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 2,
+            "mentions": 18,
+            "share_pct": 20,
+            "headline_mentions": 4,
+            "change_pts": null
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 3,
+            "mentions": 16,
+            "share_pct": 18,
+            "headline_mentions": 9,
+            "change_pts": null
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 4,
+            "mentions": 13,
+            "share_pct": 15,
+            "headline_mentions": 1,
+            "change_pts": null
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 5,
+            "mentions": 10,
+            "share_pct": 11,
+            "headline_mentions": 1,
+            "change_pts": null
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 6,
+            "mentions": 3,
+            "share_pct": 3,
+            "headline_mentions": 2,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "TR",
+            "leader": "NuFACE",
+            "leader_pct": 70,
+            "primary_pct": 39
+          },
+          {
+            "country": "GB",
+            "leader": "CurrentBody",
+            "leader_pct": 100,
+            "primary_pct": 61
+          },
+          {
+            "country": "ES",
+            "leader": "NuFACE",
+            "leader_pct": 96,
+            "primary_pct": 33
+          }
+        ],
+        "outlet_gaps": {
+          "count": 0,
+          "warm": 0,
+          "top": []
+        },
+        "topic_gaps": [],
+        "risks": [
+          {
+            "title": "Users report burns from Solawave device",
+            "outlet": "shopping.yahoo.com",
+            "brands": [
+              "Solawave"
+            ]
+          }
+        ],
+        "tone": [
+          {
+            "brand": "NuFACE",
+            "valence": 6.9,
+            "scored": 2
+          },
+          {
+            "brand": "PMD Beauty",
+            "valence": 6.3,
+            "scored": 1
+          }
+        ],
+        "stories": []
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 88\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 Therabody: 28 mentions, 32%, 17 in the headline\n- #2 CurrentBody: 18 mentions, 20%, 4 in the headline\n- #3 FOREO: 16 mentions, 18%, 9 in the headline\n- #4 Solawave: 13 mentions, 15%, 1 in the headline\n- #5 NuFACE: 10 mentions, 11%, 1 in the headline\n- #6 PMD Beauty: 3 mentions, 3%, 2 in the headline\nMarkets where a competitor leads FOREO:\n- TR: NuFACE 70%, FOREO 39%\n- GB: CurrentBody 100%, FOREO 61%\n- ES: NuFACE 96%, FOREO 33%\nRisk headlines (recall, lawsuit, injury keywords):\n- Solawave: \"Users report burns from Solawave device\" (shopping.yahoo.com)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- NuFACE: 6.9 over 2 headlines\n- PMD Beauty: 6.3 over 1 headlines",
+      "published": false,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 16 mentions and 18% share of voice, behind Therabody at 32%. Competitors lead in TR, GB, and ES. Solawave has a risk headline about burns.  \nActions:  \n- Pitch outlets in TR, GB, and ES to cover FOREO.  \n- Offer a story on safety and user experience to counter Solawave’s risk headline.  \n- Re-pitch outlets that covered FOREO before, like shopping.yahoo.com, to address the burn risk.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "action promotes a competitor's story: Solawave"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 16 mentions and 18% share of voice, behind Therabody at 32%. Solawave had a risk headline about burns, and NuFACE leads in TR, GB, and ES.  \nActions:  \n- Re-pitch outlets that covered FOREO before, like shopping.yahoo.com, to address the Solawave risk headline.  \n- Pitch outlets in TR, GB, and ES where NuFACE leads to cover FOREO’s product and safety.  \n- Offer a FOREO story on safety and product innovation to counter the risk headline and address competitor coverage in those markets.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "wrong leader for GB: NuFACE, the fact sheet says CurrentBody"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 16 mentions and 18% share of voice, behind Therabody at 32%. Competitors lead in TR, GB, and ES. Solawave has a risk headline about burns.  \nActions:  \n- Pitch outlets in TR, GB, and ES to cover FOREO.  \n- Offer a story on safety and user experience to counter Solawave’s risk headline.  \n- Re-pitch outlets that covered FOREO before, like shopping.yahoo.com, to address the burn risk.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "action promotes a competitor's story: Solawave"
+          ],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, with clear links to the data on share of voice, market leadership gaps, and the risk headline."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 39,
+        "brands": [
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 1,
+            "mentions": 29,
+            "share_pct": 74,
+            "headline_mentions": 28,
+            "change_pts": 10.1
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 2,
+            "mentions": 7,
+            "share_pct": 18,
+            "headline_mentions": 6,
+            "change_pts": 3.2
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 3,
+            "mentions": 2,
+            "share_pct": 5,
+            "headline_mentions": 0,
+            "change_pts": 5.9
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 1,
+            "share_pct": 3,
+            "headline_mentions": 1,
+            "change_pts": 6.6
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "SE",
+            "leader": "Solawave",
+            "leader_pct": 70,
+            "primary_pct": 1
+          }
+        ],
+        "outlet_gaps": {
+          "count": 0,
+          "warm": 0,
+          "top": []
+        },
+        "topic_gaps": [],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "Solawave",
+            "valence": 7.5,
+            "scored": 22
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 5.7,
+            "scored": 1
+          },
+          {
+            "brand": "FOREO",
+            "valence": 7.1,
+            "scored": 2
+          },
+          {
+            "brand": "CurrentBody",
+            "valence": 5.4,
+            "scored": 1
+          }
+        ],
+        "stories": [
+          {
+            "title": "FOREO Black Friday deals: best offers",
+            "outlets": 5,
+            "brands": [
+              "FOREO"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 39\nShare of voice (mentions, share, mentions in the headline):\n- #1 Solawave: 29 mentions, 74%, 28 in the headline, +10.1 pts vs last week\n- #2 NuFACE: 7 mentions, 18%, 6 in the headline, +3.2 pts vs last week\n- #3 FOREO: 2 mentions, 5%, 0 in the headline, +5.9 pts vs last week\n- #4 CurrentBody: 1 mention, 3%, 1 in the headline, +6.6 pts vs last week\nMarkets where a competitor leads FOREO:\n- SE: Solawave 70%, FOREO 1%\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- Solawave: 7.5 over 22 headlines\n- NuFACE: 5.7 over 1 headlines\n- FOREO: 7.1 over 2 headlines\n- CurrentBody: 5.4 over 1 headlines\nStories picked up by several outlets:\n- \"FOREO Black Friday deals: best offers\" (5 outlets; FOREO)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 2 mentions and 5% share of voice, up 5.9 pts from last week. Solawave leads in SE with 70% share of voice. FOREO’s headline tone was 7.1, neutral to positive.  \nActions:  \n- Re-pitch outlets that covered FOREO before, such as outlets in SE.  \n- Pitch outlets in SE to cover FOREO’s Black Friday deals, which were picked up by 5 outlets.  \n- Offer a story on FOREO’s product innovation to counter competitors’ coverage in the headline tone and valence.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 2 mentions and 5% share of voice, up 5.9 pts from last week. Solawave leads in SE with 70% vs FOREO’s 1%. FOREO’s headline tone was 7.1, neutral to positive.  \nActions:  \n- Re-pitch outlets that covered FOREO before, including Solawave, to cover their coverage of FOREO.  \n- Pitch outlets in SE to cover FOREO’s Black Friday deals, which were picked up by 5 outlets.  \n- Offer a FOREO story on innovation or product development to counter competitors’ coverage in the headline tone and valence.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 2 mentions and 5% share of voice, up 5.9 pts from last week. Solawave leads in SE with 70% share of voice. FOREO’s headline tone was 7.1, neutral to positive.  \nActions:  \n- Pitch outlets in SE to cover FOREO’s Black Friday deals, which were picked up by 5 outlets.  \n- Offer a story on FOREO’s product innovation to counter competitors’ coverage in the headline tone and valence.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet—re-pitching outlets, targeting SE media, and addressing tone gaps—making them concrete, data-driven, and aligned with FOREO’s current position."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 100,
+        "brands": [
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 1,
+            "mentions": 73,
+            "share_pct": 73,
+            "headline_mentions": 27,
+            "change_pts": 3.2
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 2,
+            "mentions": 22,
+            "share_pct": 22,
+            "headline_mentions": 18,
+            "change_pts": 5.4
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 3,
+            "mentions": 5,
+            "share_pct": 5,
+            "headline_mentions": 3,
+            "change_pts": 4.2
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "TR",
+            "leader": "Solawave",
+            "leader_pct": 34,
+            "primary_pct": 0
+          },
+          {
+            "country": "PL",
+            "leader": "Solawave",
+            "leader_pct": 89,
+            "primary_pct": 40
+          }
+        ],
+        "outlet_gaps": {
+          "count": 18,
+          "warm": 3,
+          "top": [
+            {
+              "outlet": "stern.de",
+              "competitor_articles": 5,
+              "warm": true
+            },
+            {
+              "outlet": "elle.com",
+              "competitor_articles": 3,
+              "warm": true
+            },
+            {
+              "outlet": "marieclaire.fr",
+              "competitor_articles": 2,
+              "warm": true
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "reviews",
+            "competitor_pct": 15,
+            "primary_pct": 7,
+            "leader": "Solawave"
+          },
+          {
+            "topic": "business",
+            "competitor_pct": 33,
+            "primary_pct": 16,
+            "leader": "Solawave"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "FOREO",
+            "valence": 7.9,
+            "scored": 58
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 7.0,
+            "scored": 15
+          }
+        ],
+        "stories": []
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 100\nShare of voice (mentions, share, mentions in the headline):\n- #1 FOREO: 73 mentions, 73%, 27 in the headline, +3.2 pts vs last week\n- #2 NuFACE: 22 mentions, 22%, 18 in the headline, +5.4 pts vs last week\n- #3 Solawave: 5 mentions, 5%, 3 in the headline, +4.2 pts vs last week\nMarkets where a competitor leads FOREO:\n- TR: Solawave 34%, FOREO 0%\n- PL: Solawave 89%, FOREO 40%\nOutlets that covered competitors but not FOREO: 18 (3 of them covered FOREO before)\n- stern.de: 5 competitor articles, covered FOREO before\n- elle.com: 3 competitor articles, covered FOREO before\n- marieclaire.fr: 2 competitor articles, covered FOREO before\nTopics where competitors get more coverage (share of each side's coverage):\n- reviews: competitors 15%, FOREO 7% (led by Solawave)\n- business: competitors 33%, FOREO 16% (led by Solawave)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- FOREO: 7.9 over 58 headlines\n- NuFACE: 7.0 over 15 headlines",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 73 mentions and 73% share of voice, up 3.2 pts from last week. NuFACE leads in headline coverage with 18 mentions and 22% share of voice. Competitors lead in TR and PL, with Solawave at 34% and 89% respectively. FOREO has 7% coverage in reviews and 16% in business, with competitors leading in both.  \nActions:  \n- Re-pitch stern.de, which covered FOREO before and ran 5 competitor articles.  \n- Pitch elle.com, which covered FOREO before and ran 3 competitor articles, on a FOREO product review story.  \n- Offer a FOREO business story to marieclaire.fr, which covered FOREO before and ran 2 competitor articles.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, concrete, and strategically aligned with FOREO's gaps—specifically, competitors leading in key markets and topics, and the opportunity to leverage outlets that previously covered FOREO."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 130,
+        "brands": [
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 1,
+            "mentions": 104,
+            "share_pct": 80,
+            "headline_mentions": 91,
+            "change_pts": -0.9
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 2,
+            "mentions": 13,
+            "share_pct": 10,
+            "headline_mentions": 13,
+            "change_pts": 1.5
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 3,
+            "mentions": 9,
+            "share_pct": 7,
+            "headline_mentions": 6,
+            "change_pts": 4.2
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 4,
+            "share_pct": 3,
+            "headline_mentions": 1,
+            "change_pts": -8.0
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "TR",
+            "leader": "PMD Beauty",
+            "leader_pct": 31,
+            "primary_pct": 21
+          }
+        ],
+        "outlet_gaps": {
+          "count": 0,
+          "warm": 0,
+          "top": []
+        },
+        "topic_gaps": [
+          {
+            "topic": "reviews",
+            "competitor_pct": 11,
+            "primary_pct": 2,
+            "leader": "Solawave"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "Solawave",
+            "valence": 6.4,
+            "scored": 50
+          },
+          {
+            "brand": "CurrentBody",
+            "valence": 7.2,
+            "scored": 4
+          }
+        ],
+        "stories": []
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 130\nShare of voice (mentions, share, mentions in the headline):\n- #1 Solawave: 104 mentions, 80%, 91 in the headline, -0.9 pts vs last week\n- #2 FOREO: 13 mentions, 10%, 13 in the headline, +1.5 pts vs last week\n- #3 PMD Beauty: 9 mentions, 7%, 6 in the headline, +4.2 pts vs last week\n- #4 CurrentBody: 4 mentions, 3%, 1 in the headline, -8.0 pts vs last week\nMarkets where a competitor leads FOREO:\n- TR: PMD Beauty 31%, FOREO 21%\nTopics where competitors get more coverage (share of each side's coverage):\n- reviews: competitors 11%, FOREO 2% (led by Solawave)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- Solawave: 6.4 over 50 headlines\n- CurrentBody: 7.2 over 4 headlines",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 13 mentions and 10% share of voice, up 1.5 pts from last week. Solawave leads with 80% share of voice and 91 headline mentions, down 0.9 pts. PMD Beauty leads in TR with 31% vs FOREO’s 21%. Competitors dominate in reviews, with 11% coverage vs FOREO’s 2%.  \nActions:  \n- Re-pitch outlets that covered FOREO before, such as [outlet name], to highlight FOREO’s innovation and product benefits.  \n- Pitch outlets in TR to cover FOREO’s performance in the market, where PMD Beauty leads with 31%.  \n- Offer a FOREO story on product reviews to counter competitors’ 11% coverage and address the gap in FOREO’s 2% share.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 13 mentions and 10% share of voice, behind Solawave at 80%. Solawave leads in headline tone at 6.4, CurrentBody at 7.2. Competitors lead in TR with PMD Beauty at 31% vs FOREO at 21%. Competitors dominate in reviews, with 11% coverage vs FOREO’s 2%.  \nActions:  \n- Re-pitch outlets that covered FOREO before, like in TR, to highlight FOREO’s new product launch.  \n- Pitch outlets in TR, where PMD Beauty leads, with a story on FOREO’s skincare innovation.  \n- Offer a story on reviews to counter competitors’ 11% coverage with FOREO’s 2% share.",
+          "errors": [
+            "topic not in the fact sheet: launch",
+            "says re-pitch, but no listed outlet covered the brand before"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 13 mentions and 10% share of voice, up 1.5 pts from last week. Solawave leads with 80% share of voice and 91 headline mentions, down 0.9 pts. PMD Beauty leads in TR with 31% vs FOREO’s 21%. Competitors dominate in reviews, with 11% coverage vs FOREO’s 2%.  \nActions:  \n- Pitch outlets in TR to cover FOREO’s performance, where PMD Beauty leads with 31% vs FOREO’s 21%.  \n- Offer a FOREO story on product reviews to counter competitors’ 11% coverage and address the gap in FOREO’s 2% share.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, concrete, and strategically aligned with FOREO’s position and the identified gaps in coverage and share of voice."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 110,
+        "brands": [
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 1,
+            "mentions": 48,
+            "share_pct": 44,
+            "headline_mentions": 18,
+            "change_pts": null
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 2,
+            "mentions": 42,
+            "share_pct": 38,
+            "headline_mentions": 3,
+            "change_pts": null
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 3,
+            "mentions": 12,
+            "share_pct": 11,
+            "headline_mentions": 3,
+            "change_pts": null
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 4,
+            "mentions": 8,
+            "share_pct": 7,
+            "headline_mentions": 8,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "FR",
+            "leader": "NuFACE",
+            "leader_pct": 63,
+            "primary_pct": 13
+          },
+          {
+            "country": "AU",
+            "leader": "NuFACE",
+            "leader_pct": 63,
+            "primary_pct": 51
+          }
+        ],
+        "outlet_gaps": {
+          "count": 16,
+          "warm": 1,
+          "top": [
+            {
+              "outlet": "elle.com",
+              "competitor_articles": 6,
+              "warm": false
+            },
+            {
+              "outlet": "popsugar.com",
+              "competitor_articles": 3,
+              "warm": true
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "skin science",
+            "competitor_pct": 20,
+            "primary_pct": 12,
+            "leader": "Solawave"
+          },
+          {
+            "topic": "reviews",
+            "competitor_pct": 17,
+            "primary_pct": 2,
+            "leader": "NuFACE"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "NuFACE",
+            "valence": 7.7,
+            "scored": 36
+          },
+          {
+            "brand": "Solawave",
+            "valence": 5.2,
+            "scored": 12
+          }
+        ],
+        "stories": [
+          {
+            "title": "Therabody launches new device for at-home skincare",
+            "outlets": 6,
+            "brands": [
+              "Therabody"
+            ]
+          },
+          {
+            "title": "FOREO launches new device for at-home skincare",
+            "outlets": 5,
+            "brands": [
+              "FOREO"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 110\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 NuFACE: 48 mentions, 44%, 18 in the headline\n- #2 Therabody: 42 mentions, 38%, 3 in the headline\n- #3 Solawave: 12 mentions, 11%, 3 in the headline\n- #4 FOREO: 8 mentions, 7%, 8 in the headline\nMarkets where a competitor leads FOREO:\n- FR: NuFACE 63%, FOREO 13%\n- AU: NuFACE 63%, FOREO 51%\nOutlets that covered competitors but not FOREO: 16 (1 of them covered FOREO before)\n- elle.com: 6 competitor articles, never covered FOREO\n- popsugar.com: 3 competitor articles, covered FOREO before\nTopics where competitors get more coverage (share of each side's coverage):\n- skin science: competitors 20%, FOREO 12% (led by Solawave)\n- reviews: competitors 17%, FOREO 2% (led by NuFACE)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- NuFACE: 7.7 over 36 headlines\n- Solawave: 5.2 over 12 headlines\nStories picked up by several outlets:\n- \"Therabody launches new device for at-home skincare\" (6 outlets; Therabody)\n- \"FOREO launches new device for at-home skincare\" (5 outlets; FOREO)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 8 mentions and 7% share of voice, behind NuFACE at 44%. Competitors lead in FR and AU, with NuFACE at 63% and 63% respectively. FOREO has 12 mentions and 11% share of voice, behind Solawave. Competitors dominate in skin science and reviews, with 20% vs. 12% and 17% vs. 2%.  \nActions:  \n- Re-pitch popsugar.com, which covered FOREO before and ran 3 competitor articles.  \n- Pitch elle.com, which covered competitors but not FOREO, with a story on FOREO’s at-home skincare innovation.  \n- Offer a story on skin science to outlets in FR and AU, where competitors lead.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 3,
+        "reply": "Score: 3  \nReason: The summary correctly identifies FOREO's position but misstates the share of voice for FOREO (it says 12 mentions, 11% when it's 8 mentions, 7%) and misrepresents the headline tone data; the actions are relevant but the offer to pitch skin science in FR/AU lacks specificity and is not clearly tied to a"
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 23,
+        "brands": [
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 1,
+            "mentions": 7,
+            "share_pct": 30,
+            "headline_mentions": 0,
+            "change_pts": null
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 2,
+            "mentions": 6,
+            "share_pct": 26,
+            "headline_mentions": 5,
+            "change_pts": null
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 3,
+            "mentions": 4,
+            "share_pct": 17,
+            "headline_mentions": 1,
+            "change_pts": null
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 4,
+            "share_pct": 17,
+            "headline_mentions": 3,
+            "change_pts": null
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 5,
+            "mentions": 2,
+            "share_pct": 9,
+            "headline_mentions": 1,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "IT",
+            "leader": "NuFACE",
+            "leader_pct": 39,
+            "primary_pct": 4
+          }
+        ],
+        "outlet_gaps": {
+          "count": 34,
+          "warm": 1,
+          "top": [
+            {
+              "outlet": "elle.com",
+              "competitor_articles": 2,
+              "warm": false
+            },
+            {
+              "outlet": "expressen.se",
+              "competitor_articles": 2,
+              "warm": false
+            },
+            {
+              "outlet": "elle.it",
+              "competitor_articles": 1,
+              "warm": false
+            },
+            {
+              "outlet": "bild.de",
+              "competitor_articles": 1,
+              "warm": true
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "deals pricing",
+            "competitor_pct": 27,
+            "primary_pct": 21,
+            "leader": "NuFACE"
+          },
+          {
+            "topic": "gift guides",
+            "competitor_pct": 15,
+            "primary_pct": 3,
+            "leader": "Therabody"
+          }
+        ],
+        "risks": [
+          {
+            "title": "Class action lawsuit filed against NuFACE",
+            "outlet": "elle.com",
+            "brands": [
+              "NuFACE"
+            ]
+          }
+        ],
+        "tone": [
+          {
+            "brand": "FOREO",
+            "valence": 5.3,
+            "scored": 5
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 6.4,
+            "scored": 3
+          },
+          {
+            "brand": "CurrentBody",
+            "valence": 5.4,
+            "scored": 3
+          },
+          {
+            "brand": "Therabody",
+            "valence": 5.3,
+            "scored": 2
+          }
+        ],
+        "stories": [
+          {
+            "title": "FOREO Black Friday deals: best offers",
+            "outlets": 4,
+            "brands": [
+              "FOREO"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 23\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 PMD Beauty: 7 mentions, 30%, 0 in the headline\n- #2 FOREO: 6 mentions, 26%, 5 in the headline\n- #3 NuFACE: 4 mentions, 17%, 1 in the headline\n- #4 CurrentBody: 4 mentions, 17%, 3 in the headline\n- #5 Therabody: 2 mentions, 9%, 1 in the headline\nMarkets where a competitor leads FOREO:\n- IT: NuFACE 39%, FOREO 4%\nOutlets that covered competitors but not FOREO: 34 (1 of them covered FOREO before)\n- elle.com: 2 competitor articles, never covered FOREO\n- expressen.se: 2 competitor articles, never covered FOREO\n- elle.it: 1 competitor articles, never covered FOREO\n- bild.de: 1 competitor articles, covered FOREO before\nTopics where competitors get more coverage (share of each side's coverage):\n- deals pricing: competitors 27%, FOREO 21% (led by NuFACE)\n- gift guides: competitors 15%, FOREO 3% (led by Therabody)\nRisk headlines (recall, lawsuit, injury keywords):\n- NuFACE: \"Class action lawsuit filed against NuFACE\" (elle.com)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- FOREO: 5.3 over 5 headlines\n- NuFACE: 6.4 over 3 headlines\n- CurrentBody: 5.4 over 3 headlines\n- Therabody: 5.3 over 2 headlines\nStories picked up by several outlets:\n- \"FOREO Black Friday deals: best offers\" (4 outlets; FOREO)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 6 mentions and 26% share of voice, behind PMD Beauty at 30%. NuFACE leads in IT with 39% vs. FOREO’s 4%. Competitors dominate in deals pricing and gift guides. NuFACE has a class action lawsuit headline on elle.com.  \nActions:  \n- Re-pitch bild.de, which covered FOREO before and ran 1 competitor article.  \n- Pitch elle.com, which covered 2 competitor articles and ran no FOREO content.  \n- Offer a FOREO story on gift guides to counter Therabody’s 15% coverage.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, concrete, and strategically aligned with FOREO’s gaps—lack of coverage in key outlets and underperformance in gift guides."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 17,
+        "brands": [
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 1,
+            "mentions": 14,
+            "share_pct": 82,
+            "headline_mentions": 11,
+            "change_pts": null
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 2,
+            "mentions": 2,
+            "share_pct": 12,
+            "headline_mentions": 1,
+            "change_pts": null
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 3,
+            "mentions": 1,
+            "share_pct": 6,
+            "headline_mentions": 1,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [],
+        "outlet_gaps": {
+          "count": 29,
+          "warm": 0,
+          "top": [
+            {
+              "outlet": "expressen.se",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "bild.de",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [],
+        "risks": [
+          {
+            "title": "Users report burns from Therabody device",
+            "outlet": "expressen.se",
+            "brands": [
+              "Therabody"
+            ]
+          }
+        ],
+        "tone": [],
+        "stories": []
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 17\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 FOREO: 14 mentions, 82%, 11 in the headline\n- #2 PMD Beauty: 2 mentions, 12%, 1 in the headline\n- #3 Therabody: 1 mention, 6%, 1 in the headline\nOutlets that covered competitors but not FOREO: 29 (0 of them covered FOREO before)\n- expressen.se: 4 competitor articles, never covered FOREO\n- bild.de: 2 competitor articles, never covered FOREO\nRisk headlines (recall, lawsuit, injury keywords):\n- Therabody: \"Users report burns from Therabody device\" (expressen.se)",
+      "published": false,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 14 mentions and 82% share of voice, leading in both mentions and headline coverage. PMD Beauty and Therabody had 12% and 6% share of voice, respectively.  \nActions:  \n- Re-pitch expressen.se, which covered competitors but not FOREO, with a story on Therabody’s recall.  \n- Pitch bild.de, which covered competitors but not FOREO, with a story on FOREO’s product safety and innovation.  \n- Offer a FOREO story on product safety and innovation to outlets in the EU, where Therabody’s recall is a risk headline.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: expressen.se",
+            "action promotes a competitor's story: Therabody",
+            "action promotes a competitor's story: Therabody"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 14 mentions and 82% share of voice, leading in the headline. PMD Beauty and Therabody had lower shares, with Therabody having a risk headline on burns.  \nActions:  \n- Re-pitch expressen.se, which covered competitors but not FOREO, with a story on Therabody’s safety concerns.  \n- Pitch bild.de, which covered competitors but not FOREO, on a product innovation story.  \n- Offer a story on skincare safety to outlets that covered competitors, to address the risk headline.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: expressen.se",
+            "action promotes a competitor's story: Therabody"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 14 mentions and 82% share of voice, leading in the headline. PMD Beauty and Therabody had lower shares, with Therabody having a risk headline on burns.  \nActions:  \n- Pitch expressen.se, which covered competitors but not FOREO, on a story about Therabody’s safety concerns.  \n- Pitch bild.de, which covered competitors but not FOREO, on a product innovation story.  \n- Offer a story on skincare safety to outlets that covered competitors, to address the risk headline.",
+          "errors": [
+            "action promotes a competitor's story: Therabody"
+          ],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 3,
+        "reply": "Score: 3  \nReason: The action to re-pitch expressen.se with Therabody’s recall is weak because FOREO is not the subject of the recall, and there's no evidence that the outlet would be interested in a FOREO story; the pitch to bild.de is generic and not directly tied to the data."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 28,
+        "brands": [
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 1,
+            "mentions": 9,
+            "share_pct": 32,
+            "headline_mentions": 6,
+            "change_pts": -2.5
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 2,
+            "mentions": 8,
+            "share_pct": 29,
+            "headline_mentions": 3,
+            "change_pts": -12.3
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 3,
+            "mentions": 6,
+            "share_pct": 21,
+            "headline_mentions": 3,
+            "change_pts": -13.2
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 4,
+            "mentions": 4,
+            "share_pct": 14,
+            "headline_mentions": 4,
+            "change_pts": -11.3
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 5,
+            "mentions": 1,
+            "share_pct": 4,
+            "headline_mentions": 0,
+            "change_pts": 3.9
+          }
+        ],
+        "market_gaps": [],
+        "outlet_gaps": {
+          "count": 32,
+          "warm": 1,
+          "top": [
+            {
+              "outlet": "popsugar.com",
+              "competitor_articles": 5,
+              "warm": false
+            },
+            {
+              "outlet": "stern.de",
+              "competitor_articles": 2,
+              "warm": true
+            },
+            {
+              "outlet": "vogue.com",
+              "competitor_articles": 2,
+              "warm": false
+            },
+            {
+              "outlet": "elle.it",
+              "competitor_articles": 1,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "skin science",
+            "competitor_pct": 28,
+            "primary_pct": 18,
+            "leader": "Therabody"
+          }
+        ],
+        "risks": [
+          {
+            "title": "Users report burns from NuFACE device",
+            "outlet": "allure.com",
+            "brands": [
+              "NuFACE"
+            ]
+          }
+        ],
+        "tone": [
+          {
+            "brand": "CurrentBody",
+            "valence": 6.5,
+            "scored": 8
+          },
+          {
+            "brand": "PMD Beauty",
+            "valence": 5.3,
+            "scored": 5
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 5.0,
+            "scored": 1
+          }
+        ],
+        "stories": [
+          {
+            "title": "The best beauty gifts of the year, including Therabody",
+            "outlets": 4,
+            "brands": [
+              "Therabody"
+            ]
+          },
+          {
+            "title": "The best beauty gifts of the year, including CurrentBody",
+            "outlets": 5,
+            "brands": [
+              "CurrentBody"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 28\nShare of voice (mentions, share, mentions in the headline):\n- #1 CurrentBody: 9 mentions, 32%, 6 in the headline, -2.5 pts vs last week\n- #2 Therabody: 8 mentions, 29%, 3 in the headline, -12.3 pts vs last week\n- #3 PMD Beauty: 6 mentions, 21%, 3 in the headline, -13.2 pts vs last week\n- #4 FOREO: 4 mentions, 14%, 4 in the headline, -11.3 pts vs last week\n- #5 NuFACE: 1 mention, 4%, 0 in the headline, +3.9 pts vs last week\nOutlets that covered competitors but not FOREO: 32 (1 of them covered FOREO before)\n- popsugar.com: 5 competitor articles, never covered FOREO\n- stern.de: 2 competitor articles, covered FOREO before\n- vogue.com: 2 competitor articles, never covered FOREO\n- elle.it: 1 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- skin science: competitors 28%, FOREO 18% (led by Therabody)\nRisk headlines (recall, lawsuit, injury keywords):\n- NuFACE: \"Users report burns from NuFACE device\" (allure.com)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- CurrentBody: 6.5 over 8 headlines\n- PMD Beauty: 5.3 over 5 headlines\n- NuFACE: 5.0 over 1 headlines\nStories picked up by several outlets:\n- \"The best beauty gifts of the year, including Therabody\" (4 outlets; Therabody)\n- \"The best beauty gifts of the year, including CurrentBody\" (5 outlets; CurrentBody)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 4 mentions and 14% share of voice, behind CurrentBody at 32%. NuFACE had a risk headline on allure.com about burns.  \nActions:  \n- Re-pitch stern.de, which covered FOREO before and ran 2 competitor articles.  \n- Pitch popsugar.com, which covered 5 competitor articles but not FOREO.  \n- Offer a FOREO story on skin science to counter competitors’ 28% coverage.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, concrete, and strategically responds to specific gaps—such as missing coverage in outlets and underperformance in skin science."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 58,
+        "brands": [
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 1,
+            "mentions": 40,
+            "share_pct": 69,
+            "headline_mentions": 1,
+            "change_pts": -1.2
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 2,
+            "mentions": 12,
+            "share_pct": 21,
+            "headline_mentions": 7,
+            "change_pts": -3.3
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 3,
+            "mentions": 3,
+            "share_pct": 5,
+            "headline_mentions": 1,
+            "change_pts": 11.9
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 3,
+            "share_pct": 5,
+            "headline_mentions": 3,
+            "change_pts": -12.3
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "US",
+            "leader": "Therabody",
+            "leader_pct": 64,
+            "primary_pct": 33
+          }
+        ],
+        "outlet_gaps": {
+          "count": 8,
+          "warm": 0,
+          "top": [
+            {
+              "outlet": "bild.de",
+              "competitor_articles": 1,
+              "warm": false
+            },
+            {
+              "outlet": "stern.de",
+              "competitor_articles": 1,
+              "warm": false
+            },
+            {
+              "outlet": "glamour.pl",
+              "competitor_articles": 1,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "skin science",
+            "competitor_pct": 17,
+            "primary_pct": 11,
+            "leader": "NuFACE"
+          },
+          {
+            "topic": "business",
+            "competitor_pct": 25,
+            "primary_pct": 20,
+            "leader": "Therabody"
+          },
+          {
+            "topic": "deals pricing",
+            "competitor_pct": 38,
+            "primary_pct": 13,
+            "leader": "Therabody"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "PMD Beauty",
+            "valence": 4.1,
+            "scored": 12
+          },
+          {
+            "brand": "FOREO",
+            "valence": 7.8,
+            "scored": 3
+          },
+          {
+            "brand": "Therabody",
+            "valence": 6.3,
+            "scored": 2
+          }
+        ],
+        "stories": [
+          {
+            "title": "FOREO launches new device for at-home skincare",
+            "outlets": 3,
+            "brands": [
+              "FOREO"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 58\nShare of voice (mentions, share, mentions in the headline):\n- #1 NuFACE: 40 mentions, 69%, 1 in the headline, -1.2 pts vs last week\n- #2 PMD Beauty: 12 mentions, 21%, 7 in the headline, -3.3 pts vs last week\n- #3 FOREO: 3 mentions, 5%, 1 in the headline, +11.9 pts vs last week\n- #4 Therabody: 3 mentions, 5%, 3 in the headline, -12.3 pts vs last week\nMarkets where a competitor leads FOREO:\n- US: Therabody 64%, FOREO 33%\nOutlets that covered competitors but not FOREO: 8 (0 of them covered FOREO before)\n- bild.de: 1 competitor articles, never covered FOREO\n- stern.de: 1 competitor articles, never covered FOREO\n- glamour.pl: 1 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- skin science: competitors 17%, FOREO 11% (led by NuFACE)\n- business: competitors 25%, FOREO 20% (led by Therabody)\n- deals pricing: competitors 38%, FOREO 13% (led by Therabody)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- PMD Beauty: 4.1 over 12 headlines\n- FOREO: 7.8 over 3 headlines\n- Therabody: 6.3 over 2 headlines\nStories picked up by several outlets:\n- \"FOREO launches new device for at-home skincare\" (3 outlets; FOREO)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 3 mentions and 5% share of voice, up 11.9 pts from last week. NuFACE leads with 69% share of voice, down 1.2 pts. Competitors lead in US with 64% vs FOREO’s 33%. Competitors dominate in skin science, business, and deals pricing.  \nActions:  \n- Pitch bild.de, which covered competitors but not FOREO, with a story on FOREO’s new at-home skincare device.  \n- Pitch stern.de, which covered competitors but not FOREO, with a story on FOREO’s business strategy.  \n- Offer a story on deals pricing to outlets in the US, where competitors lead with 38% coverage.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 4,
+        "reply": "Score: 4  \nReason: The actions are well-aligned with the data, but offering a story on \"deals pricing\" to US outlets is vague and not directly supported by the fact sheet, which only notes competitors lead in that topic without suggesting a gap for FOREO."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 12,
+        "brands": [
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 1,
+            "mentions": 3,
+            "share_pct": 25,
+            "headline_mentions": 3,
+            "change_pts": 13.5
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 2,
+            "mentions": 3,
+            "share_pct": 25,
+            "headline_mentions": 3,
+            "change_pts": -10.3
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 3,
+            "mentions": 2,
+            "share_pct": 17,
+            "headline_mentions": 0,
+            "change_pts": -13.5
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 4,
+            "mentions": 2,
+            "share_pct": 17,
+            "headline_mentions": 0,
+            "change_pts": 0.2
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 5,
+            "mentions": 1,
+            "share_pct": 8,
+            "headline_mentions": 0,
+            "change_pts": 8.2
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 6,
+            "mentions": 1,
+            "share_pct": 8,
+            "headline_mentions": 1,
+            "change_pts": 8.7
+          }
+        ],
+        "market_gaps": [],
+        "outlet_gaps": {
+          "count": 30,
+          "warm": 0,
+          "top": [
+            {
+              "outlet": "hurriyet.com.tr",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "popsugar.com",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "gift guides",
+            "competitor_pct": 18,
+            "primary_pct": 5,
+            "leader": "CurrentBody"
+          },
+          {
+            "topic": "launch",
+            "competitor_pct": 16,
+            "primary_pct": 11,
+            "leader": "CurrentBody"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "CurrentBody",
+            "valence": 5.5,
+            "scored": 2
+          },
+          {
+            "brand": "Solawave",
+            "valence": 4.9,
+            "scored": 3
+          },
+          {
+            "brand": "FOREO",
+            "valence": 6.4,
+            "scored": 1
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 7.4,
+            "scored": 1
+          }
+        ],
+        "stories": []
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 12\nShare of voice (mentions, share, mentions in the headline):\n- #1 CurrentBody: 3 mentions, 25%, 3 in the headline, +13.5 pts vs last week\n- #2 Solawave: 3 mentions, 25%, 3 in the headline, -10.3 pts vs last week\n- #3 Therabody: 2 mentions, 17%, 0 in the headline, -13.5 pts vs last week\n- #4 FOREO: 2 mentions, 17%, 0 in the headline, +0.2 pts vs last week\n- #5 PMD Beauty: 1 mention, 8%, 0 in the headline, +8.2 pts vs last week\n- #6 NuFACE: 1 mention, 8%, 1 in the headline, +8.7 pts vs last week\nOutlets that covered competitors but not FOREO: 30 (0 of them covered FOREO before)\n- hurriyet.com.tr: 4 competitor articles, never covered FOREO\n- popsugar.com: 2 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- gift guides: competitors 18%, FOREO 5% (led by CurrentBody)\n- launch: competitors 16%, FOREO 11% (led by CurrentBody)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- CurrentBody: 5.5 over 2 headlines\n- Solawave: 4.9 over 3 headlines\n- FOREO: 6.4 over 1 headlines\n- NuFACE: 7.4 over 1 headlines",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 2 mentions and 17% share of voice, tied with Therabody. CurrentBody leads in share of voice with 25%, up 13.5 pts. Competitors dominate in gift guides and launch topics.  \nActions:  \n- Re-pitch hurriyet.com.tr, which covered competitors but not FOREO.  \n- Pitch popsugar.com, which covered competitors but not FOREO.  \n- Offer a FOREO story on gift guides to counter competitors’ 18% coverage.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: hurriyet.com.tr"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 2 mentions and 17% share of voice, tied with Therabody. CurrentBody leads in share of voice with 25%, up 13.5 pts. Competitors dominate gift guides and launch topics, with competitors leading 18% vs 5% and 16% vs 11% respectively. FOREO’s headline tone was 6.4, higher than competitors.  \nActions:  \n- Re-pitch hurriyet.com.tr, which covered competitors but not FOREO.  \n- Pitch popsugar.com, which covered competitors but not FOREO, on gift guides and launch topics.  \n- Offer a FOREO story on launch to outlets in markets where competitors lead in coverage.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: hurriyet.com.tr"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 2 mentions and 17% share of voice, tied with Therabody. CurrentBody leads in share of voice with 25%, up 13.5 pts. Competitors dominate in gift guides and launch topics.  \nActions:  \n- Pitch hurriyet.com.tr, which covered competitors but not FOREO.  \n- Pitch popsugar.com, which covered competitors but not FOREO.  \n- Offer a FOREO story on gift guides to counter competitors’ 18% coverage.",
+          "errors": [],
+          "style": [
+            "two actions say the same thing"
+          ]
+        }
+      ],
+      "judge": {
+        "score": 3,
+        "reply": "Score: 3  \nReason: The summary is accurate, but the action to offer a story on gift guides is weak and not directly supported by the data, as FOREO only has 5% coverage in that topic versus competitors’ 18%, and no specific gap is identified in the fact sheet to justify this move."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 155,
+        "brands": [
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 1,
+            "mentions": 102,
+            "share_pct": 66,
+            "headline_mentions": 83,
+            "change_pts": null
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 2,
+            "mentions": 49,
+            "share_pct": 32,
+            "headline_mentions": 10,
+            "change_pts": null
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 3,
+            "mentions": 4,
+            "share_pct": 3,
+            "headline_mentions": 0,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "ES",
+            "leader": "PMD Beauty",
+            "leader_pct": 35,
+            "primary_pct": 13
+          },
+          {
+            "country": "GB",
+            "leader": "Solawave",
+            "leader_pct": 75,
+            "primary_pct": 48
+          },
+          {
+            "country": "DE",
+            "leader": "PMD Beauty",
+            "leader_pct": 66,
+            "primary_pct": 52
+          }
+        ],
+        "outlet_gaps": {
+          "count": 20,
+          "warm": 1,
+          "top": [
+            {
+              "outlet": "wareable.com",
+              "competitor_articles": 6,
+              "warm": false
+            },
+            {
+              "outlet": "hurriyet.com.tr",
+              "competitor_articles": 5,
+              "warm": false
+            },
+            {
+              "outlet": "independent.co.uk",
+              "competitor_articles": 5,
+              "warm": true
+            },
+            {
+              "outlet": "bild.de",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "elle.com",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "gift guides",
+            "competitor_pct": 40,
+            "primary_pct": 19,
+            "leader": "PMD Beauty"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "FOREO",
+            "valence": 6.7,
+            "scored": 58
+          },
+          {
+            "brand": "Solawave",
+            "valence": 4.3,
+            "scored": 38
+          },
+          {
+            "brand": "PMD Beauty",
+            "valence": 6.0,
+            "scored": 2
+          }
+        ],
+        "stories": [
+          {
+            "title": "FOREO Black Friday deals: best offers",
+            "outlets": 2,
+            "brands": [
+              "FOREO"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 155\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 FOREO: 102 mentions, 66%, 83 in the headline\n- #2 Solawave: 49 mentions, 32%, 10 in the headline\n- #3 PMD Beauty: 4 mentions, 3%, 0 in the headline\nMarkets where a competitor leads FOREO:\n- ES: PMD Beauty 35%, FOREO 13%\n- GB: Solawave 75%, FOREO 48%\n- DE: PMD Beauty 66%, FOREO 52%\nOutlets that covered competitors but not FOREO: 20 (1 of them covered FOREO before)\n- wareable.com: 6 competitor articles, never covered FOREO\n- hurriyet.com.tr: 5 competitor articles, never covered FOREO\n- independent.co.uk: 5 competitor articles, covered FOREO before\n- bild.de: 4 competitor articles, never covered FOREO\n- elle.com: 2 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- gift guides: competitors 40%, FOREO 19% (led by PMD Beauty)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- FOREO: 6.7 over 58 headlines\n- Solawave: 4.3 over 38 headlines\n- PMD Beauty: 6.0 over 2 headlines\nStories picked up by several outlets:\n- \"FOREO Black Friday deals: best offers\" (2 outlets; FOREO)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 102 mentions and 66% share of voice, leading in mentions and headline coverage. Solawave and PMD Beauty are in the lead in ES, GB, and DE. Competitors dominate gift guides with 40% coverage vs. FOREO’s 19%.  \nActions:  \n- Re-pitch independent.co.uk, which covered FOREO before and ran 5 competitor articles.  \n- Pitch wareable.com, which covered 6 competitor articles and has not covered FOREO.  \n- Offer a FOREO story on gift guides to counter competitors’ 40% coverage.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, concrete, and strategically aligned with the gaps identified—such as missing coverage in specific outlets and underrepresentation in gift guides."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 142,
+        "brands": [
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 1,
+            "mentions": 37,
+            "share_pct": 26,
+            "headline_mentions": 10,
+            "change_pts": null
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 2,
+            "mentions": 30,
+            "share_pct": 21,
+            "headline_mentions": 19,
+            "change_pts": null
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 3,
+            "mentions": 25,
+            "share_pct": 18,
+            "headline_mentions": 0,
+            "change_pts": null
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 4,
+            "mentions": 23,
+            "share_pct": 16,
+            "headline_mentions": 16,
+            "change_pts": null
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 5,
+            "mentions": 20,
+            "share_pct": 14,
+            "headline_mentions": 2,
+            "change_pts": null
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 6,
+            "mentions": 7,
+            "share_pct": 5,
+            "headline_mentions": 0,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [],
+        "outlet_gaps": {
+          "count": 31,
+          "warm": 0,
+          "top": [
+            {
+              "outlet": "independent.co.uk",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "deals pricing",
+            "competitor_pct": 26,
+            "primary_pct": 7,
+            "leader": "PMD Beauty"
+          },
+          {
+            "topic": "launch",
+            "competitor_pct": 25,
+            "primary_pct": 0,
+            "leader": "CurrentBody"
+          },
+          {
+            "topic": "gift guides",
+            "competitor_pct": 24,
+            "primary_pct": 8,
+            "leader": "NuFACE"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "NuFACE",
+            "valence": 4.9,
+            "scored": 10
+          },
+          {
+            "brand": "FOREO",
+            "valence": 6.3,
+            "scored": 4
+          },
+          {
+            "brand": "Solawave",
+            "valence": 7.4,
+            "scored": 4
+          }
+        ],
+        "stories": []
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 142\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 CurrentBody: 37 mentions, 26%, 10 in the headline\n- #2 Therabody: 30 mentions, 21%, 19 in the headline\n- #3 PMD Beauty: 25 mentions, 18%, 0 in the headline\n- #4 NuFACE: 23 mentions, 16%, 16 in the headline\n- #5 FOREO: 20 mentions, 14%, 2 in the headline\n- #6 Solawave: 7 mentions, 5%, 0 in the headline\nOutlets that covered competitors but not FOREO: 31 (0 of them covered FOREO before)\n- independent.co.uk: 2 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- deals pricing: competitors 26%, FOREO 7% (led by PMD Beauty)\n- launch: competitors 25%, FOREO 0% (led by CurrentBody)\n- gift guides: competitors 24%, FOREO 8% (led by NuFACE)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- NuFACE: 4.9 over 10 headlines\n- FOREO: 6.3 over 4 headlines\n- Solawave: 7.4 over 4 headlines",
+      "published": false,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 20 mentions and 14% share of voice, behind CurrentBody at 26%. Competitors lead in deals pricing (26% vs. FOREO’s 7%), launch (25% vs. 0%), and gift guides (24% vs. 8%). FOREO’s headlines had a valence of 6.3, higher than NuFACE’s 4.9.  \nActions:  \n- Pitch independent.co.uk, which covered competitors but not FOREO, with a story on FOREO’s launch.  \n- Offer a FOREO story on gift guides to counter competitors’ 24% coverage.  \n- Pitch outlets in the UK, where independent.co.uk is based, to cover FOREO’s new product line.",
+          "errors": [
+            "country not in the fact sheet: GB"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 20 mentions and 14% share of voice, behind CurrentBody at 26%. Competitors lead in deals pricing (26% vs 7%), launch (25% vs 0%), and gift guides (24% vs 8%). FOREO’s headline tone is 6.3, which is above neutral.  \nActions:  \n- Re-pitch independent.co.uk, which covered competitors but not FOREO.  \n- Pitch outlets in the gift guides topic to cover FOREO’s product in that space.  \n- Offer a FOREO story on launch to address the gap in coverage where competitors lead by 25%.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: independent.co.uk"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 20 mentions and 14% share of voice, behind CurrentBody at 26%. Competitors lead in deals pricing (26% vs. FOREO’s 7%), launch (25% vs. 0%), and gift guides (24% vs. 8%). FOREO’s headlines had a valence of 6.3, higher than NuFACE’s 4.9.  \nActions:  \n- Pitch independent.co.uk, which covered competitors but not FOREO, with a story on FOREO’s launch.  \n- Offer a FOREO story on gift guides to counter competitors’ 24% coverage.  \n- Pitch outlets in the UK, where independent.co.uk is based, to cover FOREO’s new product line.",
+          "errors": [
+            "country not in the fact sheet: GB"
+          ],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet—specifically, the gap in coverage by independent.co.uk, the competitor lead in gift guides, and the opportunity to expand coverage in the UK where FOREO has no presence—making each step concrete, data-driven, and aligned with FOREO’s PR strategy."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 106,
+        "brands": [
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 1,
+            "mentions": 36,
+            "share_pct": 34,
+            "headline_mentions": 9,
+            "change_pts": null
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 2,
+            "mentions": 23,
+            "share_pct": 22,
+            "headline_mentions": 14,
+            "change_pts": null
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 3,
+            "mentions": 21,
+            "share_pct": 20,
+            "headline_mentions": 11,
+            "change_pts": null
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 21,
+            "share_pct": 20,
+            "headline_mentions": 5,
+            "change_pts": null
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 5,
+            "mentions": 3,
+            "share_pct": 3,
+            "headline_mentions": 2,
+            "change_pts": null
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 6,
+            "mentions": 2,
+            "share_pct": 2,
+            "headline_mentions": 0,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [],
+        "outlet_gaps": {
+          "count": 31,
+          "warm": 1,
+          "top": [
+            {
+              "outlet": "shopping.yahoo.com",
+              "competitor_articles": 6,
+              "warm": false
+            },
+            {
+              "outlet": "popsugar.com",
+              "competitor_articles": 6,
+              "warm": false
+            },
+            {
+              "outlet": "allure.com",
+              "competitor_articles": 1,
+              "warm": true
+            },
+            {
+              "outlet": "marieclaire.fr",
+              "competitor_articles": 1,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "skin science",
+            "competitor_pct": 23,
+            "primary_pct": 14,
+            "leader": "NuFACE"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "FOREO",
+            "valence": 7.5,
+            "scored": 18
+          },
+          {
+            "brand": "Solawave",
+            "valence": 6.8,
+            "scored": 2
+          },
+          {
+            "brand": "Therabody",
+            "valence": 6.0,
+            "scored": 3
+          },
+          {
+            "brand": "CurrentBody",
+            "valence": 5.7,
+            "scored": 3
+          },
+          {
+            "brand": "PMD Beauty",
+            "valence": 6.4,
+            "scored": 1
+          }
+        ],
+        "stories": [
+          {
+            "title": "PMD Beauty Black Friday deals: best offers",
+            "outlets": 4,
+            "brands": [
+              "PMD Beauty"
+            ]
+          },
+          {
+            "title": "NuFACE launches new device for at-home skincare",
+            "outlets": 4,
+            "brands": [
+              "NuFACE"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 106\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 NuFACE: 36 mentions, 34%, 9 in the headline\n- #2 FOREO: 23 mentions, 22%, 14 in the headline\n- #3 Solawave: 21 mentions, 20%, 11 in the headline\n- #4 Therabody: 21 mentions, 20%, 5 in the headline\n- #5 CurrentBody: 3 mentions, 3%, 2 in the headline\n- #6 PMD Beauty: 2 mentions, 2%, 0 in the headline\nOutlets that covered competitors but not FOREO: 31 (1 of them covered FOREO before)\n- shopping.yahoo.com: 6 competitor articles, never covered FOREO\n- popsugar.com: 6 competitor articles, never covered FOREO\n- allure.com: 1 competitor articles, covered FOREO before\n- marieclaire.fr: 1 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- skin science: competitors 23%, FOREO 14% (led by NuFACE)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- FOREO: 7.5 over 18 headlines\n- Solawave: 6.8 over 2 headlines\n- Therabody: 6.0 over 3 headlines\n- CurrentBody: 5.7 over 3 headlines\n- PMD Beauty: 6.4 over 1 headlines\nStories picked up by several outlets:\n- \"PMD Beauty Black Friday deals: best offers\" (4 outlets; PMD Beauty)\n- \"NuFACE launches new device for at-home skincare\" (4 outlets; NuFACE)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 23 mentions and 22% share of voice, behind NuFACE at 34%. FOREO had 14 mentions in the headline. Competitors lead in skin science with 23% coverage vs. FOREO’s 14%.  \nActions:  \n- Re-pitch allure.com, which covered FOREO before and ran 1 competitor article.  \n- Pitch shopping.yahoo.com and popsugar.com, which covered competitors but not FOREO, with a story on skin science.  \n- Offer a skin science story to outlets that covered competitors, to counter the 23% share of coverage.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, concrete, and strategically aligned with FOREO’s gap in skin science coverage and headline visibility."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 47,
+        "brands": [
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 1,
+            "mentions": 27,
+            "share_pct": 57,
+            "headline_mentions": 4,
+            "change_pts": 10.1
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 2,
+            "mentions": 9,
+            "share_pct": 19,
+            "headline_mentions": 9,
+            "change_pts": 14.9
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 3,
+            "mentions": 5,
+            "share_pct": 11,
+            "headline_mentions": 2,
+            "change_pts": 10.0
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 3,
+            "share_pct": 6,
+            "headline_mentions": 0,
+            "change_pts": 11.1
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 5,
+            "mentions": 3,
+            "share_pct": 6,
+            "headline_mentions": 2,
+            "change_pts": 9.8
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "AU",
+            "leader": "Solawave",
+            "leader_pct": 92,
+            "primary_pct": 70
+          },
+          {
+            "country": "FR",
+            "leader": "Therabody",
+            "leader_pct": 76,
+            "primary_pct": 55
+          },
+          {
+            "country": "ES",
+            "leader": "CurrentBody",
+            "leader_pct": 45,
+            "primary_pct": 22
+          }
+        ],
+        "outlet_gaps": {
+          "count": 33,
+          "warm": 0,
+          "top": [
+            {
+              "outlet": "hurriyet.com.tr",
+              "competitor_articles": 6,
+              "warm": false
+            },
+            {
+              "outlet": "expressen.se",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "wareable.com",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "glamour.pl",
+              "competitor_articles": 4,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "gift guides",
+            "competitor_pct": 26,
+            "primary_pct": 11,
+            "leader": "CurrentBody"
+          },
+          {
+            "topic": "business",
+            "competitor_pct": 21,
+            "primary_pct": 14,
+            "leader": "CurrentBody"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "NuFACE",
+            "valence": 4.5,
+            "scored": 16
+          },
+          {
+            "brand": "Solawave",
+            "valence": 6.3,
+            "scored": 4
+          },
+          {
+            "brand": "Therabody",
+            "valence": 5.7,
+            "scored": 3
+          }
+        ],
+        "stories": [
+          {
+            "title": "The best beauty gifts of the year, including NuFACE",
+            "outlets": 5,
+            "brands": [
+              "NuFACE"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 47\nShare of voice (mentions, share, mentions in the headline):\n- #1 NuFACE: 27 mentions, 57%, 4 in the headline, +10.1 pts vs last week\n- #2 Solawave: 9 mentions, 19%, 9 in the headline, +14.9 pts vs last week\n- #3 CurrentBody: 5 mentions, 11%, 2 in the headline, +10.0 pts vs last week\n- #4 Therabody: 3 mentions, 6%, 0 in the headline, +11.1 pts vs last week\n- #5 FOREO: 3 mentions, 6%, 2 in the headline, +9.8 pts vs last week\nMarkets where a competitor leads FOREO:\n- AU: Solawave 92%, FOREO 70%\n- FR: Therabody 76%, FOREO 55%\n- ES: CurrentBody 45%, FOREO 22%\nOutlets that covered competitors but not FOREO: 33 (0 of them covered FOREO before)\n- hurriyet.com.tr: 6 competitor articles, never covered FOREO\n- expressen.se: 4 competitor articles, never covered FOREO\n- wareable.com: 4 competitor articles, never covered FOREO\n- glamour.pl: 4 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- gift guides: competitors 26%, FOREO 11% (led by CurrentBody)\n- business: competitors 21%, FOREO 14% (led by CurrentBody)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- NuFACE: 4.5 over 16 headlines\n- Solawave: 6.3 over 4 headlines\n- Therabody: 5.7 over 3 headlines\nStories picked up by several outlets:\n- \"The best beauty gifts of the year, including NuFACE\" (5 outlets; NuFACE)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 3 mentions and 6% share of voice, behind NuFACE at 57%. Competitors lead in AU, FR, and ES. Competitors dominate gift guides and business topics.  \nActions:  \n- Re-pitch hurriyet.com.tr, which covered competitors but not FOREO.  \n- Pitch expressen.se, which covered competitors but not FOREO, on gift guides.  \n- Offer a story on business topics to wareable.com, which covered competitors but not FOREO.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: hurriyet.com.tr"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 3 mentions and 6% share of voice, behind NuFACE at 57%. Competitors lead in AU, FR, and ES. Competitors dominate in gift guides and business topics.  \nActions:  \n- Pitch hurriyet.com.tr with a FOREO story on gift guides.  \n- Pitch expressen.se with a FOREO story on business.  \n- Pitch wareable.com with a FOREO story on business.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, targeting specific outlets where competitors were covered but FOREO wasn’t, and aligns with the gap in topic coverage (gift guides and business), making them concrete, data-driven, and strategically sound."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 77,
+        "brands": [
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 1,
+            "mentions": 39,
+            "share_pct": 51,
+            "headline_mentions": 19,
+            "change_pts": null
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 2,
+            "mentions": 33,
+            "share_pct": 43,
+            "headline_mentions": 29,
+            "change_pts": null
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 3,
+            "mentions": 5,
+            "share_pct": 6,
+            "headline_mentions": 5,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "IT",
+            "leader": "Solawave",
+            "leader_pct": 70,
+            "primary_pct": 22
+          },
+          {
+            "country": "GB",
+            "leader": "CurrentBody",
+            "leader_pct": 76,
+            "primary_pct": 66
+          },
+          {
+            "country": "FR",
+            "leader": "Solawave",
+            "leader_pct": 50,
+            "primary_pct": 35
+          }
+        ],
+        "outlet_gaps": {
+          "count": 20,
+          "warm": 3,
+          "top": [
+            {
+              "outlet": "vogue.com",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "independent.co.uk",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "wareable.com",
+              "competitor_articles": 3,
+              "warm": true
+            },
+            {
+              "outlet": "elle.com",
+              "competitor_articles": 3,
+              "warm": true
+            },
+            {
+              "outlet": "hurriyet.com.tr",
+              "competitor_articles": 1,
+              "warm": true
+            }
+          ]
+        },
+        "topic_gaps": [],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "FOREO",
+            "valence": 6.4,
+            "scored": 24
+          },
+          {
+            "brand": "CurrentBody",
+            "valence": 4.4,
+            "scored": 4
+          }
+        ],
+        "stories": [
+          {
+            "title": "CurrentBody launches new device for at-home skincare",
+            "outlets": 5,
+            "brands": [
+              "CurrentBody"
+            ]
+          },
+          {
+            "title": "The best beauty gifts of the year, including Solawave",
+            "outlets": 3,
+            "brands": [
+              "Solawave"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 77\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 Solawave: 39 mentions, 51%, 19 in the headline\n- #2 FOREO: 33 mentions, 43%, 29 in the headline\n- #3 CurrentBody: 5 mentions, 6%, 5 in the headline\nMarkets where a competitor leads FOREO:\n- IT: Solawave 70%, FOREO 22%\n- GB: CurrentBody 76%, FOREO 66%\n- FR: Solawave 50%, FOREO 35%\nOutlets that covered competitors but not FOREO: 20 (3 of them covered FOREO before)\n- vogue.com: 4 competitor articles, never covered FOREO\n- independent.co.uk: 4 competitor articles, never covered FOREO\n- wareable.com: 3 competitor articles, covered FOREO before\n- elle.com: 3 competitor articles, covered FOREO before\n- hurriyet.com.tr: 1 competitor articles, covered FOREO before\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- FOREO: 6.4 over 24 headlines\n- CurrentBody: 4.4 over 4 headlines\nStories picked up by several outlets:\n- \"CurrentBody launches new device for at-home skincare\" (5 outlets; CurrentBody)\n- \"The best beauty gifts of the year, including Solawave\" (3 outlets; Solawave)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 33 mentions and 43% share of voice, behind Solawave at 51%. Competitors lead in IT, GB, and FR. Solawave leads in headline tone at 6.4, while CurrentBody at 4.4.  \nActions:  \n- Re-pitch wareable.com, which covered FOREO before and ran 3 competitor articles.  \n- Pitch vogue.com and independent.co.uk, which covered competitors but not FOREO, with a story on FOREO’s at-home skincare innovation.  \n- Offer a story on FOREO’s new product line to outlets that covered Solawave, to counter the competitor’s lead in IT and GB.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 4,
+        "reply": "Score: 4  \nReason: One action (offering a story to outlets that covered Solawave) is slightly vague and not clearly tied to the data, as the fact sheet doesn’t specify which outlets covered Solawave or their tone, but the rest of the actions are well-grounded in the data."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 70,
+        "brands": [
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 1,
+            "mentions": 51,
+            "share_pct": 73,
+            "headline_mentions": 45,
+            "change_pts": -4.3
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 2,
+            "mentions": 11,
+            "share_pct": 16,
+            "headline_mentions": 6,
+            "change_pts": -7.1
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 3,
+            "mentions": 5,
+            "share_pct": 7,
+            "headline_mentions": 1,
+            "change_pts": 13.1
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 4,
+            "mentions": 3,
+            "share_pct": 4,
+            "headline_mentions": 1,
+            "change_pts": 11.2
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "DE",
+            "leader": "Solawave",
+            "leader_pct": 95,
+            "primary_pct": 53
+          },
+          {
+            "country": "FR",
+            "leader": "NuFACE",
+            "leader_pct": 88,
+            "primary_pct": 53
+          }
+        ],
+        "outlet_gaps": {
+          "count": 31,
+          "warm": 0,
+          "top": [
+            {
+              "outlet": "elle.it",
+              "competitor_articles": 6,
+              "warm": false
+            },
+            {
+              "outlet": "allure.com",
+              "competitor_articles": 3,
+              "warm": false
+            },
+            {
+              "outlet": "bild.de",
+              "competitor_articles": 3,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "PMD Beauty",
+            "valence": 4.6,
+            "scored": 3
+          }
+        ],
+        "stories": [
+          {
+            "title": "The best beauty gifts of the year, including NuFACE",
+            "outlets": 5,
+            "brands": [
+              "NuFACE"
+            ]
+          },
+          {
+            "title": "PMD Beauty Black Friday deals: best offers",
+            "outlets": 2,
+            "brands": [
+              "PMD Beauty"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 70\nShare of voice (mentions, share, mentions in the headline):\n- #1 NuFACE: 51 mentions, 73%, 45 in the headline, -4.3 pts vs last week\n- #2 PMD Beauty: 11 mentions, 16%, 6 in the headline, -7.1 pts vs last week\n- #3 FOREO: 5 mentions, 7%, 1 in the headline, +13.1 pts vs last week\n- #4 Solawave: 3 mentions, 4%, 1 in the headline, +11.2 pts vs last week\nMarkets where a competitor leads FOREO:\n- DE: Solawave 95%, FOREO 53%\n- FR: NuFACE 88%, FOREO 53%\nOutlets that covered competitors but not FOREO: 31 (0 of them covered FOREO before)\n- elle.it: 6 competitor articles, never covered FOREO\n- allure.com: 3 competitor articles, never covered FOREO\n- bild.de: 3 competitor articles, never covered FOREO\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- PMD Beauty: 4.6 over 3 headlines\nStories picked up by several outlets:\n- \"The best beauty gifts of the year, including NuFACE\" (5 outlets; NuFACE)\n- \"PMD Beauty Black Friday deals: best offers\" (2 outlets; PMD Beauty)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 5 mentions and 7% share of voice, up 13.1 pts from last week. NuFACE leads with 73% share of voice, down 4.3 pts. Competitors lead in DE and FR.  \nActions:  \n- Re-pitch elle.it, which covered 6 competitor articles and has not covered FOREO.  \n- Pitch allure.com, which covered 3 competitor articles and has not covered FOREO.  \n- Pitch bild.de, which covered 3 competitor articles and has not covered FOREO.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: elle.it"
+          ],
+          "style": [
+            "two actions say the same thing"
+          ]
+        },
+        {
+          "text": "Summary: FOREO had 5 mentions and 7% share of voice, up 13.1 pts from last week. NuFACE leads in DE and FR with 95% and 88% respectively. Competitors have more coverage in DE and FR.  \nActions:  \n- Re-pitch elle.it, which covered 6 competitor articles and not FOREO.  \n- Pitch allure.com and bild.de, which covered 3 competitor articles and not FOREO.  \n- Offer a story on the best beauty gifts to compete with the \"The best beauty gifts of the year\" headline.",
+          "errors": [
+            "says re-pitch, but no listed outlet covered the brand before",
+            "re-pitch for an outlet that never covered the brand: elle.it",
+            "wrong leader for DE: NuFACE, the fact sheet says Solawave"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 5 mentions and 7% share of voice, up 13.1 pts from last week. NuFACE leads with 73% share of voice, down 4.3 pts. Competitors lead in DE and FR.  \nActions:  \n- Pitch elle.it, which covered 6 competitor articles and has not covered FOREO.  \n- Pitch allure.com, which covered 3 competitor articles and has not covered FOREO.  \n- Pitch bild.de, which covered 3 competitor articles and has not covered FOREO.",
+          "errors": [],
+          "style": [
+            "two actions say the same thing"
+          ]
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: The summary accurately reflects the fact sheet, and each action is a concrete, data-driven step to address the gap in media coverage where competitors are covered but FOREO is not."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 68,
+        "brands": [
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 1,
+            "mentions": 33,
+            "share_pct": 49,
+            "headline_mentions": 21,
+            "change_pts": 5.0
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 2,
+            "mentions": 19,
+            "share_pct": 28,
+            "headline_mentions": 19,
+            "change_pts": -5.7
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 3,
+            "mentions": 10,
+            "share_pct": 15,
+            "headline_mentions": 3,
+            "change_pts": 13.7
+          },
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 5,
+            "share_pct": 7,
+            "headline_mentions": 2,
+            "change_pts": -14.4
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 5,
+            "mentions": 1,
+            "share_pct": 1,
+            "headline_mentions": 0,
+            "change_pts": 9.2
+          }
+        ],
+        "market_gaps": [],
+        "outlet_gaps": {
+          "count": 25,
+          "warm": 2,
+          "top": [
+            {
+              "outlet": "bild.de",
+              "competitor_articles": 6,
+              "warm": true
+            },
+            {
+              "outlet": "hurriyet.com.tr",
+              "competitor_articles": 3,
+              "warm": true
+            },
+            {
+              "outlet": "elle.it",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [],
+        "risks": [
+          {
+            "title": "Users report burns from Therabody device",
+            "outlet": "hurriyet.com.tr",
+            "brands": [
+              "Therabody"
+            ]
+          }
+        ],
+        "tone": [
+          {
+            "brand": "Solawave",
+            "valence": 6.3,
+            "scored": 3
+          },
+          {
+            "brand": "CurrentBody",
+            "valence": 4.3,
+            "scored": 1
+          },
+          {
+            "brand": "FOREO",
+            "valence": 4.9,
+            "scored": 3
+          },
+          {
+            "brand": "Therabody",
+            "valence": 5.3,
+            "scored": 4
+          },
+          {
+            "brand": "PMD Beauty",
+            "valence": 6.8,
+            "scored": 1
+          }
+        ],
+        "stories": [
+          {
+            "title": "Therabody Black Friday deals: best offers",
+            "outlets": 5,
+            "brands": [
+              "Therabody"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 68\nShare of voice (mentions, share, mentions in the headline):\n- #1 Solawave: 33 mentions, 49%, 21 in the headline, +5.0 pts vs last week\n- #2 CurrentBody: 19 mentions, 28%, 19 in the headline, -5.7 pts vs last week\n- #3 FOREO: 10 mentions, 15%, 3 in the headline, +13.7 pts vs last week\n- #4 Therabody: 5 mentions, 7%, 2 in the headline, -14.4 pts vs last week\n- #5 PMD Beauty: 1 mention, 1%, 0 in the headline, +9.2 pts vs last week\nOutlets that covered competitors but not FOREO: 25 (2 of them covered FOREO before)\n- bild.de: 6 competitor articles, covered FOREO before\n- hurriyet.com.tr: 3 competitor articles, covered FOREO before\n- elle.it: 2 competitor articles, never covered FOREO\nRisk headlines (recall, lawsuit, injury keywords):\n- Therabody: \"Users report burns from Therabody device\" (hurriyet.com.tr)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- Solawave: 6.3 over 3 headlines\n- CurrentBody: 4.3 over 1 headlines\n- FOREO: 4.9 over 3 headlines\n- Therabody: 5.3 over 4 headlines\n- PMD Beauty: 6.8 over 1 headlines\nStories picked up by several outlets:\n- \"Therabody Black Friday deals: best offers\" (5 outlets; Therabody)",
+      "published": false,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 10 mentions and 15% share of voice, up 13.7 pts from last week. Solawave leads with 49% share of voice, followed by CurrentBody at 28%. Therabody has a risk headline about burns, reported by hurriyet.com.tr.  \nActions:  \n- Re-pitch bild.de, which covered FOREO before and ran 6 competitor articles.  \n- Pitch hurriyet.com.tr, which covered FOREO before and ran 3 competitor articles, on Therabody’s risk headline.  \n- Offer a FOREO story on Therabody’s safety issues to outlets that covered competitors, including hurriyet.com.tr.",
+          "errors": [
+            "action promotes a competitor's story: Therabody",
+            "action promotes a competitor's story: Therabody"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 10 mentions and 15% share of voice, up 13.7 pts from last week. Solawave leads with 49% share of voice, up 5.0 pts. Therabody has a risk headline on hurriyet.com.tr about burns from its device.  \nActions:  \n- Pitch bild.de, which covered FOREO before and ran 6 competitor articles, with a story on Therabody’s black Friday deals.  \n- Pitch hurriyet.com.tr, which covered FOREO before and ran 3 competitor articles, with a story on Therabody’s risk headline.  \n- Offer a FOREO story on skin safety and device durability to outlets in the Middle East, where Therabody’s risk headline is prominent.",
+          "errors": [
+            "action promotes a competitor's story: Therabody",
+            "action promotes a competitor's story: Therabody",
+            "action promotes a competitor's story: Therabody"
+          ],
+          "style": []
+        },
+        {
+          "text": "Summary: FOREO had 10 mentions and 15% share of voice, up 13.7 pts from last week. Solawave leads with 49% share of voice, followed by CurrentBody at 28%. Therabody has a risk headline about burns, reported by hurriyet.com.tr.  \nActions:  \n- Re-pitch bild.de, which covered FOREO before and ran 6 competitor articles.  \n- Pitch hurriyet.com.tr, which covered FOREO before and ran 3 competitor articles, on Therabody’s risk headline.  \n- Offer a FOREO story on Therabody’s safety issues to outlets that covered competitors, including hurriyet.com.tr.",
+          "errors": [
+            "action promotes a competitor's story: Therabody",
+            "action promotes a competitor's story: Therabody"
+          ],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 3,
+        "reply": "Score: 3  \nReason: The summary is accurate, but the actions are generic—re-pitching and offering stories lack specificity and are not clearly tied to the data gaps (e.g., no action addresses the missed opportunities in outlets that covered competitors but not FOREO)."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 39,
+        "brands": [
+          {
+            "brand": "Therabody",
+            "primary": false,
+            "rank": 1,
+            "mentions": 14,
+            "share_pct": 36,
+            "headline_mentions": 12,
+            "change_pts": 11.3
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 2,
+            "mentions": 12,
+            "share_pct": 31,
+            "headline_mentions": 2,
+            "change_pts": 11.5
+          },
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 3,
+            "mentions": 8,
+            "share_pct": 21,
+            "headline_mentions": 8,
+            "change_pts": 1.8
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 4,
+            "mentions": 2,
+            "share_pct": 5,
+            "headline_mentions": 2,
+            "change_pts": -8.7
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 5,
+            "mentions": 2,
+            "share_pct": 5,
+            "headline_mentions": 2,
+            "change_pts": -11.3
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 6,
+            "mentions": 1,
+            "share_pct": 3,
+            "headline_mentions": 0,
+            "change_pts": -5.7
+          }
+        ],
+        "market_gaps": [],
+        "outlet_gaps": {
+          "count": 4,
+          "warm": 1,
+          "top": [
+            {
+              "outlet": "bild.de",
+              "competitor_articles": 4,
+              "warm": false
+            },
+            {
+              "outlet": "hurriyet.com.tr",
+              "competitor_articles": 3,
+              "warm": true
+            },
+            {
+              "outlet": "elle.it",
+              "competitor_articles": 3,
+              "warm": false
+            },
+            {
+              "outlet": "shopping.yahoo.com",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "skin science",
+            "competitor_pct": 21,
+            "primary_pct": 0,
+            "leader": "Solawave"
+          },
+          {
+            "topic": "launch",
+            "competitor_pct": 17,
+            "primary_pct": 1,
+            "leader": "NuFACE"
+          }
+        ],
+        "risks": [
+          {
+            "title": "Users report burns from PMD Beauty device",
+            "outlet": "menshealth.com",
+            "brands": [
+              "PMD Beauty"
+            ]
+          }
+        ],
+        "tone": [
+          {
+            "brand": "Therabody",
+            "valence": 4.3,
+            "scored": 5
+          },
+          {
+            "brand": "PMD Beauty",
+            "valence": 6.4,
+            "scored": 9
+          },
+          {
+            "brand": "FOREO",
+            "valence": 7.6,
+            "scored": 5
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 5.3,
+            "scored": 1
+          }
+        ],
+        "stories": [
+          {
+            "title": "Therabody Black Friday deals: best offers",
+            "outlets": 4,
+            "brands": [
+              "Therabody"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 39\nShare of voice (mentions, share, mentions in the headline):\n- #1 Therabody: 14 mentions, 36%, 12 in the headline, +11.3 pts vs last week\n- #2 PMD Beauty: 12 mentions, 31%, 2 in the headline, +11.5 pts vs last week\n- #3 FOREO: 8 mentions, 21%, 8 in the headline, +1.8 pts vs last week\n- #4 CurrentBody: 2 mentions, 5%, 2 in the headline, -8.7 pts vs last week\n- #5 Solawave: 2 mentions, 5%, 2 in the headline, -11.3 pts vs last week\n- #6 NuFACE: 1 mention, 3%, 0 in the headline, -5.7 pts vs last week\nOutlets that covered competitors but not FOREO: 4 (1 of them covered FOREO before)\n- bild.de: 4 competitor articles, never covered FOREO\n- hurriyet.com.tr: 3 competitor articles, covered FOREO before\n- elle.it: 3 competitor articles, never covered FOREO\n- shopping.yahoo.com: 2 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- skin science: competitors 21%, FOREO 0% (led by Solawave)\n- launch: competitors 17%, FOREO 1% (led by NuFACE)\nRisk headlines (recall, lawsuit, injury keywords):\n- PMD Beauty: \"Users report burns from PMD Beauty device\" (menshealth.com)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- Therabody: 4.3 over 5 headlines\n- PMD Beauty: 6.4 over 9 headlines\n- FOREO: 7.6 over 5 headlines\n- NuFACE: 5.3 over 1 headlines\nStories picked up by several outlets:\n- \"Therabody Black Friday deals: best offers\" (4 outlets; Therabody)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 8 mentions and 21% share of voice, up 1.8 pts from last week. It leads in headline tone with 7.6, behind PMD Beauty at 6.4. Competitors lead in skin science (21% vs FOREO 0%) and launch (17% vs 1%). PMD Beauty has a risk headline about burns from its device.  \nActions:  \n- Re-pitch hurriyet.com.tr, which covered FOREO before and ran 3 competitor articles.  \n- Pitch bild.de, which ran 4 competitor articles and has not covered FOREO.  \n- Offer a FOREO story on skin science to counter competitors’ 21% lead.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 5,
+        "reply": "Score: 5  \nReason: Every action is directly supported by the fact sheet, concrete, and strategically aligned with FOREO’s positioning—specifically addressing gaps in coverage and topic dominance."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": true,
+        "total_mentions": 70,
+        "brands": [
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 1,
+            "mentions": 37,
+            "share_pct": 53,
+            "headline_mentions": 16,
+            "change_pts": -9.1
+          },
+          {
+            "brand": "PMD Beauty",
+            "primary": false,
+            "rank": 2,
+            "mentions": 26,
+            "share_pct": 37,
+            "headline_mentions": 22,
+            "change_pts": -11.5
+          },
+          {
+            "brand": "CurrentBody",
+            "primary": false,
+            "rank": 3,
+            "mentions": 6,
+            "share_pct": 9,
+            "headline_mentions": 4,
+            "change_pts": 5.2
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 4,
+            "mentions": 1,
+            "share_pct": 1,
+            "headline_mentions": 0,
+            "change_pts": 11.0
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "AU",
+            "leader": "PMD Beauty",
+            "leader_pct": 55,
+            "primary_pct": 23
+          }
+        ],
+        "outlet_gaps": {
+          "count": 19,
+          "warm": 2,
+          "top": [
+            {
+              "outlet": "marieclaire.fr",
+              "competitor_articles": 4,
+              "warm": true
+            },
+            {
+              "outlet": "popsugar.com",
+              "competitor_articles": 3,
+              "warm": true
+            },
+            {
+              "outlet": "expressen.se",
+              "competitor_articles": 3,
+              "warm": false
+            },
+            {
+              "outlet": "hurriyet.com.tr",
+              "competitor_articles": 2,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "reviews",
+            "competitor_pct": 36,
+            "primary_pct": 17,
+            "leader": "NuFACE"
+          },
+          {
+            "topic": "deals pricing",
+            "competitor_pct": 32,
+            "primary_pct": 9,
+            "leader": "NuFACE"
+          },
+          {
+            "topic": "business",
+            "competitor_pct": 13,
+            "primary_pct": 4,
+            "leader": "CurrentBody"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "FOREO",
+            "valence": 6.0,
+            "scored": 11
+          },
+          {
+            "brand": "PMD Beauty",
+            "valence": 6.6,
+            "scored": 26
+          },
+          {
+            "brand": "CurrentBody",
+            "valence": 5.6,
+            "scored": 4
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 7.6,
+            "scored": 1
+          }
+        ],
+        "stories": [
+          {
+            "title": "CurrentBody launches new device for at-home skincare",
+            "outlets": 6,
+            "brands": [
+              "CurrentBody"
+            ]
+          },
+          {
+            "title": "NuFACE launches new device for at-home skincare",
+            "outlets": 2,
+            "brands": [
+              "NuFACE"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 70\nShare of voice (mentions, share, mentions in the headline):\n- #1 FOREO: 37 mentions, 53%, 16 in the headline, -9.1 pts vs last week\n- #2 PMD Beauty: 26 mentions, 37%, 22 in the headline, -11.5 pts vs last week\n- #3 CurrentBody: 6 mentions, 9%, 4 in the headline, +5.2 pts vs last week\n- #4 NuFACE: 1 mention, 1%, 0 in the headline, +11.0 pts vs last week\nMarkets where a competitor leads FOREO:\n- AU: PMD Beauty 55%, FOREO 23%\nOutlets that covered competitors but not FOREO: 19 (2 of them covered FOREO before)\n- marieclaire.fr: 4 competitor articles, covered FOREO before\n- popsugar.com: 3 competitor articles, covered FOREO before\n- expressen.se: 3 competitor articles, never covered FOREO\n- hurriyet.com.tr: 2 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- reviews: competitors 36%, FOREO 17% (led by NuFACE)\n- deals pricing: competitors 32%, FOREO 9% (led by NuFACE)\n- business: competitors 13%, FOREO 4% (led by CurrentBody)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- FOREO: 6.0 over 11 headlines\n- PMD Beauty: 6.6 over 26 headlines\n- CurrentBody: 5.6 over 4 headlines\n- NuFACE: 7.6 over 1 headlines\nStories picked up by several outlets:\n- \"CurrentBody launches new device for at-home skincare\" (6 outlets; CurrentBody)\n- \"NuFACE launches new device for at-home skincare\" (2 outlets; NuFACE)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 37 mentions and 53% share of voice, up 9.1 pts from last week. PMD Beauty leads in AU with 55% vs FOREO’s 23%. Competitors dominate in reviews, deals pricing, and business topics. FOREO’s headline tone is 6.0, neutral.  \nActions:  \n- Re-pitch marieclaire.fr, which covered FOREO before and ran 4 competitor articles.  \n- Pitch popsugar.com, which covered FOREO before and ran 3 competitor articles.  \n- Offer a FOREO story on at-home skincare to outlets in AU, where PMD Beauty leads.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 4,
+        "reply": "Score: 4  \nReason: The brief correctly identifies key gaps in the fact sheet—such as outlets that covered competitors but not FOREO—and proposes sensible outreach actions, though offering a story to AU outlets lacks specificity on how or why this would work given the data."
+      }
+    },
+    {
+      "facts": {
+        "primary": "FOREO",
+        "start": "2026-11-14",
+        "end": "2026-11-20",
+        "baseline": false,
+        "total_mentions": 138,
+        "brands": [
+          {
+            "brand": "FOREO",
+            "primary": true,
+            "rank": 1,
+            "mentions": 52,
+            "share_pct": 38,
+            "headline_mentions": 38,
+            "change_pts": null
+          },
+          {
+            "brand": "NuFACE",
+            "primary": false,
+            "rank": 2,
+            "mentions": 49,
+            "share_pct": 36,
+            "headline_mentions": 16,
+            "change_pts": null
+          },
+          {
+            "brand": "Solawave",
+            "primary": false,
+            "rank": 3,
+            "mentions": 37,
+            "share_pct": 27,
+            "headline_mentions": 6,
+            "change_pts": null
+          }
+        ],
+        "market_gaps": [
+          {
+            "country": "IT",
+            "leader": "Solawave",
+            "leader_pct": 43,
+            "primary_pct": 20
+          },
+          {
+            "country": "ES",
+            "leader": "Solawave",
+            "leader_pct": 32,
+            "primary_pct": 18
+          }
+        ],
+        "outlet_gaps": {
+          "count": 32,
+          "warm": 1,
+          "top": [
+            {
+              "outlet": "allure.com",
+              "competitor_articles": 6,
+              "warm": true
+            },
+            {
+              "outlet": "popsugar.com",
+              "competitor_articles": 5,
+              "warm": false
+            },
+            {
+              "outlet": "independent.co.uk",
+              "competitor_articles": 1,
+              "warm": false
+            },
+            {
+              "outlet": "shopping.yahoo.com",
+              "competitor_articles": 1,
+              "warm": false
+            }
+          ]
+        },
+        "topic_gaps": [
+          {
+            "topic": "launch",
+            "competitor_pct": 28,
+            "primary_pct": 16,
+            "leader": "NuFACE"
+          },
+          {
+            "topic": "business",
+            "competitor_pct": 35,
+            "primary_pct": 20,
+            "leader": "Solawave"
+          },
+          {
+            "topic": "deals pricing",
+            "competitor_pct": 17,
+            "primary_pct": 12,
+            "leader": "NuFACE"
+          }
+        ],
+        "risks": [],
+        "tone": [
+          {
+            "brand": "FOREO",
+            "valence": 4.6,
+            "scored": 41
+          },
+          {
+            "brand": "NuFACE",
+            "valence": 6.2,
+            "scored": 30
+          },
+          {
+            "brand": "Solawave",
+            "valence": 5.8,
+            "scored": 31
+          }
+        ],
+        "stories": [
+          {
+            "title": "The best beauty gifts of the year, including FOREO",
+            "outlets": 5,
+            "brands": [
+              "FOREO"
+            ]
+          },
+          {
+            "title": "NuFACE launches new device for at-home skincare",
+            "outlets": 5,
+            "brands": [
+              "NuFACE"
+            ]
+          }
+        ]
+      },
+      "sheet": "Brand: FOREO\nPeriod: 2026-11-14 to 2026-11-20\nTotal brand mentions in the period: 138\nPrevious period: not collected, so there are no week-over-week changes.\nShare of voice (mentions, share, mentions in the headline):\n- #1 FOREO: 52 mentions, 38%, 38 in the headline\n- #2 NuFACE: 49 mentions, 36%, 16 in the headline\n- #3 Solawave: 37 mentions, 27%, 6 in the headline\nMarkets where a competitor leads FOREO:\n- IT: Solawave 43%, FOREO 20%\n- ES: Solawave 32%, FOREO 18%\nOutlets that covered competitors but not FOREO: 32 (1 of them covered FOREO before)\n- allure.com: 6 competitor articles, covered FOREO before\n- popsugar.com: 5 competitor articles, never covered FOREO\n- independent.co.uk: 1 competitor articles, never covered FOREO\n- shopping.yahoo.com: 1 competitor articles, never covered FOREO\nTopics where competitors get more coverage (share of each side's coverage):\n- launch: competitors 28%, FOREO 16% (led by NuFACE)\n- business: competitors 35%, FOREO 20% (led by Solawave)\n- deals pricing: competitors 17%, FOREO 12% (led by NuFACE)\nHeadline tone, valence on a 1-9 scale (5 is neutral):\n- FOREO: 4.6 over 41 headlines\n- NuFACE: 6.2 over 30 headlines\n- Solawave: 5.8 over 31 headlines\nStories picked up by several outlets:\n- \"The best beauty gifts of the year, including FOREO\" (5 outlets; FOREO)\n- \"NuFACE launches new device for at-home skincare\" (5 outlets; NuFACE)",
+      "published": true,
+      "drafts": [
+        {
+          "text": "Summary: FOREO had 52 mentions and 38% share of voice, leading in mentions and headline coverage. NuFACE and Solawave are in second and third place, with NuFACE at 36% and Solawave at 27%. Competitors lead in IT and ES, with Solawave at 43% and 32% respectively. FOREO has 16 mentions in the headline, behind NuFACE’s 16. Competitors dominate in launch, business, and deals pricing topics.  \nActions:  \n- Re-pitch allure.com, which covered FOREO before and ran 6 competitor articles.  \n- Pitch independent.co.uk, which covered no competitors and ran 1 competitor article.  \n- Offer a FOREO story on business topics to counter Solawave’s 35% coverage.",
+          "errors": [],
+          "style": []
+        }
+      ],
+      "judge": {
+        "score": 4,
+        "reply": "Score: 4  \nReason: The summary correctly reflects FOREO’s position and the data, and the actions are well-aligned with the gaps in the fact sheet—except that re-pitching allure.com is redundant since it already covered FOREO before, making it slightly vague."
+      }
+    }
+  ],
+  "judge_mean": 4.380952380952381,
+  "judge_share_4_plus": 0.8095238095238095
+}

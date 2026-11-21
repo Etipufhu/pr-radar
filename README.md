@@ -116,54 +116,77 @@ pr-radar score-sentiment           # score new headline brand mentions
 
 ## Weekly brief (local LLM)
 
-`pr-radar brief` turns the week's numbers into a short note for the PR team: two or three sentences on where the brand stands, then two to four actions that name an outlet, market or topic. It runs a small open model (Qwen3-1.7B, fine-tuned with LoRA) locally on the GPU, so no data leaves the machine and there is no API cost.
+`pr-radar brief` turns the week's numbers into a short note for the PR team: two or three sentences on where the brand stands, then two to four actions that name an outlet, market or topic. It runs a small open model (Qwen3-1.7B with a LoRA adapter, committed in [`adapters/brief-lora-qwen3-1.7b`](adapters/brief-lora-qwen3-1.7b)) locally on the GPU, so no data leaves the machine and there is no API cost.
 
 A 1.7B model will invent things if left alone, so the brief goes through these steps:
 
 1. **Fact sheet.** The model only sees a short text sheet built from the report tables (`narrative/facts.py`). Every number is already rounded and formatted there.
-2. **Checks** (`narrative/checks.py`). A brief is rejected if it contains a number or an outlet domain that is not in the sheet, describes a change over time when there is no previous period, skips a risk headline, or breaks the Summary/Actions format. Stock phrases ("crucial", "landscape", "it's worth noting"...) are counted as style issues.
-3. **Retries.** The first attempt is greedy. If it fails, the model samples up to three more candidates and the one with the fewest problems is kept. A brief that still has errors is saved to `data/briefs/` for inspection but is not published; the report then shows only the rule-based takeaways.
+2. **Checks** (`narrative/checks.py`). A brief is rejected if it:
+   - contains a number, outlet, country or topic that is not in the sheet, or copies a name from the prompt example;
+   - describes a change over time when there is no previous period, or skips a risk headline;
+   - gets the brand's rank wrong, or names the wrong leader overall, in a market or on a topic;
+   - gives advice that does not fit: "re-pitch" for an outlet that never covered the brand, an action addressed to a competitor or promoting a competitor's news, a statement when the risk headline is about someone else;
+   - breaks the Summary/Actions format.
+
+   Stock phrases ("crucial", "landscape", "it's worth noting"...), duplicate actions and "monitor"-style actions count as style issues.
+3. **Retries.** The first attempt is greedy. If it fails, the model gets the list of problems and rewrites, or samples a new draft (three attempts in the evaluation, four by default). A brief that still has errors is saved to `data/briefs/` for inspection but not published; the report then shows only the rule-based takeaways.
 
 ```bash
 pip install -e ".[sentiment]"      # torch + transformers
-pr-radar brief                     # writes data/briefs/brief-<start>_<end>.json
+pr-radar brief --adapter adapters/brief-lora-qwen3-1.7b   # writes data/briefs/brief-<start>_<end>.json
 pr-radar report                    # includes the brief if it passed the checks
-pr-radar brief-eval --weeks 20     # pass rates on the real week + synthetic weeks
-pr-radar brief-distill             # training briefs by rejection sampling
-pr-radar brief-train               # LoRA fine-tune -> models/brief-lora-qwen3-1.7b
-pr-radar brief --adapter models/brief-lora-qwen3-1.7b
 ```
 
-**Fine-tuning (LoRA).** The base model mostly failed by copying the worked example in the prompt. So the model was fine-tuned to do without it:
+### How the adapter was trained
 
-1. `brief-distill`: the base model wrote 8 candidate briefs for each of 160 synthetic weeks (with a random brand as the primary one, so the model is not tied to FOREO). Only candidates that passed every check were kept, one per week.
-2. The checks were then tightened (wrong rank, actions that promote a competitor's story) and the set re-filtered with `scripts/refilter_brief_sft.py`: 56 examples remained.
-3. `brief-train`: LoRA (rank 16) on all attention and MLP projections, 17M trainable parameters (1% of the model), 3 epochs, about 7 minutes on the laptop GPU. The training prompt has no example. Validation loss fell from 2.27 to 0.41.
+The base 1.7B model with a worked example in the prompt mostly failed by copying the example (its markets, topics and "re-pitch" wording). Fine-tuning on its own best outputs (self-distillation) removed the copying but not the bad advice, because the targets had the same blind spots. So the targets now come from a larger model:
 
-**Results.** `brief-eval` on the real week and 20 synthetic weeks that were not used for training, up to 3 attempts each, same checks for both models. Raw output: [`results/brief_eval_Qwen3-1.7B.json`](results/brief_eval_Qwen3-1.7B.json), [`results/brief_eval_brief-lora-qwen3-1.7b.json`](results/brief_eval_brief-lora-qwen3-1.7b.json).
+1. **Teacher data.** Qwen3-4B-Instruct-2507, loaded in 4-bit, wrote 4 candidate briefs for each of 250 synthetic weeks (random primary brand, so the adapter is not tied to FOREO). A candidate is kept only if it passes every check with no style issue; per week the one that uses the most facts wins. 42% of candidates passed and 154 weeks gave an example (`data/brief_sft/train.jsonl`).
+2. **LoRA.** Rank 16 on all attention and MLP projections, 17M trainable parameters (1% of the model), 3 epochs, 10 minutes on a laptop RTX 5070 (8 GB). The training prompt has no worked example. Validation loss went from 2.94 to 0.43.
+3. **Evaluation.** The real week plus 20 synthetic weeks with seeds that were never used for training. Each model's first draft is checked with the final checks (`scripts/rescore_briefs.py`) and scored 1–5 by an LLM judge (`pr-radar brief-judge`, Qwen3-4B with a rubric on whether the advice makes sense for the brand).
 
-| Qwen3-1.7B | Base, example in prompt | LoRA, no example |
-|---|---:|---:|
-| First draft passes every check | 10% (2 of 21) | **62% (13 of 21)** |
-| Published after revisions | 19% (4 of 21) | **81% (17 of 21)** |
+```bash
+pr-radar brief-distill --model Qwen/Qwen3-4B-Instruct-2507 --load-4bit --weeks 250 --samples 4
+pr-radar brief-train --out adapters/brief-lora-qwen3-1.7b
+pr-radar brief-eval --weeks 20 --tries 3 --adapter adapters/brief-lora-qwen3-1.7b
+pr-radar brief-judge results/brief_eval_brief-lora-qwen3-1.7b.json
+```
 
-Errors in the first drafts:
+`scripts/brief_pipeline.ps1` runs the whole thing (about 2.5 hours, most of it the teacher).
 
-| Error | Base | LoRA |
-|---|---:|---:|
-| Copied a name or phrase from the prompt example | 14 | – |
-| Topic not in the fact sheet | 11 | 0 |
-| Country not in the fact sheet | 10 | 0 |
-| "Re-pitch" for an outlet that never covered the brand | 9 | 3 |
-| Wrong rank for the brand | 9 | 0 |
-| Number not in the data | 4 | 0 |
-| Topic gap described as a strength | 2 | 2 |
-| Action promotes a competitor's story | 1 | 2 |
-| No action names an outlet, market or topic | 0 | 2 |
+### Results
 
-**What the checks do not catch.** They test whether a brief is grounded in the data, not whether its advice is good. A brief that passes can still suggest something odd, for example "send a statement to Therabody" in the real week. The training examples came from the same base model, so they share this weakness. Better targets (briefs reviewed by a person, or written by a larger model) are the next step. Until then a brief should be read before it is shared, and the weekly report on GitHub Pages keeps the rule-based takeaways.
+21 held-out weeks. Raw output with every draft and judge reply: [`results/brief_eval_*.json`](results/).
 
-The adapter is not committed (`models/` is ignored); `pr-radar brief-distill` and `pr-radar brief-train` rebuild it in about an hour on an 8 GB GPU.
+| | First draft passes every check | Published within 3 attempts | Judge mean (1–5) | Judge 4 or 5 |
+|---|---:|---:|---:|---:|
+| Qwen3-1.7B, worked example in prompt | 1 of 21 | –¹ | 3.52 | 43% |
+| + LoRA on its own outputs | 2 of 21 | –¹ | 3.52 | 48% |
+| **+ LoRA on teacher outputs (shipped)** | **11 of 21** | **86%** | **4.19** | **81%** |
+| Teacher: Qwen3-4B, worked example in prompt | 10 of 21 | 81% | 4.52 | 90% |
+
+¹ These two were run before the last checks were added, so their retry loop worked against an easier bar. Their first drafts are re-checked with the final checks above.
+
+The adapter matches the teacher on the checks with less than half the parameters and no example in the prompt, and takes about 13 s per week in the evaluation (retries included) against 25 s. The judge still prefers the teacher. It is also more lenient than the checks (it gives the base model 3.5), and it comes from the same family as the teacher, so read it as a ranking, not an absolute score.
+
+Errors in first drafts, final checks:
+
+| Error | Base | Self-distilled | Teacher-distilled | Teacher |
+|---|---:|---:|---:|---:|
+| "Re-pitch" for an outlet that never covered the brand | 33 | 37 | 11 | 6 |
+| Action addressed to a competitor | 9 | 2 | 0 | 1 |
+| Copied a name or phrase from the prompt example | 9 | 0 | 0 | 1 |
+| Wrong rank for the brand | 9 | 0 | 0 | 0 |
+| Wrong leader for a market, topic or overall | 4 | 4 | 2 | 4 |
+| Statement suggested for someone else's risk headline | 0 | 3 | 0 | 0 |
+| Country not in the fact sheet | 2 | 0 | 3 | 0 |
+| Number, outlet or topic not in the fact sheet | 4 | 0 | 0 | 1 |
+| Action promotes a competitor's story | 1 | 1 | 0 | 1 |
+| Risk headline not mentioned | 1 | 1 | 1 | 1 |
+
+**What is left.** The main remaining error is "re-pitch", in 6 of the 21 first drafts. 98 of the 154 teacher briefs contain a re-pitch action, since every week with a warm outlet gets one, and the adapter picked that up as a habit: it writes "Re-pitch hurriyet.com.tr, which covered competitors but not FOREO". Labelling cold outlets "never covered FOREO" in the fact sheet and retraining did not help (same 11 of 21, more competitor-story errors; kept as `results/brief_eval_lora-cold-labels.json`), so the next step is to balance the training data rather than change the prompt.
+
+**What the checks do not catch.** They test whether a brief is grounded in the data and catch the bad advice seen so far, not every kind. Two patterns found by reading drafts are not checked yet: outlet names that are not domains ("The Verge"), and vague targets ("outlets that covered FOREO before, such as [outlet name]"). A brief should still be read before it is shared, and the weekly report on GitHub Pages keeps the rule-based takeaways.
 
 ## Automation
 
@@ -194,6 +217,7 @@ tests/                      offline tests with recorded fixtures
 web/                        static web dashboard (index.html, styles.css, app.js)
 annotation/                 headline labelling guidelines + review tool
 results/                    model evaluation tables (JSON + Markdown)
+adapters/                   LoRA adapter for the brief writer (35 MB)
 scripts/fetch_dimabsa.sh    downloads the DimABSA data (not redistributed)
 ```
 

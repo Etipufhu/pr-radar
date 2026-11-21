@@ -162,7 +162,7 @@ def cmd_brief_eval(args: argparse.Namespace) -> int:
         fact_sets.insert(0, weekly_facts(store.con, settings, default_window(7)))
     finally:
         store.close()
-    llm = LocalLLM(args.model, adapter=args.adapter)
+    llm = LocalLLM(args.model, adapter=args.adapter, load_4bit=args.load_4bit)
     name = args.adapter or args.model
     result = evaluate(fact_sets, llm, name, tries=args.tries, few_shot=not args.adapter)
     path = write_results(result, args.results)
@@ -178,7 +178,7 @@ def cmd_brief_eval(args: argparse.Namespace) -> int:
 
 
 BRIEF_SFT = "data/brief_sft/train.jsonl"
-BRIEF_ADAPTER = "models/brief-lora-qwen3-1.7b"
+BRIEF_ADAPTER = "adapters/brief-lora-qwen3-1.7b"
 
 
 def cmd_brief_distill(args: argparse.Namespace) -> int:
@@ -190,10 +190,28 @@ def cmd_brief_distill(args: argparse.Namespace) -> int:
     settings = load_config(args.config)
     weeks = training_weeks(list(settings.brand_names.values()), args.weeks, args.start)
     stats = build_dataset(
-        LocalLLM(args.model), weeks, args.out, args.samples, append=args.start > 0
+        LocalLLM(args.model, load_4bit=args.load_4bit),
+        weeks,
+        args.out,
+        args.samples,
+        weeks_per_batch=args.weeks_per_batch,
+        append=args.start > 0,
     )
     Path(args.out).with_suffix(".stats.json").write_text(json.dumps(stats, indent=2))
     print(stats)
+    return 0
+
+
+BRIEF_TEACHER = "Qwen/Qwen3-4B-Instruct-2507"
+
+
+def cmd_brief_judge(args: argparse.Namespace) -> int:
+    from .narrative.judge import judge_results
+    from .narrative.writer import LocalLLM
+
+    llm = LocalLLM(args.model, load_4bit=True, max_new_tokens=80)
+    for f in args.files:
+        print(judge_results(f, llm))
     return 0
 
 
@@ -344,13 +362,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--tries", type=int, default=4)
     p.add_argument("--results", default="results")
     p.add_argument("--adapter", help="LoRA adapter dir; the prompt then has no example")
+    p.add_argument("--load-4bit", action="store_true", help="for larger models")
     p.set_defaults(func=cmd_brief_eval)
+
+    p = sub.add_parser("brief-judge", help="score the advice in brief-eval results with a judge")
+    p.add_argument("files", nargs="+", help="results/brief_eval_*.json")
+    p.add_argument("--model", default=BRIEF_TEACHER)
+    p.set_defaults(func=cmd_brief_judge)
 
     p = sub.add_parser("brief-distill", help="sample briefs and keep those that pass the checks")
     p.add_argument("--model", default="Qwen/Qwen3-1.7B")
     p.add_argument("--weeks", type=int, default=500)
     p.add_argument("--samples", type=int, default=8, help="candidates per week")
     p.add_argument("--start", type=int, default=0, help="resume: first week index, appends")
+    p.add_argument("--weeks-per-batch", type=int, default=2)
+    p.add_argument("--load-4bit", action="store_true", help="for larger teacher models")
     p.add_argument("--out", default=BRIEF_SFT)
     p.set_defaults(func=cmd_brief_distill)
 

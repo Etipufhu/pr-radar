@@ -62,6 +62,9 @@ def build_dataset(
     out_path.parent.mkdir(parents=True, exist_ok=True)
     kept = candidates = passed = 0
     with out_path.open("a" if append else "w", encoding="utf-8") as fh:
+        from tqdm.auto import tqdm
+
+        bar = tqdm(total=len(weeks), desc="distill", unit="week")
         for start in range(0, len(weeks), weeks_per_batch):
             chunk = weeks[start : start + weeks_per_batch]
             sheets = [fact_sheet(f) for f in chunk]
@@ -91,7 +94,9 @@ def build_dataset(
                 fh.write(json.dumps(record, ensure_ascii=False) + "\n")
                 fh.flush()  # keep finished weeks if the run is stopped
                 kept += 1
-            log.info("weeks %d/%d: kept %d", start + len(chunk), len(weeks), kept)
+            bar.update(len(chunk))
+            bar.set_postfix(kept=kept)
+        bar.close()
     return {
         "weeks": len(weeks),
         "candidates": candidates,

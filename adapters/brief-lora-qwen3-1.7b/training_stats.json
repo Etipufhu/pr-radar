@@ -1,0 +1,33 @@
+{
+  "base_model": "Qwen/Qwen3-1.7B",
+  "train_examples": 139,
+  "val_examples": 15,
+  "epochs": 3,
+  "lr": 0.0002,
+  "rank": 16,
+  "alpha": 32,
+  "trainable_params": 17432576,
+  "total_params": 1738007552,
+  "minutes": 9.8,
+  "history": [
+    {
+      "epoch": 0,
+      "val_loss": 2.9412059467800415
+    },
+    {
+      "epoch": 1,
+      "train_loss": 1.066453624197415,
+      "val_loss": 0.5160602875890873
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.43325111397675103,
+      "val_loss": 0.44665453379929176
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.35750759243965147,
+      "val_loss": 0.4297253355164335
+    }
+  ]
+}

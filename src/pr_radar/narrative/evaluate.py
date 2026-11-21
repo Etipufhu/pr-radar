@@ -166,7 +166,12 @@ def evaluate(
         error_kinds.update(_kind(e) for e in first["errors"])
         style_kinds.update(_kind(s) for s in first["style"])
         samples.append(
-            {"sheet": fact_sheet(f), "published": brief.published, "drafts": brief.drafts}
+            {
+                "facts": f,
+                "sheet": fact_sheet(f),
+                "published": brief.published,
+                "drafts": brief.drafts,
+            }
         )
     n = len(fact_sets)
     return {

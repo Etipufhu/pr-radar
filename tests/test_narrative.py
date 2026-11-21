@@ -69,6 +69,23 @@ def test_checks_catch_made_up_facts(store, settings):
     assert "wrong rank: 'third'" in errors
     assert "action promotes a competitor's story: NuFACE" in errors
 
+    odd = GOOD + "\n- Send a statement to Therabody about the recall."
+    errors = " | ".join(check_brief(odd, fact_sheet(f), f).errors)
+    assert "action is addressed to a competitor: Therabody" in errors
+    assert "no risk headline for FOREO" in errors
+
+    leader = GOOD.replace("behind NuFACE.", "behind NuFACE. FOREO leads in deals pricing.")
+    leader += "\n- Re-pitch-Solawave style: Re-pitch bild.de, which ran a NuFACE deal."
+    errors = " | ".join(check_brief(leader, fact_sheet(f), f).errors)
+    assert "wrong leader for deals pricing: FOREO, the fact sheet says NuFACE" in errors
+    assert "re-pitch for an outlet that never covered the brand: bild.de" in errors
+
+    overall = GOOD.replace("behind NuFACE.", "behind NuFACE. Therabody leads in share of voice.")
+    overall += "\n- Pitch stern.de, which covered NuFACE twice."
+    res = check_brief(overall, fact_sheet(f), f)
+    assert "wrong overall leader: Therabody, the fact sheet says NuFACE" in res.errors
+    assert "two actions say the same thing" in res.style
+
 
 def test_checks_flag_stock_phrases(store, settings):
     f = _facts(store, settings)
@@ -132,3 +149,18 @@ def test_encode_masks_the_prompt():
     row = encode(Tok(), conv, max_length=100)
     assert row["input_ids"] == [ord(c) for c in "abc|xy<eos>"]
     assert row["labels"][:4] == [-100] * 4 and row["labels"][4:6] == [ord("x"), ord("y")]
+
+
+def test_judge_scores_first_drafts(tmp_path):
+    import json
+
+    from pr_radar.narrative.judge import judge_results, parse_score
+
+    assert parse_score("Score: 4\nReason: fine") == 4 and parse_score("no idea") is None
+    path = tmp_path / "eval.json"
+    sample = {"facts": {"primary": "FOREO"}, "sheet": "s", "drafts": [{"text": "t"}]}
+    path.write_text(json.dumps({"samples": [sample, sample]}))
+    replies = iter(["Score: 5\nReason: a", "Score: 2\nReason: b"])
+    out = judge_results(path, lambda msgs, sample: next(replies))
+    assert out["mean"] == 3.5 and out["share_4_plus"] == 0.5
+    assert json.loads(path.read_text())["samples"][1]["judge"]["score"] == 2

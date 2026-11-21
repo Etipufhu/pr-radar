@@ -41,7 +41,11 @@ class LocalLLM:
     """
 
     def __init__(
-        self, name: str = DEFAULT_MODEL, adapter: str | None = None, max_new_tokens: int = 320
+        self,
+        name: str = DEFAULT_MODEL,
+        adapter: str | None = None,
+        max_new_tokens: int = 320,
+        load_4bit: bool = False,
     ):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -52,7 +56,17 @@ class LocalLLM:
         dtype = torch.bfloat16 if self.device == "cuda" else torch.float32
         self.tok = AutoTokenizer.from_pretrained(name)
         self.tok.padding_side = "left"
-        model = AutoModelForCausalLM.from_pretrained(name, dtype=dtype).to(self.device)
+        if load_4bit:  # larger teacher/judge models on an 8 GB GPU
+            from transformers import BitsAndBytesConfig
+
+            quant = BitsAndBytesConfig(
+                load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_compute_dtype=dtype
+            )
+            model = AutoModelForCausalLM.from_pretrained(
+                name, quantization_config=quant, device_map=self.device
+            )
+        else:
+            model = AutoModelForCausalLM.from_pretrained(name, dtype=dtype).to(self.device)
         if adapter:
             from peft import PeftModel
 

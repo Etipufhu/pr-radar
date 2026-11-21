@@ -8,8 +8,15 @@ Copy numbers exactly as written in the fact sheet. Do not calculate new ones.
 If the fact sheet says there is no previous period, do not describe any change over time.
 If there are risk headlines, name the brand and outlet in the summary.
 In the summary, give {brand}'s mentions and share of voice and say who leads.
-Actions are things the PR team does (pitch, re-pitch, offer, send, prepare a statement),
-not "monitor" or "track". Each action names an outlet, market or topic from the fact sheet.
+Actions are things {brand}'s PR team does for {brand}, not "monitor" or "track".
+Each action names an outlet, market or topic from the fact sheet:
+- outlets that covered competitors: pitch them a {brand} story. Say "re-pitch" only for
+  outlets marked "covered {brand} before".
+- markets where a competitor leads: pitch outlets in that market.
+- topics where competitors get more coverage: offer a {brand} story on that topic.
+- a statement is only for a risk headline about {brand} itself.
+Never address, pitch or send anything to a competitor, and do not promote a
+competitor's news.
 
 Write plain, short sentences, like a colleague's note. No headings, no bold text,
 no adjectives such as crucial, robust or pivotal, and no closing remarks.
@@ -47,8 +54,9 @@ Brightline at 55%. Brightline leads in DE with 70% against Acme's 10%. Novaskin 
 headline on bbc.co.uk.
 Actions:
 - Re-pitch glamour.de, which has covered Acme before and ran 3 competitor articles this week.
-- Send review units to German outlets to close the DE gap.
-- Offer reviews coverage, where competitors get 25% of their coverage and Acme 8%."""
+- Pitch wired.com, which ran 2 competitor articles, with an Acme product story.
+- Offer German outlets an Acme reviews story to close the DE gap: competitors get 25% of their \
+coverage from reviews, Acme 8%."""
 
 
 def messages(brand: str, sheet: str, example: bool = True) -> list[dict[str, str]]:

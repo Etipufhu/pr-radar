@@ -45,6 +45,7 @@ STOCK_PHRASES = [
     "key takeaway",
     "dive into",
 ]
+CONTEXT_NOUNS = r"(?:\d+%\s+)?(?:lead|share|coverage|dominance|position|edge|advantage|gap)\b"
 ORDINALS = ["first", "second", "third", "fourth", "fifth", "sixth"]
 PROMOTE = re.compile(r"^\s*[-*]\s*(?:pitch|re-?pitch|offer|promote|share)\b", re.I)
 STRENGTH = re.compile(r"\b(?:strong|lead|leads|leading|dominat\w*|ahead)\b", re.I)
@@ -136,16 +137,14 @@ def check_brief(text: str, sheet: str, facts: dict) -> CheckResult:
         res.errors.append(f"summary does not give {primary}'s share of voice ({row['share_pct']}%)")
 
     # A topic where competitors lead must not be described as a strength.
+    # Only when the brand itself is the subject: "FOREO has a strong presence in reviews",
+    # not "Competitors dominate reviews (11% vs FOREO's 2%)".
+    brand_strength = re.compile(
+        rf"\b{re.escape(primary)}\b\W+(?:\w+\W+){{0,3}}?{STRENGTH.pattern}", re.I
+    )
     for sentence in re.split(r"(?<=[.!?])\s+|\n", text):
         for t in facts.get("topic_gaps", []):
-            if (
-                t["topic"] in sentence.lower()
-                and STRENGTH.search(sentence)
-                and (
-                    primary.lower() in sentence.lower()
-                    and t["leader"].lower() not in sentence.lower()
-                )
-            ):
+            if t["topic"] in sentence.lower() and brand_strength.search(sentence):
                 res.errors.append(f"topic gap described as a strength: {t['topic']}")
 
     targets = {o["outlet"].lower() for o in facts.get("outlet_gaps", {}).get("top", [])}
@@ -163,6 +162,49 @@ def check_brief(text: str, sheet: str, facts: dict) -> CheckResult:
             res.errors.append(f"topic not in the fact sheet: {topic}")
     if re.search(r"\bre-?pitch", text, re.I) and not facts.get("outlet_gaps", {}).get("warm"):
         res.errors.append("says re-pitch, but no listed outlet covered the brand before")
+    # Re-pitching an outlet that never covered the brand.
+    cold = [o["outlet"] for o in facts.get("outlet_gaps", {}).get("top", []) if not o["warm"]]
+    for line in re.findall(r"\bre-?pitch\b[^\n]*", text, re.I):
+        clause = re.split(r"\b(?:which|that|who|because|as)\b|;|\.(?:\s|$)", line)[0]
+        for o in cold:
+            if o.lower() in clause.lower():
+                res.errors.append(f"re-pitch for an outlet that never covered the brand: {o}")
+
+    # "X leads in share of voice" must name the #1 brand.
+    top = next((b["brand"] for b in facts.get("brands", []) if b["rank"] == 1), None)
+    for b in facts.get("brands", []):
+        pattern = rf"\b{re.escape(b['brand'])}\s+leads\s+(?:in\s+)?(?:share of voice|overall)"
+        if b["brand"] != top and re.search(pattern, text, re.I):
+            res.errors.append(f"wrong overall leader: {b['brand']}, the fact sheet says {top}")
+
+    # The same action twice.
+    bodies = [set(re.findall(r"\w+", a.lower())) for a in actions]
+    for i in range(len(bodies)):
+        for j in range(i + 1, len(bodies)):
+            union = bodies[i] | bodies[j]
+            if union and len(bodies[i] & bodies[j]) / len(union) > 0.7:
+                res.style.append("two actions say the same thing")
+
+    # "X leads in <market or topic>" must name that market's or topic's leader.
+    leaders = {m["country"]: m["leader"] for m in facts.get("market_gaps", [])}
+    topic_leaders = {t["topic"]: t["leader"] for t in facts.get("topic_gaps", [])}
+    names = [b["brand"] for b in facts.get("brands", [])]
+    for sentence in re.split(r"(?<=[.!?;])\s+|\n|,\s*and\s+", text):
+        for name in names:
+            m = re.search(rf"\b{re.escape(name)}\s+(?:leads|is leading|dominates)\b(.*)", sentence)
+            if not m:
+                continue
+            rest = m[1]
+            for code, words_re in COUNTRY_WORDS.items():
+                if code in leaders and re.search(words_re, rest) and leaders[code] != name:
+                    res.errors.append(
+                        f"wrong leader for {code}: {name}, the fact sheet says {leaders[code]}"
+                    )
+            for topic, leader in topic_leaders.items():
+                if topic in rest.lower() and leader != name:
+                    res.errors.append(
+                        f"wrong leader for {topic}: {name}, the fact sheet says {leader}"
+                    )
 
     # Rank words next to the brand must match its share-of-voice rank.
     if row:
@@ -176,8 +218,18 @@ def check_brief(text: str, sheet: str, facts: dict) -> CheckResult:
     for a in actions:
         if PROMOTE.search(a):
             for c in competitors:
-                if re.search(rf"\b{re.escape(c)}['’]s\b", a):
+                # "Solawave's burns" promotes their news; "Solawave's lead" is just context.
+                if re.search(rf"\b{re.escape(c)}['’]s\s+(?!{CONTEXT_NOUNS})", a, re.I):
                     res.errors.append(f"action promotes a competitor's story: {c}")
+        for c in competitors:
+            # "Pitch CurrentBody", "send a statement to Therabody", "a statement for NuFACE"
+            if re.search(rf"^\s*[-*]\s*[\w-]+\s+{re.escape(c)}\b", a, re.I) or re.search(
+                rf"\b(?:to|for|with)\s+{re.escape(c)}\b(?!['’]s)", a, re.I
+            ):
+                res.errors.append(f"action is addressed to a competitor: {c}")
+        own_risk = any(primary in r["brands"] for r in facts.get("risks", []))
+        if re.search(r"\bstatement\b", a, re.I) and not own_risk:
+            res.errors.append(f"suggests a statement, but there is no risk headline for {primary}")
 
     countries = {m["country"] for m in facts.get("market_gaps", [])}
     for code, words_re in COUNTRY_WORDS.items():
