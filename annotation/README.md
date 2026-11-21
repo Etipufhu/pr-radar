@@ -11,7 +11,8 @@ news.
 every label (`*.silver.jsonl`). A non-expert reader checked the tone of 30 English
 headlines with `quick_check.py` (good / neutral / bad, LLM label hidden; Turkish
 translations shown alongside the original): 24 of 30 agree, Cohen's kappa 0.41
-(`results/label_quick_check.json`). A full review, where a reviewer accepts, fixes or
+(`results/label_quick_check.json`). Shown the LLM labels afterwards, the reader
+sided with the LLM on some of the six disagreements; the figures use the blind answers. A full review, where a reviewer accepts, fixes or
 skips each item in `review_app.py` (`*.reviewed.jsonl`), has not been done yet; when it
 exists it replaces the silver file as the evaluation set.
 
