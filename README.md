@@ -297,7 +297,8 @@ from pr_radar.narrative.evaluate import synthetic_facts
 from pr_radar.narrative.writer import LocalLLM, write_brief
 
 llm = LocalLLM("Qwen/Qwen3-1.7B", adapter="adapters/brief-lora-qwen3-1.7b")
-facts = synthetic_facts("Lumio", ["Glowra", "Dermix"], seed=7)  # or narrative.facts.weekly_facts(...)
+# a made-up week; for real data use narrative.facts.weekly_facts(...)
+facts = synthetic_facts("Lumio", ["Glowra", "Dermix"], seed=7)
 brief = write_brief(facts, llm, "Qwen3-1.7B + LoRA", few_shot=False)
 print(brief.published, brief.errors, brief.text)
 ```
