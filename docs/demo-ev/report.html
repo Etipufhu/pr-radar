@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>PR Radar · Polestar · 15 Nov–21 Nov 2026</title>
+<style>
+  :root {
+    --bg: #030407; --ink: #f4f7fb; --ink-2: rgba(232, 240, 250, .74); --muted: rgba(214, 226, 242, .58);
+    --line: rgba(255, 255, 255, .14); --line-soft: rgba(255, 255, 255, .08);
+    --glass: rgba(18, 22, 32, .45); --glass-hi: rgba(46, 58, 82, .45);
+    --us: #1d96d6; --us-hi: #45c8ff; --bar: rgba(214, 226, 242, .32);
+    --good: #7ee2a8; --bad: #ff9b7a; --warm: #ffd27a;
+    --radius: 26px;
+    --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font); overflow-x: hidden; }
+
+  /* Background: glowing swirl + giant type (pure CSS/SVG, no JS) */
+  .backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+    background: radial-gradient(60% 50% at 70% 72%, rgba(29, 110, 220, .28), transparent 70%),
+                radial-gradient(40% 35% at 18% 12%, rgba(90, 130, 255, .10), transparent 70%), var(--bg); }
+  .backdrop svg { position: absolute; width: 125vmax; height: 125vmax; left: 50%; top: 50%; transform: translate(-50%, -52%); }
+  .backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(3, 4, 7, .65)); }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 36px clamp(16px, 4vw, 32px) 64px; position: relative; }
+  .hero { position: relative; padding-top: clamp(40px, 9vw, 110px); }
+  .hero-type { position: absolute; z-index: -1; left: 50%; top: 0; transform: translateX(-50%); white-space: nowrap;
+    font-size: clamp(80px, 19vw, 210px); font-weight: 800; letter-spacing: -.065em; line-height: .9; user-select: none;
+    background: linear-gradient(180deg, rgba(150, 190, 255, .34), rgba(70, 110, 190, .06) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-accent { position: absolute; z-index: -1; right: 0; top: 0; font-size: clamp(20px, 3.6vw, 40px); font-weight: 700; letter-spacing: -.03em;
+    background: linear-gradient(100deg, #7fe0ff, #2b8cff 45%, #b9f3ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .16em; font-weight: 600; color: var(--muted); margin: 0; }
+  h1 { font-size: clamp(30px, 5vw, 46px); margin: 10px 0 6px; letter-spacing: -.04em; line-height: 1.1; }
+  h2 { font-size: 20px; margin: 0 0 6px; letter-spacing: -.02em; }
+  .muted { color: var(--muted); }
+  .lede { color: var(--ink-2); margin: 0; }
+
+  .glass { background: linear-gradient(160deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .015) 55%), var(--glass);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 30px 60px -30px rgba(0, 0, 0, .7); }
+  .card { padding: clamp(18px, 3vw, 28px); margin-top: 22px; }
+  .card > p.muted { margin: 0 0 16px; font-size: 14px; }
+  .scroll { overflow-x: auto; }
+
+  .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 30px; }
+  .kpi { padding: 18px 18px 16px; border-radius: 22px; }
+  .kpi.featured { background: linear-gradient(160deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .03) 60%), var(--glass-hi);
+    border-color: rgba(255, 255, 255, .26); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 30px 60px -28px rgba(10, 80, 180, .55); }
+  .kpi .v { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; letter-spacing: -.04em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .kpi .l { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+  .up { color: var(--good); } .down { color: var(--bad); }
+
+  ul.insights { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  ul.insights li { position: relative; padding-left: 32px; }
+  ul.insights li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff;
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .2); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.hl td { color: #fff; font-weight: 650; }
+  tr.hl td:first-child { box-shadow: inset 3px 0 0 var(--us-hi); }
+  tr.warm td:first-child { box-shadow: inset 3px 0 0 var(--warm); }
+  a { color: #bfeaff; text-decoration: none; } a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .warm-badge { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 11px; font-weight: 650; color: #1a1205; background: var(--warm); }
+
+  .chart { width: 100%; max-width: 620px; height: auto; display: block; }
+  .chart .bar { fill: var(--bar); }
+  .chart .bar.hl { fill: url(#pr-hl); }
+  .chart .lbl, .chart .val { fill: var(--ink); font-size: 13px; font-family: var(--font); }
+  .pill { display: inline-block; padding: 1px 9px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .04); color: var(--ink-2); font-size: 11.5px; margin: 1px 3px 1px 0; white-space: nowrap; }
+  .pill.us { color: #fff; border-color: rgba(69, 200, 255, .6); background: rgba(29, 150, 214, .22); }
+  footer { margin-top: 28px; padding: 20px 24px; font-size: 13px; color: var(--ink-2); border-radius: 22px; }
+  footer strong { color: #fff; }
+
+  @media (max-width: 760px) {
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi.featured { grid-column: 1 / -1; order: -1; }
+    .hero-accent { top: 4px; }
+  }
+  @media (prefers-reduced-transparency: reduce) { .glass { -webkit-backdrop-filter: none; backdrop-filter: none; background: #121620; } }
+
+  /* Print: plain, ink-friendly, no glow. */
+  @media print {
+    :root { --ink: #111; --ink-2: #333; --muted: #555; --line: #ccc; --line-soft: #ddd; --bar: #b8bcc6; --good: #146c3c; --bad: #b0361c; }
+    @page { margin: 14mm; }
+    body { background: #fff; color: #111; font-size: 11.5pt; }
+    .backdrop, .hero-type { display: none; }
+    .hero { padding-top: 0; }
+    .hero-accent { position: static; display: block; color: #0b5ea8; background: none; -webkit-text-fill-color: #0b5ea8; font-size: 14pt; }
+    main { max-width: none; padding: 0; }
+    .glass, .kpi.featured { background: #fff; border: 1px solid #ccc; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .card, .kpi, tr { break-inside: avoid; }
+    tr.hl td, footer strong { color: #000; }
+    .chart .bar.hl { fill: #0b5ea8; }
+    a { color: #0b5ea8; }
+    .pill { color: #333; border-color: #bbb; background: none; }
+    .pill.us { color: #0b5ea8; border-color: #0b5ea8; background: none; }
+    .warm-badge { background: none; border: 1px solid #a07000; color: #6b4a00; }
+    ul.insights li::before { color: #111; background: none; border-color: #999; }
+  }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true">
+  <svg viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="pr-core" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#9fe6ff" stop-opacity=".9"/><stop offset=".35" stop-color="#1d7fd6" stop-opacity=".55"/><stop offset="1" stop-color="#05070c" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="pr-arc" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0b2a6b" stop-opacity="0"/><stop offset=".45" stop-color="#2a7bff"/><stop offset=".75" stop-color="#7ee3ff"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/>
+      </linearGradient>
+      <linearGradient id="pr-arc2" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#5b8cff" stop-opacity="0"/><stop offset=".6" stop-color="#1fb6ff"/><stop offset="1" stop-color="#e8fbff"/>
+      </linearGradient>
+      <filter id="pr-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="pr-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    </defs>
+    <circle cx="760" cy="720" r="460" fill="url(#pr-core)" filter="url(#pr-soft)" opacity=".85"/>
+    <path d="M260 980 C 380 520, 820 300, 1120 560 S 900 1180, 560 1000" fill="none" stroke="url(#pr-arc)" stroke-width="130" filter="url(#pr-soft)" opacity=".9"/>
+    <path d="M300 900 C 470 560, 840 420, 1040 620 S 880 1040, 600 940" fill="none" stroke="url(#pr-arc2)" stroke-width="34" filter="url(#pr-glow)" opacity=".9"/>
+    <path d="M420 1060 C 620 760, 980 700, 1180 860" fill="none" stroke="url(#pr-arc)" stroke-width="70" filter="url(#pr-soft)" opacity=".55"/>
+    <path d="M520 860 C 640 700, 860 640, 960 760" fill="none" stroke="#e9fbff" stroke-width="6" filter="url(#pr-glow)" opacity=".7"/>
+  </svg>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="pr-hl" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#1d96d6"/><stop offset="1" stop-color="#45c8ff"/></linearGradient></defs>
+</svg>
+<main>
+  <header class="hero">
+    <div class="hero-type" aria-hidden="true">Coverage</div>
+    <div class="hero-accent">Polestar Radar</div>
+    <p class="eyebrow">PR Radar · weekly coverage report</p>
+    <h1>Polestar vs competitors</h1>
+    <p class="lede">15 Nov 2026 – 21 Nov 2026 (UTC) · 960 brand mentions tracked across Google News and GDELT</p>
+  </header>
+
+  <section class="kpis">
+    <div class="kpi glass"><div class="v">138</div><div class="l">Polestar mentions</div></div>
+    <div class="kpi glass featured"><div class="v">14%</div><div class="l">Share of voice</div></div>
+    <div class="kpi glass"><div class="v muted">–</div><div class="l">SoV change (first period)</div></div>
+    <div class="kpi glass"><div class="v">111</div><div class="l">Outlets</div></div>
+    <div class="kpi glass"><div class="v">9</div><div class="l">Markets</div></div>
+  </section>
+
+  <section class="card glass">
+    <h2>Weekly brief</h2>
+    <p>FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU with 100% coverage, and in the US, Therabody leads with 35% to FOREO’s 15%. CurrentBody leads in skin science with 25% coverage, and Solawave in reviews with 10%. A recall headline about Therabody’s charger is in the news.</p>
+    <ul class="insights">
+<li>Pitch forbes.com, which covered competitors and did not cover FOREO.</li><li>Pitch harpersbazaar.com, which covered competitors and has covered FOREO before.</li>    </ul>
+    <p class="muted">Written by Qwen/Qwen3-1.7B + LoRA running locally, from the numbers in this report only. Every number, outlet and trend claim was checked against the data before publishing.</p>
+  </section>
+
+  <section class="card glass">
+    <h2>Key takeaways</h2>
+    <p class="muted">Generated from this period's coverage.</p>
+    <ul class="insights">
+<li>Polestar share of voice is 14% (first tracked period, no comparison yet), ranked #3 of 6 brands with 138 mentions.</li><li>BYD leads the conversation with 41%.</li><li>Biggest market gap: TR, where BYD holds 58% vs Polestar 0%.</li><li>50 outlets covered competitors but not Polestar; top: electrek.co (30 competitor articles). 25 of them have covered Polestar before (warm re-pitch targets).</li><li>Narrative gap: &#39;charging&#39; is 7% of competitor coverage but 1% of Polestar&#39;s (led by BYD).</li><li>Risk signal for BYD: &#39;Land Rover Vs BYD Lawsuit: Court Told BYD To Stop Selling The Ti7 SUV In Europe&#39; (autojosh.com) (+12 more).</li><li>Polestar headline tone: valence 6.6/9, 95% positive and 1% negative across 124 scored mentions (competitors average 6.4).</li><li>Watch: &#39;El Tesla Model Y, el peor coche en la ITV alemana: suspende casi uno de cada cinco y el MG4 le sigue de cerca&#39; (motor.es) reads negative and intense for Tesla (valence 2.8, arousal 7.2).</li>    </ul>
+  </section>
+
+  <section class="card glass">
+    <h2>Share of voice</h2>
+    <p class="muted">Share of all brand mentions in the period. One article naming two brands counts for both. "In headline" counts only articles that name the brand in the title; the rest mention it in the body (gift guides, round-ups).</p>
+    <svg class="chart" viewBox="0 0 574 168" role="img" aria-label="bar chart" xmlns="http://www.w3.org/2000/svg"><text class="lbl" x="140" y="19" text-anchor="end">BYD</text><rect class="bar" x="150" y="6" width="360.0" height="16" rx="3"/><text class="val" x="518.0" y="19">41%</text><text class="lbl" x="140" y="47" text-anchor="end">Tesla</text><rect class="bar" x="150" y="34" width="245.8" height="16" rx="3"/><text class="val" x="403.8" y="47">28%</text><text class="lbl" x="140" y="75" text-anchor="end">Polestar</text><rect class="bar hl" x="150" y="62" width="127.1" height="16" rx="3"/><text class="val" x="285.1" y="75">14%</text><text class="lbl" x="140" y="103" text-anchor="end">Rivian</text><rect class="bar" x="150" y="90" width="100.4" height="16" rx="3"/><text class="val" x="258.4" y="103">11%</text><text class="lbl" x="140" y="131" text-anchor="end">Lucid</text><rect class="bar" x="150" y="118" width="26.7" height="16" rx="3"/><text class="val" x="184.7" y="131">3%</text><text class="lbl" x="140" y="159" text-anchor="end">NIO</text><rect class="bar" x="150" y="146" width="23.9" height="16" rx="3"/><text class="val" x="181.9" y="159">3%</text></svg>
+    <div class="scroll">
+    <table style="margin-top:14px">
+      <tr><th>Brand</th><th class="n">Mentions</th><th class="n">In headline</th><th class="n">Prev.</th><th class="n">Share</th><th class="n">Δ pts</th></tr>
+      <tr class="">
+        <td>BYD</td>
+        <td class="n">391</td>
+        <td class="n">366</td>
+        <td class="n">–</td>
+        <td class="n">41%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>Tesla</td>
+        <td class="n">267</td>
+        <td class="n">244</td>
+        <td class="n">–</td>
+        <td class="n">28%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="hl">
+        <td>Polestar</td>
+        <td class="n">138</td>
+        <td class="n">124</td>
+        <td class="n">–</td>
+        <td class="n">14%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>Rivian</td>
+        <td class="n">109</td>
+        <td class="n">94</td>
+        <td class="n">–</td>
+        <td class="n">11%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>Lucid</td>
+        <td class="n">29</td>
+        <td class="n">15</td>
+        <td class="n">–</td>
+        <td class="n">3%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>NIO</td>
+        <td class="n">26</td>
+        <td class="n">20</td>
+        <td class="n">–</td>
+        <td class="n">3%</td>
+<td class="n muted">–</td>      </tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Market gaps</h2>
+    <p class="muted">Markets where a competitor out-shouts Polestar (min. 5 mentions).</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Market</th><th class="n">Mentions</th><th class="n">Polestar</th><th>Leader</th><th class="n">Leader share</th><th class="n">Gap</th></tr>
+      <tr><td>TR</td><td class="n">19</td><td class="n">0%</td>
+          <td>BYD</td><td class="n">58%</td><td class="n down">58 pts</td></tr>
+      <tr><td>GB</td><td class="n">32</td><td class="n">6%</td>
+          <td>BYD</td><td class="n">50%</td><td class="n down">44 pts</td></tr>
+      <tr><td>AU</td><td class="n">48</td><td class="n">10%</td>
+          <td>BYD</td><td class="n">52%</td><td class="n down">42 pts</td></tr>
+      <tr><td>FR</td><td class="n">101</td><td class="n">15%</td>
+          <td>BYD</td><td class="n">50%</td><td class="n down">35 pts</td></tr>
+      <tr><td>DE</td><td class="n">121</td><td class="n">13%</td>
+          <td>BYD</td><td class="n">47%</td><td class="n down">34 pts</td></tr>
+      <tr><td>ES</td><td class="n">161</td><td class="n">11%</td>
+          <td>BYD</td><td class="n">44%</td><td class="n down">34 pts</td></tr>
+      <tr><td>NL</td><td class="n">63</td><td class="n">14%</td>
+          <td>BYD</td><td class="n">48%</td><td class="n down">33 pts</td></tr>
+      <tr><td>IT</td><td class="n">106</td><td class="n">13%</td>
+          <td>BYD</td><td class="n">43%</td><td class="n down">30 pts</td></tr>
+      <tr><td>US</td><td class="n">259</td><td class="n">15%</td>
+          <td>Tesla</td><td class="n">34%</td><td class="n down">18 pts</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Outlet gaps: pitch targets</h2>
+    <p class="muted">Outlets that wrote about competitors this period but not about Polestar. "Covered us before" marks warm contacts.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Outlet</th><th class="n">Competitor articles</th><th>Competitors</th><th class="n">Covered us before</th></tr>
+      <tr class="warm"><td>electrek.co</td><td class="n">30</td>
+          <td><span class="pill">BYD</span><span class="pill">Lucid</span><span class="pill">Rivian</span><span class="pill">Tesla</span></td>
+          <td class="n"><span class="warm-badge">2</span></td></tr>
+      <tr class=""><td>finance.yahoo.com</td><td class="n">13</td>
+          <td><span class="pill">BYD</span><span class="pill">Rivian</span><span class="pill">Tesla</span></td>
+          <td class="n">–</td></tr>
+      <tr class="warm"><td>frandroid.com</td><td class="n">11</td>
+          <td><span class="pill">BYD</span><span class="pill">NIO</span><span class="pill">Rivian</span><span class="pill">Tesla</span></td>
+          <td class="n"><span class="warm-badge">1</span></td></tr>
+      <tr class=""><td>vietnam.vn</td><td class="n">11</td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">–</td></tr>
+      <tr class="warm"><td>tuningblog.eu</td><td class="n">10</td>
+          <td><span class="pill">BYD</span><span class="pill">Rivian</span><span class="pill">Tesla</span></td>
+          <td class="n"><span class="warm-badge">5</span></td></tr>
+      <tr class=""><td>carnewschina.com</td><td class="n">8</td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">–</td></tr>
+      <tr class="warm"><td>hibridosyelectricos.com</td><td class="n">7</td>
+          <td><span class="pill">BYD</span><span class="pill">Rivian</span><span class="pill">Tesla</span></td>
+          <td class="n"><span class="warm-badge">2</span></td></tr>
+      <tr class=""><td>247wallst.com</td><td class="n">6</td>
+          <td><span class="pill">BYD</span><span class="pill">Lucid</span><span class="pill">NIO</span><span class="pill">Rivian</span><span class="pill">Tesla</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>lesnumeriques.com</td><td class="n">6</td>
+          <td><span class="pill">BYD</span><span class="pill">Tesla</span></td>
+          <td class="n">–</td></tr>
+      <tr class="warm"><td>movilidadelectrica.com</td><td class="n">6</td>
+          <td><span class="pill">BYD</span><span class="pill">Tesla</span></td>
+          <td class="n"><span class="warm-badge">1</span></td></tr>
+      <tr class="warm"><td>es.tradingview.com</td><td class="n">6</td>
+          <td><span class="pill">Rivian</span></td>
+          <td class="n"><span class="warm-badge">1</span></td></tr>
+      <tr class="warm"><td>finanztrends.de</td><td class="n">6</td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n"><span class="warm-badge">1</span></td></tr>
+      <tr class=""><td>fool.com</td><td class="n">5</td>
+          <td><span class="pill">NIO</span><span class="pill">Rivian</span><span class="pill">Tesla</span></td>
+          <td class="n">–</td></tr>
+      <tr class="warm"><td>autoblog.it</td><td class="n">5</td>
+          <td><span class="pill">BYD</span><span class="pill">Tesla</span></td>
+          <td class="n"><span class="warm-badge">1</span></td></tr>
+      <tr class="warm"><td>whichcar.com.au</td><td class="n">5</td>
+          <td><span class="pill">BYD</span><span class="pill">Tesla</span></td>
+          <td class="n"><span class="warm-badge">2</span></td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Narrative gaps by topic</h2>
+    <p class="muted">Share of each side's coverage in a topic. Positive gap = a story competitors own that Polestar is missing.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Topic</th><th class="n">Polestar</th><th class="n">Competitors</th><th class="n">Gap</th><th>Top competitor</th></tr>
+      <tr><td>charging</td>
+          <td class="n">1% <span class="muted">(1)</span></td>
+          <td class="n">7% <span class="muted">(52)</span></td>
+          <td class="n down">+6 pts</td>
+          <td>BYD</td></tr>
+      <tr><td>deals pricing</td>
+          <td class="n">0% <span class="muted">(0)</span></td>
+          <td class="n">4% <span class="muted">(31)</span></td>
+          <td class="n down">+4 pts</td>
+          <td>Tesla</td></tr>
+      <tr><td>sales</td>
+          <td class="n">0% <span class="muted">(0)</span></td>
+          <td class="n">4% <span class="muted">(29)</span></td>
+          <td class="n down">+4 pts</td>
+          <td>BYD</td></tr>
+      <tr><td>launch</td>
+          <td class="n">3% <span class="muted">(4)</span></td>
+          <td class="n">5% <span class="muted">(42)</span></td>
+          <td class="n down">+2 pts</td>
+          <td>BYD</td></tr>
+      <tr><td>business</td>
+          <td class="n">1% <span class="muted">(2)</span></td>
+          <td class="n">3% <span class="muted">(25)</span></td>
+          <td class="n down">+2 pts</td>
+          <td>Rivian</td></tr>
+      <tr><td>reviews</td>
+          <td class="n">3% <span class="muted">(4)</span></td>
+          <td class="n">4% <span class="muted">(32)</span></td>
+          <td class="n down">+1 pts</td>
+          <td>Tesla</td></tr>
+      <tr><td>awards</td>
+          <td class="n">0% <span class="muted">(0)</span></td>
+          <td class="n">1% <span class="muted">(4)</span></td>
+          <td class="n down">+1 pts</td>
+          <td>BYD</td></tr>
+      <tr><td>sustainability</td>
+          <td class="n">1% <span class="muted">(2)</span></td>
+          <td class="n">0% <span class="muted">(2)</span></td>
+          <td class="n up">-1 pts</td>
+          <td>Lucid</td></tr>
+      <tr><td>software</td>
+          <td class="n">8% <span class="muted">(11)</span></td>
+          <td class="n">2% <span class="muted">(18)</span></td>
+          <td class="n up">-6 pts</td>
+          <td>Tesla</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Headline tone (DimABSA)</h2>
+    <p class="muted">How headlines talk about each brand they name, scored by a multilingual model trained on SemEval-2026 DimABSA data and adapted to news headlines. Valence: 1 very negative, 5 neutral, 9 very positive. Arousal: 1 calm, 9 intense. Indicative only: the model under-rates bad news, so reputational risks are flagged separately by keyword (see Key takeaways).</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Brand</th><th class="n">Scored</th><th class="n">Valence</th><th class="n">Arousal</th><th class="n">Positive</th><th class="n">Negative</th></tr>
+      <tr class="hl"><td>Polestar</td><td class="n">124</td>
+          <td class="n">6.6</td><td class="n">5.5</td>
+          <td class="n up">95%</td><td class="n down">1%</td></tr>
+      <tr class=""><td>NIO</td><td class="n">20</td>
+          <td class="n">6.4</td><td class="n">5.4</td>
+          <td class="n up">95%</td><td class="n down">0%</td></tr>
+      <tr class=""><td>BYD</td><td class="n">366</td>
+          <td class="n">6.4</td><td class="n">5.7</td>
+          <td class="n up">82%</td><td class="n down">6%</td></tr>
+      <tr class=""><td>Lucid</td><td class="n">15</td>
+          <td class="n">6.3</td><td class="n">5.3</td>
+          <td class="n up">93%</td><td class="n down">0%</td></tr>
+      <tr class=""><td>Rivian</td><td class="n">94</td>
+          <td class="n">6.3</td><td class="n">5.5</td>
+          <td class="n up">86%</td><td class="n down">3%</td></tr>
+      <tr class=""><td>Tesla</td><td class="n">244</td>
+          <td class="n">6.3</td><td class="n">5.6</td>
+          <td class="n up">85%</td><td class="n down">7%</td></tr>
+    </table>
+    </div>
+    <h3 style="margin-top:18px">Lowest-scoring headlines</h3>
+    <div class="scroll">
+    <table>
+      <tr><th>Headline</th><th>Brand</th><th class="n">V</th><th class="n">A</th></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPazlPQlNIcV9QOFF0RncyMTBRTzlScUVETnc1T2JZb1hfc0hZVnBvbzU1MXpUU0U5b0dIZHJKSFJodW5QdlV1NnUxXy01bzlQdFI0SzZWNk1veDNRMmVwTmUwNDJELVY5ZGQzSUItd25nZW9MN25wcUV3VVFabURzRmVyM2lFY2xUdHlQcDdEUG83bVpqbWhBNXY3bGtTM2M?oc=5" rel="noopener">El Tesla Model Y, el peor coche en la ITV alemana: suspende casi uno de cada cinco y el MG4 le sigue de cerca</a> <span class="muted">motor.es</span></td>
+          <td>Tesla</td><td class="n">2.8</td><td class="n">7.2</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE91NnVOVXBfdTAtR3B3Z2N6dHVBNHFCZ2dpYWxFcG1UZXBnYXJBUkFhYklUaWdBenprYjl6NF9QMWFJRE1vTWNfRlA5VlNDbWtmdXRTOS1nSlpJVHdKOHUwQg?oc=5" rel="noopener">El Tesla Model Y es el peor coche en la ITV alemana y firma un récord negativo</a> <span class="muted">autofacil.es</span></td>
+          <td>Tesla</td><td class="n">3.0</td><td class="n">7.1</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPS25NY2tRUXFXSUZEeFpRdm00QWc2WTVXODNqdmlERGc2WnowaDl1MDFCaE1uTXhLZWFVSVR5WnQ2bmNyZktlNWxzWGRWSUZWT1ZzZkFORlNZY1liVHZXQU05LU03dFljMTNydnJJb3dzdzZKUmd6a20yaEdWUTdTUDdIaVA3YU5MVFJBazdJRm9QZWs?oc=5" rel="noopener">Geely ya es la peor pesadilla de BYD en España: E2 y Starray ya están en el pódium de más vendidos</a> <span class="muted">motor.es</span></td>
+          <td>BYD</td><td class="n">3.1</td><td class="n">7.0</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxNSVNuNGVxak5kX0N1aXV1ZVo4T3lfWTNhOVByd1c2ZV8wSlZ3UlAxb2tXSVE2bVVJdVJWMnc4dlVubVJHaFFfU1JmTmZPWHhzcmhFNTBJYlBzRFM0c1F0NGwyS0IyWF9MTUx1T0hsXzd0ajBZWVl6WDNTSUlldDhodHNnMk93Ykt6MHZUMWxKRGl2MkNf?oc=5" rel="noopener">Land Rover, BYD&#39;yi Defender&#39;ı kopyalamakla suçladı: 14 milyar VND&#39;nin üzerinde para cezası ödeme girişimi başarısızlıkla sonuçlandı.</a> <span class="muted">vietnam.vn</span></td>
+          <td>BYD</td><td class="n">3.1</td><td class="n">7.0</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi8gFBVV95cUxOMkRIQURYN3czS2g5WmpkZEN1c3JXak1meUdUT2EzRFpiZkRmazdFTEpNS09lbUNsWVlCZVRycUxGbHMtNHNDMl9kbjM5dXQ4UG50WHRWZUNjbFdzTE1xWDNBM2pkZG9iRzJDUVpESW1YNzRfalplV3BFUGxYVGlLZHVzWjZpRjZWaWd0bVpTdFBDMlI2R2RxTEthbllTbzBXNDVQWnJZRXhJdFBLMG5LU0FQaWNqaXFlU3RzSjRTcXJldUotTGxXLXhfTDBiUmhtSWxjOTdoNGI0MTVJd3g5RVRibFBycjF0TTlhWmJBQm1GUQ?oc=5" rel="noopener">Fiabilité : le Tesla Model Y reste le mauvais élève du contrôle technique allemand !</a> <span class="muted">bevolt.com</span></td>
+          <td>Tesla</td><td class="n">3.2</td><td class="n">6.7</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Most syndicated stories</h2>
+    <p class="muted">Distinct stories ranked by how many outlets carried them.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Story</th><th>Brands</th><th class="n">Outlets</th><th>Markets</th></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxQN2JPLWlfTUhtQWU5b3BGMk1hU1c3QnpTc09BSm5NVjF1dnhKclhkUkx3a3JVV2FxaGlnSXM0djA1SWN1Nm5CRGM5WnpPaGNsdDJ6d21zY1Fpc25WbEp6SGhQN1hYVmhhQTdRYnJSVWdiMy0xUGpDVGh4ZUg2ZklrX3RSTUpBUHowRTNBVjZnMnBSTk1pbmRhSzdNSWJBMFhEdmh0TnNtR3p6YmhZYUdrenNsdlByYXdEUEo0aDRrTkI1enVWUXhkOWNWYmRZeUxNYVE?oc=5" rel="noopener">The 2026 BYD M9 people-mover proved Dom wrong about fancy vans.</a></td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">7</td><td>AU</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi-AFBVV95cUxNbU1hbm56NVUtYU1ja0ZNUmpjaDlkQ0pDZ1pxYXVoVEYzY1ZCTjVDLTVkbnVRaHB2bTdLZDNjbDVDT0VQWDA1Ymk2SHBpUHBvY0hFY2dZMWxYejdVX3U3czhEeXhYVE1BZzVlY2VTUFBER0xDUjdFTlBxdDA2S0piTFZ4YmJaTTllWlF6TEVVdTRaUjV0czhraU9QaGRzTFdFNXg1aVVURUVYUVdyckRpQWFERmJ5bGFWWmE0eWR2bGlaQVBveWRvT3VkeWxZVVYtSWl6ZHdGZDFrNXMtTFRmTGY5MEIxUE0wcWJZcUxWakpOT0hNa0cxXw?oc=5" rel="noopener">Tesla Model Y L 2026 review Australia: Premium All-Wheel Drive | 3-row EV with 681km range tested</a></td>
+          <td><span class="pill">Tesla</span></td>
+          <td class="n">6</td><td>AU, US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi-AFBVV95cUxPSi10czJZYXRaVkx5azBLVThxcjczYmtVZTB1WGlDZzVvOHhrSnhYTFpMbGx3YUR3NlBlbS1XaVVDUTZUSENWOUNaNy1UOTh1ZnBvUEZvXzZEV0xQc2JWcE91TXlWclFpMFEtSVBIUDkwYjQ5SlEtbWZ5VjNWYmtaakduQ0dsZENrLWNyZERBZ1JXX183SXJhcEEwNmswbTMtSlV2WE9OelRISzVobVpkX29SZDJRc0NkMVlUVUk2UDVJb2xPVnVzTnlDUGxFYjl2Ujg4a1h2aFk0S2R4SGdrS1lrRTdtUnZyYjF6VXNLTGJCY1M2YTgwQw?oc=5" rel="noopener">Rivian-Backed ALSO Hits Another Speed Bump, Pauses E-Bike Deliveries Over Software Issues Affecting Charging</a></td>
+          <td><span class="pill">Rivian</span></td>
+          <td class="n">4</td><td>ES, GB, US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWFlZeHB3eHRPb3VEalh1UGVBNVpuWm0xUnFIUE80NlY1amtLcFVLU3ktRUFqSnQzYTF2eDM2Y25jR1UxRFBQdVYweExjdktBRF9UVTl5bTJnVV96ZzFra2Z1YmV5WXpvYUlrbUJDTkptMm1vekxpMktYX3lxUk05b3M0WVVSV1hKcmFGX3NQZjRCZ2xVRWdsQWhENko3QnBtLTFid0N5cnh6QktEYUY4MjBkTlFKUXREV0xlbjc4UkRaNHVsRGxscTRXc19YRXYzQXdQRlBmMUw3WU16ckxHMV9lR2FGX0M0UFZSVGlzSkQ1LUEwRWpvcmRR?oc=5" rel="noopener">Autofabrikant BYD mag SUV-model Ti7 niet in EU verhandelen</a></td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">3</td><td>NL</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE1BQjAyRzJhN0xVSWhjS2ZIYnY5eWlmRTV1UVNZSnF5TXhkM1JKLV9fT0pxMnJfb081SHJmYmpsaDVhaXRka0pDaUNlWURsZWtaNG9ob3huVTRJVzRyLXVXb2JMWVBVb1ZZR203QVY3ZmNxeGJjR0s4?oc=5" rel="noopener">Luxe EV gets free upgrade</a></td>
+          <td><span class="pill us">Polestar</span></td>
+          <td class="n">3</td><td>AU, GB, US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxPX1U1M0pMN0xqN3pqdjh0N0tUT291YTZSM3NNN05USjFsMmhiTVFFN1RjMWVYM2N6SGpJaWJOLTdlaU0tX0pyTkhMR2FoM1Bqdkdsb3h0czlDbFF6T21CUzkzUm1vemUzXzlGOVp1QXpyQk1sSlVDTzUzbWhId0ZUbDc3cm1IZG1uOWREeGhlTWpsQVVvZTJqM2JEYUdFYUdmdnhFNmRMSlpjTmwtSk9BTC16UkFnOWszRGVNdmhBTDgtNTlURF8xR1RqaGZCMDhuSnBtcVBWUHJiOFNuS1E?oc=5" rel="noopener">Polestar 4 krijgt Android 15, Vehicle-to-Load, Digital Key en lifestyle functies via over-the-air update</a></td>
+          <td><span class="pill us">Polestar</span></td>
+          <td class="n">3</td><td>NL</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxPMU1OM0tNSTZ2MUkycGhsWkVTbXdaRTNpNU1ELW5raHBxYm9meS03WUhuaTRXNldLbF9Xamw0VWtZMTRTOVA2czM3Q2FQVE5hakRRSWJJZHNzMTZRcGo2eGc2V2F2MnI1ZlJrSTlwYUZGbFhTMm9BSWgzbm9RWjFxeGRBY1cxSkZrZnZUN280cFpuN18waV9hTlNCRUI1aFNDNUNNSGtCU2NtRTFOZ3R5NWtwYkotZw?oc=5" rel="noopener">Dutch court blocks BYD SUV sales in EU over design dispute</a></td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">2</td><td>AU, US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxPUE9rdEh3bkRhVUVJSHNTZ0lNWnczemRCbmhIRDFuN0czLWFZenNxMVVqbUdMZG41WFNFTDh5MmpjdTlNN2FHcWVlRGw0UmtDc3FDdWN3VFVqdi1abERWWWhOUXpQemdUQmVWLWpQMWlVb2NoUjdTb2RHeC1BaWg2WGVjM3ZIZEwtU1J3cFNZN3diNGRIZTJ3Nlg1NFZ2NU4zTF9JcV9odXpqd1VJUEVCei1LQzhIODUxZl9MaUVTRVM2ZTNNWkNzcU1NNDBMbmc?oc=5" rel="noopener">BYD mag auto niet verkopen in Europese Unie door gelijkenis met Land Rover</a></td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">2</td><td>NL</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMipAJBVV95cUxQZTRCNWhjZnhuOG54MHp0ZXpRVEx4aUwwUHg2elVNS21UdDhPQjRHSFlkOHpwRzBYcWxjLTFGTzBsQnBCdHNfQWtxVkZENk84YTlSdjRoVWFlU3dDSXpyU3RnWGFNYTRxa0xQeFZxRjMzOTRHNHZTS1l2REFkQ0xVc1lwZ0ZlVnRTYmhNSEl5b3JSbGRRUnVzYWkyZXhIZDJwTmZVN1lXZnh5M1NJdGMxZ3o2enZMaWQ0XzlockFfSnVfcjk2dWhRWkJvOGJkTzFFRTBPQkxvZHplU1ZXdEZDdWtaTWNQcjdUOE04ZlR0T3NLbnNyMkJrXzRudHd0RG5WaXc1WEstRVBucXE1NExwaEZvYk9GQk4zdExIUDZWSEdHOWVJ0gGqAkFVX3lxTE5NUkdNSzVuY2ZVRVFDa3dtMG9rdTNicWVIZE5nbkFXbnNMZldLaGI3SDAyUWRIdXlOZTV6SDNxRTdLNFhqUEFVOVROX2FzNXFxSGtXMHRINmEwZE9pT1BvZVVxc0tQczVMbUlLWExvMUs1cU5lWGpxbldBVEN2dUEwRDJadEF1NTNJR0pvX3NKdWRrSWpISFZNelZWX1h1cjVMMVlGY3k3UEJRVEM1RHZndjBiZW1GNV9qN1Bfa25RUzNZdUF5dHpXUTdOUXFsYlY2Unc5QW9CNTE2MXc5T1pxbThJTHpWU0JCc1NjUmhOQkMyTnVnOXNnU2VuX2R2NUVVZldVV3FDYkN1TE9NSV9KdmhXeTRhU0lZQlZqUlhfSWpDejFsdlRXekE?oc=5" rel="noopener">Un tribunal néerlandais estime qu&#39;un SUV de la société chinoise BYD enfreint les droits de conception du Defen</a></td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">2</td><td>FR</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxQdEVwRDU4ZjlDUEV5SV9qOFJmVFBMd3k0bHBoWG1FOU1WeEJYODRjVHY5T01CTFRIWW5ROFFCRzYzZGNDamVfQ2V1UFo0NFoySGxQSEFjd3l0cVNuUWpXcU04N1U0RGk0Ukd5T0ZXRG9rTGdnRWxIZUlXTnVtRFotZ0w1elBHb1NURGd3OHRxdzBCaHRnbEZ0cnpIN2U0VlJiYndXWjRyUm00UTZMR1YwN2t6dFJHWGZtWi1jcHk4OGIyWlZqQlhRZTYydVp1NmFPcHVna1F3Z2pxN19scVE?oc=5" rel="noopener">China&#39;s BYD has SUV that infringes on JLR Defender design, Dutch court rules</a></td>
+          <td><span class="pill">BYD</span></td>
+          <td class="n">2</td><td>US</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <footer class="glass">
+    Generated 2026-11-21 02:15 UTC by PR Radar. Mentions = articles naming a brand (in the headline or matched by the brand's news query);
+    stories = clusters of near-identical headlines. Markets come from Google News editions and GDELT source countries.
+    <br><br>
+    <strong>Independent project:</strong> not affiliated with, endorsed by, or built for any brand named in this report. Based only on publicly available news headlines;
+    automated matching can contain false positives.
+  </footer>
+</main>
+</body>
+</html>

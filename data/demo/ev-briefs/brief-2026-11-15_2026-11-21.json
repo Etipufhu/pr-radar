@@ -1,0 +1,216 @@
+{
+  "text": "Summary: Polestar had 138 mentions and 14% share of voice, behind BYD at 41%. Competitors lead in TR, GB, and AU. BYD has a risk headline on autojosh.com, and NIO has a risk headline on frandroid.com. Polestar’s headline tone is 6.6, slightly above neutral.  \nActions:  \n- Re-pitch electrek.co, which covered Polestar before and ran 30 competitor articles.  \n- Pitch finance.yahoo.com, which ran 13 competitor articles and has not covered Polestar.  \n- Offer a Polestar story on charging to counter competitors’ 7% coverage in that topic.",
+  "model": "Qwen/Qwen3-1.7B + LoRA",
+  "published": true,
+  "errors": [],
+  "style": [],
+  "attempts": 1,
+  "facts": {
+    "primary": "Polestar",
+    "start": "2026-11-15",
+    "end": "2026-11-21",
+    "baseline": false,
+    "total_mentions": 960,
+    "brands": [
+      {
+        "brand": "BYD",
+        "primary": false,
+        "rank": 1,
+        "mentions": 391,
+        "share_pct": 41,
+        "headline_mentions": 366,
+        "change_pts": null
+      },
+      {
+        "brand": "Tesla",
+        "primary": false,
+        "rank": 2,
+        "mentions": 267,
+        "share_pct": 28,
+        "headline_mentions": 244,
+        "change_pts": null
+      },
+      {
+        "brand": "Polestar",
+        "primary": true,
+        "rank": 3,
+        "mentions": 138,
+        "share_pct": 14,
+        "headline_mentions": 124,
+        "change_pts": null
+      },
+      {
+        "brand": "Rivian",
+        "primary": false,
+        "rank": 4,
+        "mentions": 109,
+        "share_pct": 11,
+        "headline_mentions": 94,
+        "change_pts": null
+      },
+      {
+        "brand": "Lucid",
+        "primary": false,
+        "rank": 5,
+        "mentions": 29,
+        "share_pct": 3,
+        "headline_mentions": 15,
+        "change_pts": null
+      },
+      {
+        "brand": "NIO",
+        "primary": false,
+        "rank": 6,
+        "mentions": 26,
+        "share_pct": 3,
+        "headline_mentions": 20,
+        "change_pts": null
+      }
+    ],
+    "market_gaps": [
+      {
+        "country": "TR",
+        "leader": "BYD",
+        "leader_pct": 58,
+        "primary_pct": 0
+      },
+      {
+        "country": "GB",
+        "leader": "BYD",
+        "leader_pct": 50,
+        "primary_pct": 6
+      },
+      {
+        "country": "AU",
+        "leader": "BYD",
+        "leader_pct": 52,
+        "primary_pct": 10
+      }
+    ],
+    "outlet_gaps": {
+      "count": 50,
+      "warm": 25,
+      "top": [
+        {
+          "outlet": "electrek.co",
+          "competitor_articles": 30,
+          "warm": true
+        },
+        {
+          "outlet": "finance.yahoo.com",
+          "competitor_articles": 13,
+          "warm": false
+        },
+        {
+          "outlet": "frandroid.com",
+          "competitor_articles": 11,
+          "warm": true
+        },
+        {
+          "outlet": "vietnam.vn",
+          "competitor_articles": 11,
+          "warm": false
+        },
+        {
+          "outlet": "tuningblog.eu",
+          "competitor_articles": 10,
+          "warm": true
+        }
+      ]
+    },
+    "topic_gaps": [
+      {
+        "topic": "charging",
+        "competitor_pct": 7,
+        "primary_pct": 1,
+        "leader": "BYD"
+      }
+    ],
+    "risks": [
+      {
+        "title": "Land Rover Vs BYD Lawsuit: Court Told BYD To Stop Selling The Ti7 SUV In Europe",
+        "outlet": "autojosh.com",
+        "brands": [
+          "BYD"
+        ]
+      },
+      {
+        "title": "Seulement 1 290 ventes en Europe : face à la R5, Nio tente un pari design avec la Firefly Haven",
+        "outlet": "frandroid.com",
+        "brands": [
+          "NIO"
+        ]
+      },
+      {
+        "title": "Nio’s Firefly Takes Its China Halo Edition to Europe, Pricing to Come",
+        "outlet": "eletric-vehicles.com",
+        "brands": [
+          "NIO"
+        ]
+      }
+    ],
+    "tone": [
+      {
+        "brand": "Polestar",
+        "valence": 6.6,
+        "scored": 124
+      },
+      {
+        "brand": "NIO",
+        "valence": 6.4,
+        "scored": 20
+      },
+      {
+        "brand": "BYD",
+        "valence": 6.4,
+        "scored": 366
+      },
+      {
+        "brand": "Lucid",
+        "valence": 6.3,
+        "scored": 15
+      },
+      {
+        "brand": "Rivian",
+        "valence": 6.3,
+        "scored": 94
+      },
+      {
+        "brand": "Tesla",
+        "valence": 6.3,
+        "scored": 244
+      }
+    ],
+    "stories": [
+      {
+        "title": "The 2026 BYD M9 people-mover proved Dom wrong about fancy vans.",
+        "outlets": 7,
+        "brands": [
+          "BYD"
+        ]
+      },
+      {
+        "title": "Tesla Model Y L 2026 review Australia: Premium All-Wheel Drive | 3-row EV with 681km range tested",
+        "outlets": 6,
+        "brands": [
+          "Tesla"
+        ]
+      },
+      {
+        "title": "Rivian-Backed ALSO Hits Another Speed Bump, Pauses E-Bike Deliveries Over Software Issues Affecting Charging",
+        "outlets": 4,
+        "brands": [
+          "Rivian"
+        ]
+      }
+    ]
+  },
+  "drafts": [
+    {
+      "text": "Summary: Polestar had 138 mentions and 14% share of voice, behind BYD at 41%. Competitors lead in TR, GB, and AU. BYD has a risk headline on autojosh.com, and NIO has a risk headline on frandroid.com. Polestar’s headline tone is 6.6, slightly above neutral.  \nActions:  \n- Re-pitch electrek.co, which covered Polestar before and ran 30 competitor articles.  \n- Pitch finance.yahoo.com, which ran 13 competitor articles and has not covered Polestar.  \n- Offer a Polestar story on charging to counter competitors’ 7% coverage in that topic.",
+      "errors": [],
+      "style": []
+    }
+  ],
+  "created_at": "2026-11-21T02:15:04+00:00"
+}

@@ -94,7 +94,7 @@ def cmd_export_web(args: argparse.Namespace) -> int:
     # Export only reads, so open an existing database read-only (safe while it is in use).
     store = Store(args.db, read_only=True) if Path(args.db).exists() else _open(args, settings)
     try:
-        path = write_web_data(store.con, settings, args.out, args.end)
+        path = write_web_data(store.con, settings, args.out, args.end, briefs_dir=args.briefs)
     finally:
         store.close()
     print(f"web data: {path}")
@@ -329,6 +329,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("export-web", help="write web/data.json for the static web dashboard")
     p.add_argument("--out", default="web", help="directory with index.html (default: web)")
     p.add_argument("--end", type=_date, help="last day of the windows, YYYY-MM-DD (default: today)")
+    p.add_argument("--briefs", default=DEFAULT_BRIEFS, help="folder with saved LLM briefs")
     p.set_defaults(func=cmd_export_web)
 
     p = sub.add_parser("dimabsa-train", help="train + evaluate the DimABSA sentiment model")

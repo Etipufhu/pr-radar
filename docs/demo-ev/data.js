@@ -1,0 +1,2910 @@
+window.PR_RADAR_DATA = {
+ "schema": 1,
+ "generated_at": "2026-11-21T02:15:13Z",
+ "primary": "polestar",
+ "brands": {
+  "polestar": "Polestar",
+  "tesla": "Tesla",
+  "byd": "BYD",
+  "rivian": "Rivian",
+  "lucid": "Lucid",
+  "nio": "NIO"
+ },
+ "default_window": "7",
+ "windows": {
+  "7": {
+   "days": 7,
+   "start": "2026-11-15",
+   "end": "2026-11-21",
+   "baseline": false,
+   "kpis": {
+    "mentions": 138,
+    "share": 0.14375,
+    "share_change_pts": null,
+    "outlets": 111,
+    "markets": 9,
+    "stories": 128,
+    "rank": 3,
+    "brands": 6,
+    "total_mentions": 960
+   },
+   "insights": [
+    "Polestar share of voice is 14% (first tracked period, no comparison yet), ranked #3 of 6 brands with 138 mentions.",
+    "BYD leads the conversation with 41%.",
+    "Biggest market gap: TR, where BYD holds 58% vs Polestar 0%.",
+    "50 outlets covered competitors but not Polestar; top: electrek.co (30 competitor articles). 25 of them have covered Polestar before (warm re-pitch targets).",
+    "Narrative gap: 'charging' is 7% of competitor coverage but 1% of Polestar's (led by BYD).",
+    "Risk signal for BYD: 'Land Rover Vs BYD Lawsuit: Court Told BYD To Stop Selling The Ti7 SUV In Europe' (autojosh.com) (+12 more).",
+    "Polestar headline tone: valence 6.6/9, 95% positive and 1% negative across 124 scored mentions (competitors average 6.4).",
+    "Watch: 'El Tesla Model Y, el peor coche en la ITV alemana: suspende casi uno de cada cinco y el MG4 le sigue de cerca' (motor.es) reads negative and intense for Tesla (valence 2.8, arousal 7.2)."
+   ],
+   "share_of_voice": [
+    {
+     "brand": "byd",
+     "mentions": 391,
+     "stories": 377,
+     "outlets": 235,
+     "markets": 10,
+     "share": 0.4072916667,
+     "headline_mentions": 366,
+     "headline_share": 0.4241019699
+    },
+    {
+     "brand": "tesla",
+     "mentions": 267,
+     "stories": 255,
+     "outlets": 180,
+     "markets": 10,
+     "share": 0.278125,
+     "headline_mentions": 244,
+     "headline_share": 0.2827346466
+    },
+    {
+     "brand": "polestar",
+     "mentions": 138,
+     "stories": 128,
+     "outlets": 111,
+     "markets": 9,
+     "share": 0.14375,
+     "headline_mentions": 124,
+     "headline_share": 0.1436848204
+    },
+    {
+     "brand": "rivian",
+     "mentions": 109,
+     "stories": 98,
+     "outlets": 60,
+     "markets": 10,
+     "share": 0.1135416667,
+     "headline_mentions": 94,
+     "headline_share": 0.1089223638
+    },
+    {
+     "brand": "lucid",
+     "mentions": 29,
+     "stories": 29,
+     "outlets": 23,
+     "markets": 8,
+     "share": 0.0302083333,
+     "headline_mentions": 15,
+     "headline_share": 0.0173812283
+    },
+    {
+     "brand": "nio",
+     "mentions": 26,
+     "stories": 26,
+     "outlets": 25,
+     "markets": 7,
+     "share": 0.0270833333,
+     "headline_mentions": 20,
+     "headline_share": 0.023174971
+    }
+   ],
+   "comparison": [
+    {
+     "brand": "byd",
+     "mentions": 391,
+     "share": 0.4072916667,
+     "mentions_prev": 185,
+     "share_prev": 0.2362707535,
+     "share_change_pts": 17.1020913155,
+     "mentions_change_pct": 111.3513513514
+    },
+    {
+     "brand": "tesla",
+     "mentions": 267,
+     "share": 0.278125,
+     "mentions_prev": 194,
+     "share_prev": 0.2477650064,
+     "share_change_pts": 3.0359993614,
+     "mentions_change_pct": 37.6288659794
+    },
+    {
+     "brand": "polestar",
+     "mentions": 138,
+     "share": 0.14375,
+     "mentions_prev": 282,
+     "share_prev": 0.3601532567,
+     "share_change_pts": -21.6403256705,
+     "mentions_change_pct": -51.0638297872
+    },
+    {
+     "brand": "rivian",
+     "mentions": 109,
+     "share": 0.1135416667,
+     "mentions_prev": 52,
+     "share_prev": 0.0664112388,
+     "share_change_pts": 4.7130427842,
+     "mentions_change_pct": 109.6153846154
+    },
+    {
+     "brand": "lucid",
+     "mentions": 29,
+     "share": 0.0302083333,
+     "mentions_prev": 47,
+     "share_prev": 0.0600255428,
+     "share_change_pts": -2.9817209451,
+     "mentions_change_pct": -38.2978723404
+    },
+    {
+     "brand": "nio",
+     "mentions": 26,
+     "share": 0.0270833333,
+     "mentions_prev": 23,
+     "share_prev": 0.0293742018,
+     "share_change_pts": -0.2290868455,
+     "mentions_change_pct": 13.0434782609
+    }
+   ],
+   "weekly_trend": [
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "byd",
+     "mentions": 10,
+     "share": 0.2325581395
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "lucid",
+     "mentions": 6,
+     "share": 0.1395348837
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "nio",
+     "mentions": 3,
+     "share": 0.0697674419
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "polestar",
+     "mentions": 9,
+     "share": 0.2093023256
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "rivian",
+     "mentions": 6,
+     "share": 0.1395348837
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "tesla",
+     "mentions": 9,
+     "share": 0.2093023256
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "byd",
+     "mentions": 381,
+     "share": 0.4154852781
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "lucid",
+     "mentions": 23,
+     "share": 0.0250817884
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "nio",
+     "mentions": 23,
+     "share": 0.0250817884
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "polestar",
+     "mentions": 129,
+     "share": 0.1406761178
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "rivian",
+     "mentions": 103,
+     "share": 0.1123227917
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "tesla",
+     "mentions": 258,
+     "share": 0.2813522356
+    }
+   ],
+   "market_share": [
+    {
+     "country": "AU",
+     "brand": "byd",
+     "mentions": 25,
+     "share": 0.5208333333
+    },
+    {
+     "country": "AU",
+     "brand": "tesla",
+     "mentions": 10,
+     "share": 0.2083333333
+    },
+    {
+     "country": "AU",
+     "brand": "rivian",
+     "mentions": 7,
+     "share": 0.1458333333
+    },
+    {
+     "country": "AU",
+     "brand": "polestar",
+     "mentions": 5,
+     "share": 0.1041666667
+    },
+    {
+     "country": "AU",
+     "brand": "lucid",
+     "mentions": 1,
+     "share": 0.0208333333
+    },
+    {
+     "country": "DE",
+     "brand": "byd",
+     "mentions": 57,
+     "share": 0.4710743802
+    },
+    {
+     "country": "DE",
+     "brand": "tesla",
+     "mentions": 33,
+     "share": 0.2727272727
+    },
+    {
+     "country": "DE",
+     "brand": "polestar",
+     "mentions": 16,
+     "share": 0.132231405
+    },
+    {
+     "country": "DE",
+     "brand": "rivian",
+     "mentions": 7,
+     "share": 0.0578512397
+    },
+    {
+     "country": "DE",
+     "brand": "lucid",
+     "mentions": 5,
+     "share": 0.041322314
+    },
+    {
+     "country": "DE",
+     "brand": "nio",
+     "mentions": 3,
+     "share": 0.0247933884
+    },
+    {
+     "country": "ES",
+     "brand": "byd",
+     "mentions": 71,
+     "share": 0.4409937888
+    },
+    {
+     "country": "ES",
+     "brand": "tesla",
+     "mentions": 53,
+     "share": 0.3291925466
+    },
+    {
+     "country": "ES",
+     "brand": "polestar",
+     "mentions": 17,
+     "share": 0.1055900621
+    },
+    {
+     "country": "ES",
+     "brand": "rivian",
+     "mentions": 15,
+     "share": 0.0931677019
+    },
+    {
+     "country": "ES",
+     "brand": "lucid",
+     "mentions": 4,
+     "share": 0.0248447205
+    },
+    {
+     "country": "ES",
+     "brand": "nio",
+     "mentions": 1,
+     "share": 0.0062111801
+    },
+    {
+     "country": "FR",
+     "brand": "byd",
+     "mentions": 50,
+     "share": 0.495049505
+    },
+    {
+     "country": "FR",
+     "brand": "tesla",
+     "mentions": 24,
+     "share": 0.2376237624
+    },
+    {
+     "country": "FR",
+     "brand": "polestar",
+     "mentions": 15,
+     "share": 0.1485148515
+    },
+    {
+     "country": "FR",
+     "brand": "rivian",
+     "mentions": 8,
+     "share": 0.0792079208
+    },
+    {
+     "country": "FR",
+     "brand": "lucid",
+     "mentions": 2,
+     "share": 0.0198019802
+    },
+    {
+     "country": "FR",
+     "brand": "nio",
+     "mentions": 2,
+     "share": 0.0198019802
+    },
+    {
+     "country": "GB",
+     "brand": "byd",
+     "mentions": 16,
+     "share": 0.5
+    },
+    {
+     "country": "GB",
+     "brand": "rivian",
+     "mentions": 11,
+     "share": 0.34375
+    },
+    {
+     "country": "GB",
+     "brand": "polestar",
+     "mentions": 2,
+     "share": 0.0625
+    },
+    {
+     "country": "GB",
+     "brand": "tesla",
+     "mentions": 2,
+     "share": 0.0625
+    },
+    {
+     "country": "GB",
+     "brand": "lucid",
+     "mentions": 1,
+     "share": 0.03125
+    },
+    {
+     "country": "IT",
+     "brand": "byd",
+     "mentions": 46,
+     "share": 0.4339622642
+    },
+    {
+     "country": "IT",
+     "brand": "tesla",
+     "mentions": 25,
+     "share": 0.2358490566
+    },
+    {
+     "country": "IT",
+     "brand": "polestar",
+     "mentions": 14,
+     "share": 0.1320754717
+    },
+    {
+     "country": "IT",
+     "brand": "rivian",
+     "mentions": 12,
+     "share": 0.1132075472
+    },
+    {
+     "country": "IT",
+     "brand": "nio",
+     "mentions": 5,
+     "share": 0.0471698113
+    },
+    {
+     "country": "IT",
+     "brand": "lucid",
+     "mentions": 4,
+     "share": 0.0377358491
+    },
+    {
+     "country": "NL",
+     "brand": "byd",
+     "mentions": 30,
+     "share": 0.4761904762
+    },
+    {
+     "country": "NL",
+     "brand": "tesla",
+     "mentions": 18,
+     "share": 0.2857142857
+    },
+    {
+     "country": "NL",
+     "brand": "polestar",
+     "mentions": 9,
+     "share": 0.1428571429
+    },
+    {
+     "country": "NL",
+     "brand": "lucid",
+     "mentions": 2,
+     "share": 0.0317460317
+    },
+    {
+     "country": "NL",
+     "brand": "nio",
+     "mentions": 2,
+     "share": 0.0317460317
+    },
+    {
+     "country": "NL",
+     "brand": "rivian",
+     "mentions": 2,
+     "share": 0.0317460317
+    },
+    {
+     "country": "SE",
+     "brand": "polestar",
+     "mentions": 20,
+     "share": 0.4
+    },
+    {
+     "country": "SE",
+     "brand": "byd",
+     "mentions": 18,
+     "share": 0.36
+    },
+    {
+     "country": "SE",
+     "brand": "tesla",
+     "mentions": 8,
+     "share": 0.16
+    },
+    {
+     "country": "SE",
+     "brand": "nio",
+     "mentions": 3,
+     "share": 0.06
+    },
+    {
+     "country": "SE",
+     "brand": "rivian",
+     "mentions": 1,
+     "share": 0.02
+    },
+    {
+     "country": "TR",
+     "brand": "byd",
+     "mentions": 11,
+     "share": 0.5789473684
+    },
+    {
+     "country": "TR",
+     "brand": "tesla",
+     "mentions": 7,
+     "share": 0.3684210526
+    },
+    {
+     "country": "TR",
+     "brand": "rivian",
+     "mentions": 1,
+     "share": 0.0526315789
+    },
+    {
+     "country": "US",
+     "brand": "tesla",
+     "mentions": 87,
+     "share": 0.3359073359
+    },
+    {
+     "country": "US",
+     "brand": "byd",
+     "mentions": 67,
+     "share": 0.2586872587
+    },
+    {
+     "country": "US",
+     "brand": "rivian",
+     "mentions": 45,
+     "share": 0.1737451737
+    },
+    {
+     "country": "US",
+     "brand": "polestar",
+     "mentions": 40,
+     "share": 0.1544401544
+    },
+    {
+     "country": "US",
+     "brand": "lucid",
+     "mentions": 10,
+     "share": 0.0386100386
+    },
+    {
+     "country": "US",
+     "brand": "nio",
+     "mentions": 10,
+     "share": 0.0386100386
+    }
+   ],
+   "market_gaps": [
+    {
+     "country": "TR",
+     "total": 19,
+     "primary_share": 0.0,
+     "leader": "byd",
+     "leader_share": 0.5789473684,
+     "gap_pts": 57.8947368421
+    },
+    {
+     "country": "GB",
+     "total": 32,
+     "primary_share": 0.0625,
+     "leader": "byd",
+     "leader_share": 0.5,
+     "gap_pts": 43.75
+    },
+    {
+     "country": "AU",
+     "total": 48,
+     "primary_share": 0.1041666667,
+     "leader": "byd",
+     "leader_share": 0.5208333333,
+     "gap_pts": 41.6666666667
+    },
+    {
+     "country": "FR",
+     "total": 101,
+     "primary_share": 0.1485148515,
+     "leader": "byd",
+     "leader_share": 0.495049505,
+     "gap_pts": 34.6534653465
+    },
+    {
+     "country": "DE",
+     "total": 121,
+     "primary_share": 0.132231405,
+     "leader": "byd",
+     "leader_share": 0.4710743802,
+     "gap_pts": 33.8842975207
+    },
+    {
+     "country": "ES",
+     "total": 161,
+     "primary_share": 0.1055900621,
+     "leader": "byd",
+     "leader_share": 0.4409937888,
+     "gap_pts": 33.5403726708
+    },
+    {
+     "country": "NL",
+     "total": 63,
+     "primary_share": 0.1428571429,
+     "leader": "byd",
+     "leader_share": 0.4761904762,
+     "gap_pts": 33.3333333333
+    },
+    {
+     "country": "IT",
+     "total": 106,
+     "primary_share": 0.1320754717,
+     "leader": "byd",
+     "leader_share": 0.4339622642,
+     "gap_pts": 30.1886792453
+    },
+    {
+     "country": "US",
+     "total": 259,
+     "primary_share": 0.1544401544,
+     "leader": "tesla",
+     "leader_share": 0.3359073359,
+     "gap_pts": 18.1467181467
+    }
+   ],
+   "outlet_gaps": [
+    {
+     "outlet": "electrek.co",
+     "outlet_name": "Electrek",
+     "competitor_articles": 30,
+     "competitors": [
+      "byd",
+      "lucid",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 2
+    },
+    {
+     "outlet": "finance.yahoo.com",
+     "outlet_name": "Yahoo Finance",
+     "competitor_articles": 13,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "frandroid.com",
+     "outlet_name": "Frandroid",
+     "competitor_articles": 11,
+     "competitors": [
+      "byd",
+      "nio",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "vietnam.vn",
+     "outlet_name": "Vietnam.vn",
+     "competitor_articles": 11,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "tuningblog.eu",
+     "outlet_name": "Tuningblog",
+     "competitor_articles": 10,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 5
+    },
+    {
+     "outlet": "carnewschina.com",
+     "outlet_name": "CarNewsChina.com",
+     "competitor_articles": 8,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "hibridosyelectricos.com",
+     "outlet_name": "Híbridos y Eléctricos",
+     "competitor_articles": 7,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 2
+    },
+    {
+     "outlet": "247wallst.com",
+     "outlet_name": "24/7 Wall St.",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd",
+      "lucid",
+      "nio",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "lesnumeriques.com",
+     "outlet_name": "Les Numériques",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "movilidadelectrica.com",
+     "outlet_name": "Movilidad Eléctrica",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "es.tradingview.com",
+     "outlet_name": "TradingView",
+     "competitor_articles": 6,
+     "competitors": [
+      "rivian"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "finanztrends.de",
+     "outlet_name": "Finanztrends",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "fool.com",
+     "outlet_name": "The Motley Fool",
+     "competitor_articles": 5,
+     "competitors": [
+      "nio",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "autoblog.it",
+     "outlet_name": "Autoblog",
+     "competitor_articles": 5,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "whichcar.com.au",
+     "outlet_name": "WhichCar",
+     "competitor_articles": 5,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 2
+    },
+    {
+     "outlet": "boerse-express.com",
+     "outlet_name": "Börse Express",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "nio",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "estenerife.com",
+     "outlet_name": "estenerife.com",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "headliner.nl",
+     "outlet_name": "Headliner.nl",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "bevolt.com",
+     "outlet_name": "www.bevolt.com",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "carup.se",
+     "outlet_name": "Carup.se",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 6
+    },
+    {
+     "outlet": "mezha.net",
+     "outlet_name": "Mezha.net",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "rouleur-electrique.fr",
+     "outlet_name": "Rouleur Électrique",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 2
+    },
+    {
+     "outlet": "tradingview.com",
+     "outlet_name": "TradingView",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "vybe.ch",
+     "outlet_name": "vybe",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 4
+    },
+    {
+     "outlet": "cnevpost.com",
+     "outlet_name": "CnEVPost",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "motori.it",
+     "outlet_name": "Motori.it",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "sharedeals.de",
+     "outlet_name": "sharedeals.de",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "autoweek.nl",
+     "outlet_name": "AutoWeek",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "lucid",
+      "tesla"
+     ],
+     "primary_all_time": 5
+    },
+    {
+     "outlet": "diariomotor.com",
+     "outlet_name": "Diariomotor",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 2
+    },
+    {
+     "outlet": "shattered.io",
+     "outlet_name": "shattered.io",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "thecooldown.com",
+     "outlet_name": "The Cool Down",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "tikr.com",
+     "outlet_name": "TIKR.com",
+     "competitor_articles": 3,
+     "competitors": [
+      "nio",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "adac.de",
+     "outlet_name": "ADAC",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "automobile-magazine.fr",
+     "outlet_name": "L'Automobile Magazine",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "automotive-online.nl",
+     "outlet_name": "Automotive Online",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "autos.yahoo.com",
+     "outlet_name": "Yahoo Autos",
+     "competitor_articles": 3,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "boursorama.com",
+     "outlet_name": "Boursorama",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "carbuzz.com",
+     "outlet_name": "CarBuzz",
+     "competitor_articles": 3,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "elperiodico.com",
+     "outlet_name": "El Periódico",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 4
+    },
+    {
+     "outlet": "it.investing.com",
+     "outlet_name": "Investing.com - Quotazioni, Borsa, Economia e Finanza",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "newcastleherald.com.au",
+     "outlet_name": "Newcastle Herald",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "simplywall.st",
+     "outlet_name": "Simply Wall St",
+     "competitor_articles": 3,
+     "competitors": [
+      "nio",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "auto.everyeye.it",
+     "outlet_name": "Everyeye Auto",
+     "competitor_articles": 3,
+     "competitors": [
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "autobild.es",
+     "outlet_name": "autobild.es",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 2
+    },
+    {
+     "outlet": "electrifying.com",
+     "outlet_name": "Electrifying.com",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 3
+    },
+    {
+     "outlet": "log.com.tr",
+     "outlet_name": "Teknoloji haberleri - LOG",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "mobiwisy.fr",
+     "outlet_name": "Mobiwisy",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "teslamag.de",
+     "outlet_name": "Teslamag.de",
+     "competitor_articles": 3,
+     "competitors": [
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "trefis.com",
+     "outlet_name": "Trefis",
+     "competitor_articles": 3,
+     "competitors": [
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "vision-mobility.de",
+     "outlet_name": "VISION mobility",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 7
+    }
+   ],
+   "topic_gaps": [
+    {
+     "topic": "charging",
+     "primary_articles": 1,
+     "primary_share": 0.0072463768,
+     "competitor_articles": 52,
+     "competitor_share": 0.0656565657,
+     "gap_pts": 5.8410188845,
+     "top_competitor": "byd"
+    },
+    {
+     "topic": "deals_pricing",
+     "primary_articles": 0,
+     "primary_share": 0.0,
+     "competitor_articles": 31,
+     "competitor_share": 0.0391414141,
+     "gap_pts": 3.9141414141,
+     "top_competitor": "tesla"
+    },
+    {
+     "topic": "sales",
+     "primary_articles": 0,
+     "primary_share": 0.0,
+     "competitor_articles": 29,
+     "competitor_share": 0.0366161616,
+     "gap_pts": 3.6616161616,
+     "top_competitor": "byd"
+    },
+    {
+     "topic": "launch",
+     "primary_articles": 4,
+     "primary_share": 0.0289855072,
+     "competitor_articles": 42,
+     "competitor_share": 0.053030303,
+     "gap_pts": 2.4044795784,
+     "top_competitor": "byd"
+    },
+    {
+     "topic": "business",
+     "primary_articles": 2,
+     "primary_share": 0.0144927536,
+     "competitor_articles": 25,
+     "competitor_share": 0.0315656566,
+     "gap_pts": 1.7072902942,
+     "top_competitor": "rivian"
+    },
+    {
+     "topic": "reviews",
+     "primary_articles": 4,
+     "primary_share": 0.0289855072,
+     "competitor_articles": 32,
+     "competitor_share": 0.0404040404,
+     "gap_pts": 1.1418533158,
+     "top_competitor": "tesla"
+    },
+    {
+     "topic": "awards",
+     "primary_articles": 0,
+     "primary_share": 0.0,
+     "competitor_articles": 4,
+     "competitor_share": 0.0050505051,
+     "gap_pts": 0.5050505051,
+     "top_competitor": "byd"
+    },
+    {
+     "topic": "sustainability",
+     "primary_articles": 2,
+     "primary_share": 0.0144927536,
+     "competitor_articles": 2,
+     "competitor_share": 0.0025252525,
+     "gap_pts": -1.1967501098,
+     "top_competitor": "rivian"
+    },
+    {
+     "topic": "software",
+     "primary_articles": 11,
+     "primary_share": 0.0797101449,
+     "competitor_articles": 18,
+     "competitor_share": 0.0227272727,
+     "gap_pts": -5.69828722,
+     "top_competitor": "tesla"
+    }
+   ],
+   "top_stories": [
+    {
+     "cluster_id": "1292f879c0a17b79",
+     "title": "The 2026 BYD M9 people-mover proved Dom wrong about fancy vans.",
+     "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQN2JPLWlfTUhtQWU5b3BGMk1hU1c3QnpTc09BSm5NVjF1dnhKclhkUkx3a3JVV2FxaGlnSXM0djA1SWN1Nm5CRGM5WnpPaGNsdDJ6d21zY1Fpc25WbEp6SGhQN1hYVmhhQTdRYnJSVWdiMy0xUGpDVGh4ZUg2ZklrX3RSTUpBUHowRTNBVjZnMnBSTk1pbmRhSzdNSWJBMFhEdmh0TnNtR3p6YmhZYUdrenNsdlByYXdEUEo0aDRrTkI1enVWUXhkOWNWYmRZeUxNYVE?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 7,
+     "markets": [
+      "AU"
+     ],
+     "first_seen": "2026-11-20T01:02:45"
+    },
+    {
+     "cluster_id": "89a5165dbcaaeb2a",
+     "title": "Tesla Model Y L 2026 review Australia: Premium All-Wheel Drive | 3-row EV with 681km range tested",
+     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNbU1hbm56NVUtYU1ja0ZNUmpjaDlkQ0pDZ1pxYXVoVEYzY1ZCTjVDLTVkbnVRaHB2bTdLZDNjbDVDT0VQWDA1Ymk2SHBpUHBvY0hFY2dZMWxYejdVX3U3czhEeXhYVE1BZzVlY2VTUFBER0xDUjdFTlBxdDA2S0piTFZ4YmJaTTllWlF6TEVVdTRaUjV0czhraU9QaGRzTFdFNXg1aVVURUVYUVdyckRpQWFERmJ5bGFWWmE0eWR2bGlaQVBveWRvT3VkeWxZVVYtSWl6ZHdGZDFrNXMtTFRmTGY5MEIxUE0wcWJZcUxWakpOT0hNa0cxXw?oc=5",
+     "brands": [
+      "tesla"
+     ],
+     "outlets": 6,
+     "markets": [
+      "AU",
+      "US"
+     ],
+     "first_seen": "2026-11-18T12:05:17"
+    },
+    {
+     "cluster_id": "3a65115926611dab",
+     "title": "Rivian-Backed ALSO Hits Another Speed Bump, Pauses E-Bike Deliveries Over Software Issues Affecting Charging",
+     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPSi10czJZYXRaVkx5azBLVThxcjczYmtVZTB1WGlDZzVvOHhrSnhYTFpMbGx3YUR3NlBlbS1XaVVDUTZUSENWOUNaNy1UOTh1ZnBvUEZvXzZEV0xQc2JWcE91TXlWclFpMFEtSVBIUDkwYjQ5SlEtbWZ5VjNWYmtaakduQ0dsZENrLWNyZERBZ1JXX183SXJhcEEwNmswbTMtSlV2WE9OelRISzVobVpkX29SZDJRc0NkMVlUVUk2UDVJb2xPVnVzTnlDUGxFYjl2Ujg4a1h2aFk0S2R4SGdrS1lrRTdtUnZyYjF6VXNLTGJCY1M2YTgwQw?oc=5",
+     "brands": [
+      "rivian"
+     ],
+     "outlets": 4,
+     "markets": [
+      "ES",
+      "GB",
+      "US"
+     ],
+     "first_seen": "2026-11-19T06:54:00"
+    },
+    {
+     "cluster_id": "fa9bf2b240c93526",
+     "title": "Autofabrikant BYD mag SUV-model Ti7 niet in EU verhandelen",
+     "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWFlZeHB3eHRPb3VEalh1UGVBNVpuWm0xUnFIUE80NlY1amtLcFVLU3ktRUFqSnQzYTF2eDM2Y25jR1UxRFBQdVYweExjdktBRF9UVTl5bTJnVV96ZzFra2Z1YmV5WXpvYUlrbUJDTkptMm1vekxpMktYX3lxUk05b3M0WVVSV1hKcmFGX3NQZjRCZ2xVRWdsQWhENko3QnBtLTFid0N5cnh6QktEYUY4MjBkTlFKUXREV0xlbjc4UkRaNHVsRGxscTRXc19YRXYzQXdQRlBmMUw3WU16ckxHMV9lR2FGX0M0UFZSVGlzSkQ1LUEwRWpvcmRR?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 3,
+     "markets": [
+      "NL"
+     ],
+     "first_seen": "2026-11-20T13:05:00"
+    },
+    {
+     "cluster_id": "df296309bde96d32",
+     "title": "Luxe EV gets free upgrade",
+     "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1BQjAyRzJhN0xVSWhjS2ZIYnY5eWlmRTV1UVNZSnF5TXhkM1JKLV9fT0pxMnJfb081SHJmYmpsaDVhaXRka0pDaUNlWURsZWtaNG9ob3huVTRJVzRyLXVXb2JMWVBVb1ZZR203QVY3ZmNxeGJjR0s4?oc=5",
+     "brands": [
+      "polestar"
+     ],
+     "outlets": 3,
+     "markets": [
+      "AU",
+      "GB",
+      "US"
+     ],
+     "first_seen": "2026-11-20T11:19:58"
+    },
+    {
+     "cluster_id": "68f4064622236b78",
+     "title": "Polestar 4 krijgt Android 15, Vehicle-to-Load, Digital Key en lifestyle functies via over-the-air update",
+     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPX1U1M0pMN0xqN3pqdjh0N0tUT291YTZSM3NNN05USjFsMmhiTVFFN1RjMWVYM2N6SGpJaWJOLTdlaU0tX0pyTkhMR2FoM1Bqdkdsb3h0czlDbFF6T21CUzkzUm1vemUzXzlGOVp1QXpyQk1sSlVDTzUzbWhId0ZUbDc3cm1IZG1uOWREeGhlTWpsQVVvZTJqM2JEYUdFYUdmdnhFNmRMSlpjTmwtSk9BTC16UkFnOWszRGVNdmhBTDgtNTlURF8xR1RqaGZCMDhuSnBtcVBWUHJiOFNuS1E?oc=5",
+     "brands": [
+      "polestar"
+     ],
+     "outlets": 3,
+     "markets": [
+      "NL"
+     ],
+     "first_seen": "2026-11-15T11:14:00"
+    },
+    {
+     "cluster_id": "249d062a23418889",
+     "title": "Dutch court blocks BYD SUV sales in EU over design dispute",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPMU1OM0tNSTZ2MUkycGhsWkVTbXdaRTNpNU1ELW5raHBxYm9meS03WUhuaTRXNldLbF9Xamw0VWtZMTRTOVA2czM3Q2FQVE5hakRRSWJJZHNzMTZRcGo2eGc2V2F2MnI1ZlJrSTlwYUZGbFhTMm9BSWgzbm9RWjFxeGRBY1cxSkZrZnZUN280cFpuN18waV9hTlNCRUI1aFNDNUNNSGtCU2NtRTFOZ3R5NWtwYkotZw?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 2,
+     "markets": [
+      "AU",
+      "US"
+     ],
+     "first_seen": "2026-11-21T00:10:46"
+    },
+    {
+     "cluster_id": "cd8fe63a378a19e3",
+     "title": "BYD mag auto niet verkopen in Europese Unie door gelijkenis met Land Rover",
+     "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPUE9rdEh3bkRhVUVJSHNTZ0lNWnczemRCbmhIRDFuN0czLWFZenNxMVVqbUdMZG41WFNFTDh5MmpjdTlNN2FHcWVlRGw0UmtDc3FDdWN3VFVqdi1abERWWWhOUXpQemdUQmVWLWpQMWlVb2NoUjdTb2RHeC1BaWg2WGVjM3ZIZEwtU1J3cFNZN3diNGRIZTJ3Nlg1NFZ2NU4zTF9JcV9odXpqd1VJUEVCei1LQzhIODUxZl9MaUVTRVM2ZTNNWkNzcU1NNDBMbmc?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 2,
+     "markets": [
+      "NL"
+     ],
+     "first_seen": "2026-11-20T23:16:27"
+    },
+    {
+     "cluster_id": "0a03f9c702c2e609",
+     "title": "Un tribunal néerlandais estime qu'un SUV de la société chinoise BYD enfreint les droits de conception du Defen",
+     "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQZTRCNWhjZnhuOG54MHp0ZXpRVEx4aUwwUHg2elVNS21UdDhPQjRHSFlkOHpwRzBYcWxjLTFGTzBsQnBCdHNfQWtxVkZENk84YTlSdjRoVWFlU3dDSXpyU3RnWGFNYTRxa0xQeFZxRjMzOTRHNHZTS1l2REFkQ0xVc1lwZ0ZlVnRTYmhNSEl5b3JSbGRRUnVzYWkyZXhIZDJwTmZVN1lXZnh5M1NJdGMxZ3o2enZMaWQ0XzlockFfSnVfcjk2dWhRWkJvOGJkTzFFRTBPQkxvZHplU1ZXdEZDdWtaTWNQcjdUOE04ZlR0T3NLbnNyMkJrXzRudHd0RG5WaXc1WEstRVBucXE1NExwaEZvYk9GQk4zdExIUDZWSEdHOWVJ0gGqAkFVX3lxTE5NUkdNSzVuY2ZVRVFDa3dtMG9rdTNicWVIZE5nbkFXbnNMZldLaGI3SDAyUWRIdXlOZTV6SDNxRTdLNFhqUEFVOVROX2FzNXFxSGtXMHRINmEwZE9pT1BvZVVxc0tQczVMbUlLWExvMUs1cU5lWGpxbldBVEN2dUEwRDJadEF1NTNJR0pvX3NKdWRrSWpISFZNelZWX1h1cjVMMVlGY3k3UEJRVEM1RHZndjBiZW1GNV9qN1Bfa25RUzNZdUF5dHpXUTdOUXFsYlY2Unc5QW9CNTE2MXc5T1pxbThJTHpWU0JCc1NjUmhOQkMyTnVnOXNnU2VuX2R2NUVVZldVV3FDYkN1TE9NSV9KdmhXeTRhU0lZQlZqUlhfSWpDejFsdlRXekE?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 2,
+     "markets": [
+      "FR"
+     ],
+     "first_seen": "2026-11-20T18:40:04"
+    },
+    {
+     "cluster_id": "2e28ff4119908003",
+     "title": "China's BYD has SUV that infringes on JLR Defender design, Dutch court rules",
+     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQdEVwRDU4ZjlDUEV5SV9qOFJmVFBMd3k0bHBoWG1FOU1WeEJYODRjVHY5T01CTFRIWW5ROFFCRzYzZGNDamVfQ2V1UFo0NFoySGxQSEFjd3l0cVNuUWpXcU04N1U0RGk0Ukd5T0ZXRG9rTGdnRWxIZUlXTnVtRFotZ0w1elBHb1NURGd3OHRxdzBCaHRnbEZ0cnpIN2U0VlJiYndXWjRyUm00UTZMR1YwN2t6dFJHWGZtWi1jcHk4OGIyWlZqQlhRZTYydVp1NmFPcHVna1F3Z2pxN19scVE?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 2,
+     "markets": [
+      "US"
+     ],
+     "first_seen": "2026-11-20T18:39:17"
+    }
+   ],
+   "brief": {
+    "summary": "Polestar had 138 mentions and 14% share of voice, behind BYD at 41%. Competitors lead in TR, GB, and AU. BYD has a risk headline on autojosh.com, and NIO has a risk headline on frandroid.com. Polestar’s headline tone is 6.6, slightly above neutral.",
+    "actions": [
+     "Re-pitch electrek.co, which covered Polestar before and ran 30 competitor articles.",
+     "Pitch finance.yahoo.com, which ran 13 competitor articles and has not covered Polestar.",
+     "Offer a Polestar story on charging to counter competitors’ 7% coverage in that topic."
+    ],
+    "model": "Qwen3-1.7B + LoRA",
+    "created_at": "2026-11-21T02:15:04+00:00",
+    "start": "2026-11-15",
+    "end": "2026-11-21",
+    "checks_passed": true
+   }
+  },
+  "28": {
+   "days": 28,
+   "start": "2026-10-25",
+   "end": "2026-11-21",
+   "baseline": false,
+   "kpis": {
+    "mentions": 677,
+    "share": 0.24708029197080292,
+    "share_change_pts": null,
+    "outlets": 340,
+    "markets": 10,
+    "stories": 612,
+    "rank": 2,
+    "brands": 6,
+    "total_mentions": 2740
+   },
+   "insights": [
+    "Polestar share of voice is 25% (first tracked period, no comparison yet), ranked #2 of 6 brands with 677 mentions.",
+    "BYD leads the conversation with 30%.",
+    "Biggest market gap: TR, where BYD holds 56% vs Polestar 8%.",
+    "50 outlets covered competitors but not Polestar; top: finance.yahoo.com (28 competitor articles). 2 of them have covered Polestar before (warm re-pitch targets).",
+    "Risk signal for BYD: 'Land Rover Vs BYD Lawsuit: Court Told BYD To Stop Selling The Ti7 SUV In Europe' (autojosh.com) (+19 more).",
+    "Polestar headline tone: valence 6.6/9, 94% positive and 1% negative across 624 scored mentions (competitors average 6.3).",
+    "Watch: 'El Tesla Model Y, el peor coche en la ITV alemana: suspende casi uno de cada cinco y el MG4 le sigue de cerca' (motor.es) reads negative and intense for Tesla (valence 2.8, arousal 7.2)."
+   ],
+   "share_of_voice": [
+    {
+     "brand": "byd",
+     "mentions": 815,
+     "stories": 798,
+     "outlets": 359,
+     "markets": 10,
+     "share": 0.2974452555,
+     "headline_mentions": 770,
+     "headline_share": 0.3111111111
+    },
+    {
+     "brand": "polestar",
+     "mentions": 677,
+     "stories": 612,
+     "outlets": 340,
+     "markets": 10,
+     "share": 0.247080292,
+     "headline_mentions": 624,
+     "headline_share": 0.2521212121
+    },
+    {
+     "brand": "tesla",
+     "mentions": 671,
+     "stories": 637,
+     "outlets": 344,
+     "markets": 10,
+     "share": 0.2448905109,
+     "headline_mentions": 628,
+     "headline_share": 0.2537373737
+    },
+    {
+     "brand": "rivian",
+     "mentions": 342,
+     "stories": 319,
+     "outlets": 140,
+     "markets": 10,
+     "share": 0.1248175182,
+     "headline_mentions": 303,
+     "headline_share": 0.1224242424
+    },
+    {
+     "brand": "lucid",
+     "mentions": 132,
+     "stories": 122,
+     "outlets": 75,
+     "markets": 9,
+     "share": 0.0481751825,
+     "headline_mentions": 78,
+     "headline_share": 0.0315151515
+    },
+    {
+     "brand": "nio",
+     "mentions": 103,
+     "stories": 100,
+     "outlets": 66,
+     "markets": 9,
+     "share": 0.0375912409,
+     "headline_mentions": 72,
+     "headline_share": 0.0290909091
+    }
+   ],
+   "comparison": [
+    {
+     "brand": "byd",
+     "mentions": 815,
+     "share": 0.2974452555,
+     "mentions_prev": 13,
+     "share_prev": 0.1287128713,
+     "share_change_pts": 16.8732384187,
+     "mentions_change_pct": 6169.2307692308
+    },
+    {
+     "brand": "polestar",
+     "mentions": 677,
+     "share": 0.247080292,
+     "mentions_prev": 34,
+     "share_prev": 0.3366336634,
+     "share_change_pts": -8.9553371396,
+     "mentions_change_pct": 1891.1764705882
+    },
+    {
+     "brand": "tesla",
+     "mentions": 671,
+     "share": 0.2448905109,
+     "mentions_prev": 20,
+     "share_prev": 0.198019802,
+     "share_change_pts": 4.6870708969,
+     "mentions_change_pct": 3255.0
+    },
+    {
+     "brand": "rivian",
+     "mentions": 342,
+     "share": 0.1248175182,
+     "mentions_prev": 16,
+     "share_prev": 0.1584158416,
+     "share_change_pts": -3.3598323336,
+     "mentions_change_pct": 2037.5
+    },
+    {
+     "brand": "lucid",
+     "mentions": 132,
+     "share": 0.0481751825,
+     "mentions_prev": 8,
+     "share_prev": 0.0792079208,
+     "share_change_pts": -3.103273831,
+     "mentions_change_pct": 1550.0
+    },
+    {
+     "brand": "nio",
+     "mentions": 103,
+     "share": 0.0375912409,
+     "mentions_prev": 10,
+     "share_prev": 0.099009901,
+     "share_change_pts": -6.1418660114,
+     "mentions_change_pct": 930.0
+    }
+   ],
+   "weekly_trend": [
+    {
+     "week": "2026-10-19T00:00:00",
+     "brand": "byd",
+     "mentions": 5,
+     "share": 0.1923076923
+    },
+    {
+     "week": "2026-10-19T00:00:00",
+     "brand": "lucid",
+     "mentions": 3,
+     "share": 0.1153846154
+    },
+    {
+     "week": "2026-10-19T00:00:00",
+     "brand": "nio",
+     "mentions": 2,
+     "share": 0.0769230769
+    },
+    {
+     "week": "2026-10-19T00:00:00",
+     "brand": "polestar",
+     "mentions": 3,
+     "share": 0.1153846154
+    },
+    {
+     "week": "2026-10-19T00:00:00",
+     "brand": "rivian",
+     "mentions": 1,
+     "share": 0.0384615385
+    },
+    {
+     "week": "2026-10-19T00:00:00",
+     "brand": "tesla",
+     "mentions": 12,
+     "share": 0.4615384615
+    },
+    {
+     "week": "2026-10-26T00:00:00",
+     "brand": "byd",
+     "mentions": 99,
+     "share": 0.2190265487
+    },
+    {
+     "week": "2026-10-26T00:00:00",
+     "brand": "lucid",
+     "mentions": 21,
+     "share": 0.046460177
+    },
+    {
+     "week": "2026-10-26T00:00:00",
+     "brand": "nio",
+     "mentions": 30,
+     "share": 0.0663716814
+    },
+    {
+     "week": "2026-10-26T00:00:00",
+     "brand": "polestar",
+     "mentions": 130,
+     "share": 0.2876106195
+    },
+    {
+     "week": "2026-10-26T00:00:00",
+     "brand": "rivian",
+     "mentions": 115,
+     "share": 0.2544247788
+    },
+    {
+     "week": "2026-10-26T00:00:00",
+     "brand": "tesla",
+     "mentions": 57,
+     "share": 0.1261061947
+    },
+    {
+     "week": "2026-11-02T00:00:00",
+     "brand": "byd",
+     "mentions": 149,
+     "share": 0.2684684685
+    },
+    {
+     "week": "2026-11-02T00:00:00",
+     "brand": "lucid",
+     "mentions": 35,
+     "share": 0.0630630631
+    },
+    {
+     "week": "2026-11-02T00:00:00",
+     "brand": "nio",
+     "mentions": 26,
+     "share": 0.0468468468
+    },
+    {
+     "week": "2026-11-02T00:00:00",
+     "brand": "polestar",
+     "mentions": 128,
+     "share": 0.2306306306
+    },
+    {
+     "week": "2026-11-02T00:00:00",
+     "brand": "rivian",
+     "mentions": 69,
+     "share": 0.1243243243
+    },
+    {
+     "week": "2026-11-02T00:00:00",
+     "brand": "tesla",
+     "mentions": 148,
+     "share": 0.2666666667
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "byd",
+     "mentions": 181,
+     "share": 0.2291139241
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "lucid",
+     "mentions": 50,
+     "share": 0.0632911392
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "nio",
+     "mentions": 22,
+     "share": 0.0278481013
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "polestar",
+     "mentions": 287,
+     "share": 0.3632911392
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "rivian",
+     "mentions": 54,
+     "share": 0.0683544304
+    },
+    {
+     "week": "2026-11-09T00:00:00",
+     "brand": "tesla",
+     "mentions": 196,
+     "share": 0.2481012658
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "byd",
+     "mentions": 381,
+     "share": 0.4154852781
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "lucid",
+     "mentions": 23,
+     "share": 0.0250817884
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "nio",
+     "mentions": 23,
+     "share": 0.0250817884
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "polestar",
+     "mentions": 129,
+     "share": 0.1406761178
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "rivian",
+     "mentions": 103,
+     "share": 0.1123227917
+    },
+    {
+     "week": "2026-11-16T00:00:00",
+     "brand": "tesla",
+     "mentions": 258,
+     "share": 0.2813522356
+    }
+   ],
+   "market_share": [
+    {
+     "country": "AU",
+     "brand": "tesla",
+     "mentions": 77,
+     "share": 0.308
+    },
+    {
+     "country": "AU",
+     "brand": "polestar",
+     "mentions": 66,
+     "share": 0.264
+    },
+    {
+     "country": "AU",
+     "brand": "byd",
+     "mentions": 48,
+     "share": 0.192
+    },
+    {
+     "country": "AU",
+     "brand": "rivian",
+     "mentions": 44,
+     "share": 0.176
+    },
+    {
+     "country": "AU",
+     "brand": "lucid",
+     "mentions": 14,
+     "share": 0.056
+    },
+    {
+     "country": "AU",
+     "brand": "nio",
+     "mentions": 1,
+     "share": 0.004
+    },
+    {
+     "country": "DE",
+     "brand": "byd",
+     "mentions": 101,
+     "share": 0.3146417445
+    },
+    {
+     "country": "DE",
+     "brand": "polestar",
+     "mentions": 95,
+     "share": 0.2959501558
+    },
+    {
+     "country": "DE",
+     "brand": "tesla",
+     "mentions": 66,
+     "share": 0.2056074766
+    },
+    {
+     "country": "DE",
+     "brand": "rivian",
+     "mentions": 36,
+     "share": 0.1121495327
+    },
+    {
+     "country": "DE",
+     "brand": "lucid",
+     "mentions": 14,
+     "share": 0.0436137072
+    },
+    {
+     "country": "DE",
+     "brand": "nio",
+     "mentions": 9,
+     "share": 0.0280373832
+    },
+    {
+     "country": "ES",
+     "brand": "byd",
+     "mentions": 100,
+     "share": 0.3076923077
+    },
+    {
+     "country": "ES",
+     "brand": "tesla",
+     "mentions": 94,
+     "share": 0.2892307692
+    },
+    {
+     "country": "ES",
+     "brand": "polestar",
+     "mentions": 71,
+     "share": 0.2184615385
+    },
+    {
+     "country": "ES",
+     "brand": "rivian",
+     "mentions": 43,
+     "share": 0.1323076923
+    },
+    {
+     "country": "ES",
+     "brand": "lucid",
+     "mentions": 10,
+     "share": 0.0307692308
+    },
+    {
+     "country": "ES",
+     "brand": "nio",
+     "mentions": 7,
+     "share": 0.0215384615
+    },
+    {
+     "country": "FR",
+     "brand": "polestar",
+     "mentions": 117,
+     "share": 0.3153638814
+    },
+    {
+     "country": "FR",
+     "brand": "byd",
+     "mentions": 105,
+     "share": 0.2830188679
+    },
+    {
+     "country": "FR",
+     "brand": "tesla",
+     "mentions": 78,
+     "share": 0.2102425876
+    },
+    {
+     "country": "FR",
+     "brand": "rivian",
+     "mentions": 36,
+     "share": 0.0970350404
+    },
+    {
+     "country": "FR",
+     "brand": "lucid",
+     "mentions": 22,
+     "share": 0.0592991914
+    },
+    {
+     "country": "FR",
+     "brand": "nio",
+     "mentions": 13,
+     "share": 0.0350404313
+    },
+    {
+     "country": "GB",
+     "brand": "byd",
+     "mentions": 27,
+     "share": 0.3176470588
+    },
+    {
+     "country": "GB",
+     "brand": "polestar",
+     "mentions": 23,
+     "share": 0.2705882353
+    },
+    {
+     "country": "GB",
+     "brand": "rivian",
+     "mentions": 17,
+     "share": 0.2
+    },
+    {
+     "country": "GB",
+     "brand": "tesla",
+     "mentions": 12,
+     "share": 0.1411764706
+    },
+    {
+     "country": "GB",
+     "brand": "lucid",
+     "mentions": 5,
+     "share": 0.0588235294
+    },
+    {
+     "country": "GB",
+     "brand": "nio",
+     "mentions": 1,
+     "share": 0.0117647059
+    },
+    {
+     "country": "IT",
+     "brand": "byd",
+     "mentions": 102,
+     "share": 0.3434343434
+    },
+    {
+     "country": "IT",
+     "brand": "polestar",
+     "mentions": 69,
+     "share": 0.2323232323
+    },
+    {
+     "country": "IT",
+     "brand": "tesla",
+     "mentions": 66,
+     "share": 0.2222222222
+    },
+    {
+     "country": "IT",
+     "brand": "rivian",
+     "mentions": 39,
+     "share": 0.1313131313
+    },
+    {
+     "country": "IT",
+     "brand": "nio",
+     "mentions": 12,
+     "share": 0.0404040404
+    },
+    {
+     "country": "IT",
+     "brand": "lucid",
+     "mentions": 9,
+     "share": 0.0303030303
+    },
+    {
+     "country": "NL",
+     "brand": "byd",
+     "mentions": 74,
+     "share": 0.3425925926
+    },
+    {
+     "country": "NL",
+     "brand": "polestar",
+     "mentions": 53,
+     "share": 0.2453703704
+    },
+    {
+     "country": "NL",
+     "brand": "tesla",
+     "mentions": 51,
+     "share": 0.2361111111
+    },
+    {
+     "country": "NL",
+     "brand": "nio",
+     "mentions": 20,
+     "share": 0.0925925926
+    },
+    {
+     "country": "NL",
+     "brand": "rivian",
+     "mentions": 10,
+     "share": 0.0462962963
+    },
+    {
+     "country": "NL",
+     "brand": "lucid",
+     "mentions": 8,
+     "share": 0.037037037
+    },
+    {
+     "country": "SE",
+     "brand": "polestar",
+     "mentions": 62,
+     "share": 0.3924050633
+    },
+    {
+     "country": "SE",
+     "brand": "byd",
+     "mentions": 51,
+     "share": 0.3227848101
+    },
+    {
+     "country": "SE",
+     "brand": "tesla",
+     "mentions": 21,
+     "share": 0.1329113924
+    },
+    {
+     "country": "SE",
+     "brand": "nio",
+     "mentions": 13,
+     "share": 0.082278481
+    },
+    {
+     "country": "SE",
+     "brand": "rivian",
+     "mentions": 11,
+     "share": 0.0696202532
+    },
+    {
+     "country": "TR",
+     "brand": "byd",
+     "mentions": 97,
+     "share": 0.5606936416
+    },
+    {
+     "country": "TR",
+     "brand": "tesla",
+     "mentions": 51,
+     "share": 0.2947976879
+    },
+    {
+     "country": "TR",
+     "brand": "polestar",
+     "mentions": 14,
+     "share": 0.0809248555
+    },
+    {
+     "country": "TR",
+     "brand": "rivian",
+     "mentions": 8,
+     "share": 0.0462427746
+    },
+    {
+     "country": "TR",
+     "brand": "lucid",
+     "mentions": 3,
+     "share": 0.0173410405
+    },
+    {
+     "country": "US",
+     "brand": "tesla",
+     "mentions": 155,
+     "share": 0.2849264706
+    },
+    {
+     "country": "US",
+     "brand": "byd",
+     "mentions": 110,
+     "share": 0.2022058824
+    },
+    {
+     "country": "US",
+     "brand": "polestar",
+     "mentions": 107,
+     "share": 0.1966911765
+    },
+    {
+     "country": "US",
+     "brand": "rivian",
+     "mentions": 98,
+     "share": 0.1801470588
+    },
+    {
+     "country": "US",
+     "brand": "lucid",
+     "mentions": 47,
+     "share": 0.0863970588
+    },
+    {
+     "country": "US",
+     "brand": "nio",
+     "mentions": 27,
+     "share": 0.0496323529
+    }
+   ],
+   "market_gaps": [
+    {
+     "country": "TR",
+     "total": 173,
+     "primary_share": 0.0809248555,
+     "leader": "byd",
+     "leader_share": 0.5606936416,
+     "gap_pts": 47.9768786127
+    },
+    {
+     "country": "IT",
+     "total": 297,
+     "primary_share": 0.2323232323,
+     "leader": "byd",
+     "leader_share": 0.3434343434,
+     "gap_pts": 11.1111111111
+    },
+    {
+     "country": "NL",
+     "total": 216,
+     "primary_share": 0.2453703704,
+     "leader": "byd",
+     "leader_share": 0.3425925926,
+     "gap_pts": 9.7222222222
+    },
+    {
+     "country": "ES",
+     "total": 325,
+     "primary_share": 0.2184615385,
+     "leader": "byd",
+     "leader_share": 0.3076923077,
+     "gap_pts": 8.9230769231
+    },
+    {
+     "country": "US",
+     "total": 544,
+     "primary_share": 0.1966911765,
+     "leader": "tesla",
+     "leader_share": 0.2849264706,
+     "gap_pts": 8.8235294118
+    },
+    {
+     "country": "GB",
+     "total": 85,
+     "primary_share": 0.2705882353,
+     "leader": "byd",
+     "leader_share": 0.3176470588,
+     "gap_pts": 4.7058823529
+    },
+    {
+     "country": "AU",
+     "total": 250,
+     "primary_share": 0.264,
+     "leader": "tesla",
+     "leader_share": 0.308,
+     "gap_pts": 4.4
+    },
+    {
+     "country": "DE",
+     "total": 321,
+     "primary_share": 0.2959501558,
+     "leader": "byd",
+     "leader_share": 0.3146417445,
+     "gap_pts": 1.8691588785
+    }
+   ],
+   "outlet_gaps": [
+    {
+     "outlet": "finance.yahoo.com",
+     "outlet_name": "Yahoo Finance",
+     "competitor_articles": 28,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "vietnam.vn",
+     "outlet_name": "Vietnam.vn",
+     "competitor_articles": 20,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "fool.com",
+     "outlet_name": "The Motley Fool",
+     "competitor_articles": 19,
+     "competitors": [
+      "byd",
+      "nio",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "lesnumeriques.com",
+     "outlet_name": "Les Numériques",
+     "competitor_articles": 17,
+     "competitors": [
+      "byd",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "tikr.com",
+     "outlet_name": "TIKR.com",
+     "competitor_articles": 14,
+     "competitors": [
+      "nio",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "carnewschina.com",
+     "outlet_name": "CarNewsChina.com",
+     "competitor_articles": 12,
+     "competitors": [
+      "byd",
+      "nio"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "tradingview.com",
+     "outlet_name": "TradingView",
+     "competitor_articles": 11,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "byd.com",
+     "outlet_name": "BYD",
+     "competitor_articles": 11,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "it.investing.com",
+     "outlet_name": "Investing.com - Quotazioni, Borsa, Economia e Finanza",
+     "competitor_articles": 10,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "auto.everyeye.it",
+     "outlet_name": "Everyeye Auto",
+     "competitor_articles": 9,
+     "competitors": [
+      "byd",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "boerse.de",
+     "outlet_name": "boerse.de",
+     "competitor_articles": 9,
+     "competitors": [
+      "byd",
+      "lucid",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "reuters.com",
+     "outlet_name": "Reuters",
+     "competitor_articles": 9,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "tr.investing.com",
+     "outlet_name": "Investing.com Türkiye",
+     "competitor_articles": 9,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "autos.yahoo.com",
+     "outlet_name": "Yahoo Autos",
+     "competitor_articles": 8,
+     "competitors": [
+      "byd",
+      "lucid",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "cnbc.com",
+     "outlet_name": "CNBC",
+     "competitor_articles": 8,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "ntv.com.tr",
+     "outlet_name": "NTV Haber",
+     "competitor_articles": 8,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "es.investing.com",
+     "outlet_name": "Investing.com España",
+     "competitor_articles": 8,
+     "competitors": [
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "247wallst.com",
+     "outlet_name": "24/7 Wall St.",
+     "competitor_articles": 7,
+     "competitors": [
+      "byd",
+      "lucid",
+      "nio",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "automotive-online.nl",
+     "outlet_name": "Automotive Online",
+     "competitor_articles": 7,
+     "competitors": [
+      "byd",
+      "lucid",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "bevolt.com",
+     "outlet_name": "www.bevolt.com",
+     "competitor_articles": 7,
+     "competitors": [
+      "byd",
+      "lucid",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "auto-infos.fr",
+     "outlet_name": "Auto Infos",
+     "competitor_articles": 7,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "cnevpost.com",
+     "outlet_name": "CnEVPost",
+     "competitor_articles": 7,
+     "competitors": [
+      "byd",
+      "nio"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "boerse-express.com",
+     "outlet_name": "Börse Express",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd",
+      "nio",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "boursorama.com",
+     "outlet_name": "Boursorama",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "fr.investing.com",
+     "outlet_name": "Investing.com France",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "gazeteoksijen.com",
+     "outlet_name": "Gazete Oksijen",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "torquenews.com",
+     "outlet_name": "Torque News",
+     "competitor_articles": 6,
+     "competitors": [
+      "lucid",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "istanbulticaretgazetesi.com",
+     "outlet_name": "İstanbul Ticaret Gazetesi",
+     "competitor_articles": 6,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "headliner.nl",
+     "outlet_name": "Headliner.nl",
+     "competitor_articles": 5,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "thecooldown.com",
+     "outlet_name": "The Cool Down",
+     "competitor_articles": 5,
+     "competitors": [
+      "byd",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "tr.motor1.com",
+     "outlet_name": "Motor1.com Türkiye",
+     "competitor_articles": 5,
+     "competitors": [
+      "byd",
+      "lucid",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "adac.de",
+     "outlet_name": "ADAC",
+     "competitor_articles": 5,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "cumhuriyet.com.tr",
+     "outlet_name": "Cumhuriyet",
+     "competitor_articles": 5,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "motortrend.com",
+     "outlet_name": "MotorTrend",
+     "competitor_articles": 5,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "simplywall.st",
+     "outlet_name": "Simply Wall St",
+     "competitor_articles": 5,
+     "competitors": [
+      "nio",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "theverge.com",
+     "outlet_name": "The Verge",
+     "competitor_articles": 5,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "trefis.com",
+     "outlet_name": "Trefis",
+     "competitor_articles": 5,
+     "competitors": [
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "evrijders.nl",
+     "outlet_name": "Vereniging Elektrische Rijders",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "businessinsider.com",
+     "outlet_name": "Business Insider",
+     "competitor_articles": 4,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "carwow.de",
+     "outlet_name": "carwow.de",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "edmunds.com",
+     "outlet_name": "Edmunds",
+     "competitor_articles": 4,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "motorpasion.com",
+     "outlet_name": "Motorpasión",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "nl.investing.com",
+     "outlet_name": "Investing.com",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd",
+      "rivian"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "usatoday.com",
+     "outlet_name": "USA Today",
+     "competitor_articles": 4,
+     "competitors": [
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "bnr.nl",
+     "outlet_name": "bnr.nl",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "sharedeals.de",
+     "outlet_name": "sharedeals.de",
+     "competitor_articles": 4,
+     "competitors": [
+      "byd"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "teslamag.de",
+     "outlet_name": "Teslamag.de",
+     "competitor_articles": 4,
+     "competitors": [
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "autoscout24.nl",
+     "outlet_name": "AutoScout24",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "lucid",
+      "nio"
+     ],
+     "primary_all_time": 1
+    },
+    {
+     "outlet": "hln.be",
+     "outlet_name": "HLN",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "rivian",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    },
+    {
+     "outlet": "shattered.io",
+     "outlet_name": "shattered.io",
+     "competitor_articles": 3,
+     "competitors": [
+      "byd",
+      "nio",
+      "tesla"
+     ],
+     "primary_all_time": 0
+    }
+   ],
+   "topic_gaps": [
+    {
+     "topic": "charging",
+     "primary_articles": 6,
+     "primary_share": 0.0088626292,
+     "competitor_articles": 100,
+     "competitor_share": 0.0506842372,
+     "gap_pts": 4.1821607956,
+     "top_competitor": "byd"
+    },
+    {
+     "topic": "sales",
+     "primary_articles": 3,
+     "primary_share": 0.0044313146,
+     "competitor_articles": 80,
+     "competitor_share": 0.0405473898,
+     "gap_pts": 3.6116075138,
+     "top_competitor": "byd"
+    },
+    {
+     "topic": "business",
+     "primary_articles": 2,
+     "primary_share": 0.0029542097,
+     "competitor_articles": 56,
+     "competitor_share": 0.0283831728,
+     "gap_pts": 2.5428963084,
+     "top_competitor": "rivian"
+    },
+    {
+     "topic": "deals_pricing",
+     "primary_articles": 11,
+     "primary_share": 0.0162481536,
+     "competitor_articles": 63,
+     "competitor_share": 0.0319310694,
+     "gap_pts": 1.5682915818,
+     "top_competitor": "tesla"
+    },
+    {
+     "topic": "awards",
+     "primary_articles": 2,
+     "primary_share": 0.0029542097,
+     "competitor_articles": 18,
+     "competitor_share": 0.0091231627,
+     "gap_pts": 0.6168952948,
+     "top_competitor": "tesla"
+    },
+    {
+     "topic": "sustainability",
+     "primary_articles": 3,
+     "primary_share": 0.0044313146,
+     "competitor_articles": 6,
+     "competitor_share": 0.0030410542,
+     "gap_pts": -0.1390260391,
+     "top_competitor": "tesla"
+    },
+    {
+     "topic": "software",
+     "primary_articles": 14,
+     "primary_share": 0.0206794682,
+     "competitor_articles": 35,
+     "competitor_share": 0.017739483,
+     "gap_pts": -0.2939985221,
+     "top_competitor": "tesla"
+    },
+    {
+     "topic": "launch",
+     "primary_articles": 33,
+     "primary_share": 0.0487444609,
+     "competitor_articles": 72,
+     "competitor_share": 0.0364926508,
+     "gap_pts": -1.2251810071,
+     "top_competitor": "byd"
+    },
+    {
+     "topic": "reviews",
+     "primary_articles": 58,
+     "primary_share": 0.0856720827,
+     "competitor_articles": 70,
+     "competitor_share": 0.035478966,
+     "gap_pts": -5.0193116676,
+     "top_competitor": "byd"
+    }
+   ],
+   "top_stories": [
+    {
+     "cluster_id": "27fbeeb6dedcae11",
+     "title": "Polestar’s Formula 2030 concept is wild",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNWEpRaFBuV180QnJDcE1FQnROTFpxSTBLR1lJN3lhUzNSZjZuSEtWeGszUHdyTEh3UVdsd1FRNWdEUjlQbVVRem5VZmpoNWM2Skd1UXYtRWcwQ3FhcHpBcEpReFVkYTg3OFZ6dFlNR3Bmekt1UWJKUnBkT1RCOTVyZXEyaWJXdXhhS0dMVmxmakJoRUt2VGRZMVh1UW9oS0FmeFFTbUthTEEzSmlSd3M1WEJnakJVZw?oc=5",
+     "brands": [
+      "polestar"
+     ],
+     "outlets": 8,
+     "markets": [
+      "AU"
+     ],
+     "first_seen": "2026-11-10T08:00:00"
+    },
+    {
+     "cluster_id": "e689040f7de84a7d",
+     "title": "Polestar Formula 2030",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBaSnpJQ0w2QlRsNUw2eXhJS25FcFB5dnRUdHVxbG9iaWpJMXpiSDhSNXNHYVFKazRwRlNZdVpsOGZIalVWdlFBWndRNmE3RmItbzZWSXRxa1BzY2RjR1I5U1VuWGhmT3F4Uko0SDlacE8?oc=5",
+     "brands": [
+      "polestar"
+     ],
+     "outlets": 8,
+     "markets": [
+      "DE",
+      "ES",
+      "FR",
+      "IT",
+      "NL"
+     ],
+     "first_seen": "2026-11-10T08:00:00"
+    },
+    {
+     "cluster_id": "1292f879c0a17b79",
+     "title": "The 2026 BYD M9 people-mover proved Dom wrong about fancy vans.",
+     "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQN2JPLWlfTUhtQWU5b3BGMk1hU1c3QnpTc09BSm5NVjF1dnhKclhkUkx3a3JVV2FxaGlnSXM0djA1SWN1Nm5CRGM5WnpPaGNsdDJ6d21zY1Fpc25WbEp6SGhQN1hYVmhhQTdRYnJSVWdiMy0xUGpDVGh4ZUg2ZklrX3RSTUpBUHowRTNBVjZnMnBSTk1pbmRhSzdNSWJBMFhEdmh0TnNtR3p6YmhZYUdrenNsdlByYXdEUEo0aDRrTkI1enVWUXhkOWNWYmRZeUxNYVE?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 7,
+     "markets": [
+      "AU"
+     ],
+     "first_seen": "2026-11-20T01:02:45"
+    },
+    {
+     "cluster_id": "89a5165dbcaaeb2a",
+     "title": "Tesla Model Y L 2026 review Australia: Premium All-Wheel Drive | 3-row EV with 681km range tested",
+     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNbU1hbm56NVUtYU1ja0ZNUmpjaDlkQ0pDZ1pxYXVoVEYzY1ZCTjVDLTVkbnVRaHB2bTdLZDNjbDVDT0VQWDA1Ymk2SHBpUHBvY0hFY2dZMWxYejdVX3U3czhEeXhYVE1BZzVlY2VTUFBER0xDUjdFTlBxdDA2S0piTFZ4YmJaTTllWlF6TEVVdTRaUjV0czhraU9QaGRzTFdFNXg1aVVURUVYUVdyckRpQWFERmJ5bGFWWmE0eWR2bGlaQVBveWRvT3VkeWxZVVYtSWl6ZHdGZDFrNXMtTFRmTGY5MEIxUE0wcWJZcUxWakpOT0hNa0cxXw?oc=5",
+     "brands": [
+      "tesla"
+     ],
+     "outlets": 6,
+     "markets": [
+      "AU",
+      "US"
+     ],
+     "first_seen": "2026-11-18T12:05:17"
+    },
+    {
+     "cluster_id": "3a65115926611dab",
+     "title": "Rivian-Backed ALSO Hits Another Speed Bump, Pauses E-Bike Deliveries Over Software Issues Affecting Charging",
+     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPSi10czJZYXRaVkx5azBLVThxcjczYmtVZTB1WGlDZzVvOHhrSnhYTFpMbGx3YUR3NlBlbS1XaVVDUTZUSENWOUNaNy1UOTh1ZnBvUEZvXzZEV0xQc2JWcE91TXlWclFpMFEtSVBIUDkwYjQ5SlEtbWZ5VjNWYmtaakduQ0dsZENrLWNyZERBZ1JXX183SXJhcEEwNmswbTMtSlV2WE9OelRISzVobVpkX29SZDJRc0NkMVlUVUk2UDVJb2xPVnVzTnlDUGxFYjl2Ujg4a1h2aFk0S2R4SGdrS1lrRTdtUnZyYjF6VXNLTGJCY1M2YTgwQw?oc=5",
+     "brands": [
+      "rivian"
+     ],
+     "outlets": 4,
+     "markets": [
+      "ES",
+      "GB",
+      "US"
+     ],
+     "first_seen": "2026-11-19T06:54:00"
+    },
+    {
+     "cluster_id": "d35cd0c8b56edd49",
+     "title": "Tesla Cybertruck is EV pickup market's latest casualty",
+     "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQcU5KYjFhN3hUX0JQdVRXRXFOTFhSQk9tLVNNNy16M2h4ZWlPY3lnSDZ5bi1PSHBxSmRxd2g0dktvbHBJbnlWbmRodGpUVkdMdVdDc0M4OWJ3NEozbHpaRThfMXpRU0dnaHlDbzl5cHRlbEVZSTlZZmtlOWN2OFR1d2Jnay1wSWdWMkdv?oc=5",
+     "brands": [
+      "tesla"
+     ],
+     "outlets": 4,
+     "markets": [
+      "AU",
+      "ES",
+      "US"
+     ],
+     "first_seen": "2026-11-10T08:00:00"
+    },
+    {
+     "cluster_id": "c6f84def4bcd0030",
+     "title": "Polestar blir nederländskt",
+     "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE00ZXAxOThoZEN1cmVkdnVtNElacXBQam5qSnJleW1wc1N2TmF6am0wNzdMd3cwUjZ5NDhPTlp4cUZzVHRXSV9oNEdSS2N5ejhqdmt4NVVBdDZFWXlzNWhoMlJCSQ?oc=5",
+     "brands": [
+      "polestar"
+     ],
+     "outlets": 4,
+     "markets": [
+      "SE"
+     ],
+     "first_seen": "2026-11-05T08:00:00"
+    },
+    {
+     "cluster_id": "fa9bf2b240c93526",
+     "title": "Autofabrikant BYD mag SUV-model Ti7 niet in EU verhandelen",
+     "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWFlZeHB3eHRPb3VEalh1UGVBNVpuWm0xUnFIUE80NlY1amtLcFVLU3ktRUFqSnQzYTF2eDM2Y25jR1UxRFBQdVYweExjdktBRF9UVTl5bTJnVV96ZzFra2Z1YmV5WXpvYUlrbUJDTkptMm1vekxpMktYX3lxUk05b3M0WVVSV1hKcmFGX3NQZjRCZ2xVRWdsQWhENko3QnBtLTFid0N5cnh6QktEYUY4MjBkTlFKUXREV0xlbjc4UkRaNHVsRGxscTRXc19YRXYzQXdQRlBmMUw3WU16ckxHMV9lR2FGX0M0UFZSVGlzSkQ1LUEwRWpvcmRR?oc=5",
+     "brands": [
+      "byd"
+     ],
+     "outlets": 3,
+     "markets": [
+      "NL"
+     ],
+     "first_seen": "2026-11-20T13:05:00"
+    },
+    {
+     "cluster_id": "df296309bde96d32",
+     "title": "Luxe EV gets free upgrade",
+     "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1BQjAyRzJhN0xVSWhjS2ZIYnY5eWlmRTV1UVNZSnF5TXhkM1JKLV9fT0pxMnJfb081SHJmYmpsaDVhaXRka0pDaUNlWURsZWtaNG9ob3huVTRJVzRyLXVXb2JMWVBVb1ZZR203QVY3ZmNxeGJjR0s4?oc=5",
+     "brands": [
+      "polestar"
+     ],
+     "outlets": 3,
+     "markets": [
+      "AU",
+      "GB",
+      "US"
+     ],
+     "first_seen": "2026-11-20T11:19:58"
+    },
+    {
+     "cluster_id": "68f4064622236b78",
+     "title": "Polestar 4 krijgt Android 15, Vehicle-to-Load, Digital Key en lifestyle functies via over-the-air update",
+     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPX1U1M0pMN0xqN3pqdjh0N0tUT291YTZSM3NNN05USjFsMmhiTVFFN1RjMWVYM2N6SGpJaWJOLTdlaU0tX0pyTkhMR2FoM1Bqdkdsb3h0czlDbFF6T21CUzkzUm1vemUzXzlGOVp1QXpyQk1sSlVDTzUzbWhId0ZUbDc3cm1IZG1uOWREeGhlTWpsQVVvZTJqM2JEYUdFYUdmdnhFNmRMSlpjTmwtSk9BTC16UkFnOWszRGVNdmhBTDgtNTlURF8xR1RqaGZCMDhuSnBtcVBWUHJiOFNuS1E?oc=5",
+     "brands": [
+      "polestar"
+     ],
+     "outlets": 3,
+     "markets": [
+      "NL"
+     ],
+     "first_seen": "2026-11-15T11:14:00"
+    }
+   ],
+   "brief": null
+  }
+ },
+ "aspect_sentiment": [
+  {
+   "brand": "polestar",
+   "aspect": "headline tone",
+   "valence": 6.56,
+   "arousal": 5.53,
+   "mentions": 624
+  },
+  {
+   "brand": "rivian",
+   "aspect": "headline tone",
+   "valence": 6.47,
+   "arousal": 5.52,
+   "mentions": 303
+  },
+  {
+   "brand": "lucid",
+   "aspect": "headline tone",
+   "valence": 6.37,
+   "arousal": 5.37,
+   "mentions": 78
+  },
+  {
+   "brand": "byd",
+   "aspect": "headline tone",
+   "valence": 6.36,
+   "arousal": 5.74,
+   "mentions": 770
+  },
+  {
+   "brand": "nio",
+   "aspect": "headline tone",
+   "valence": 6.27,
+   "arousal": 5.47,
+   "mentions": 72
+  },
+  {
+   "brand": "tesla",
+   "aspect": "headline tone",
+   "valence": 6.13,
+   "arousal": 5.6,
+   "mentions": 628
+  }
+ ]
+};

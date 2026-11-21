@@ -1,0 +1,75 @@
+# PR Radar configuration for a second, unrelated market: electric car makers.
+# Same code, same models; only this file differs from config/brands.yaml.
+#
+#   pr-radar --config config/examples/ev-makers.yaml --db data/demo/ev.duckdb \
+#            --archive data/demo/ev-archive collect --lookback-days 30
+#
+# Demo set: Polestar as the brand a PR team works for, five competitors.
+
+primary_brand: polestar
+lookback_days: 7
+
+brands:
+  - id: polestar
+    name: Polestar
+    query: '"Polestar"'
+    extra_queries: ['"Polestar 3"', '"Polestar 4"']
+    aliases: ["Polestar"]
+  - id: tesla
+    name: Tesla
+    query: '"Tesla Model" OR "Tesla Cybertruck"'
+    aliases: ["Tesla"]
+  - id: byd
+    name: BYD
+    query: '"BYD"'
+    aliases: ["BYD"]
+  - id: rivian
+    name: Rivian
+    query: '"Rivian"'
+    aliases: ["Rivian"]
+  - id: lucid
+    name: Lucid
+    query: '"Lucid Air" OR "Lucid Gravity" OR "Lucid Motors"'
+    aliases: ["Lucid Air", "Lucid Gravity", "Lucid Motors"]
+  - id: nio
+    name: NIO
+    query: '"NIO" electric'
+    aliases: ["NIO"]
+
+editions:
+  - { hl: en-US, gl: US, ceid: "US:en" }
+  - { hl: en-GB, gl: GB, ceid: "GB:en" }
+  - { hl: en-AU, gl: AU, ceid: "AU:en" }
+  - { hl: de, gl: DE, ceid: "DE:de" }
+  - { hl: fr, gl: FR, ceid: "FR:fr" }
+  - { hl: es, gl: ES, ceid: "ES:es" }
+  - { hl: it, gl: IT, ceid: "IT:it" }
+  - { hl: sv, gl: SE, ceid: "SE:sv" }
+  - { hl: nl, gl: NL, ceid: "NL:nl" }
+  - { hl: tr, gl: TR, ceid: "TR:tr" }
+
+gdelt:
+  enabled: false
+
+rss:
+  enabled: true
+  feeds:
+    - { url: "https://electrek.co/feed/", country: US, language: en }
+    - { url: "https://insideevs.com/rss/news/all/", country: US, language: en }
+    - { url: "https://cleantechnica.com/feed/", country: US, language: en }
+    - { url: "https://www.theverge.com/rss/index.xml", country: US, language: en }
+    - { url: "https://www.carscoops.com/feed/", country: US, language: en }
+
+topics:
+  launch: [launch, unveil, reveal, debut, introduc, "lanza", "lance", "stellt vor", "presenta", "tanıt"]
+  deals_pricing: [price, discount, lease, "price cut", incentive, "tax credit", preis, prix, precio, prezzo, fiyat]
+  reviews: [review, "test drive", tested, "first drive", "i drove", test, essai, prueba, prova, inceleme]
+  charging: [charging, charger, supercharger, range, battery, laden, recharge, recarga, ricarica, şarj]
+  software: [autopilot, "self-driving", fsd, autonomous, "software update", "over-the-air", robotaxi]
+  sales: [deliveries, delivered, sales, registrations, "market share", absatz, ventes, ventas, vendite, satış]
+  business: [funding, factory, plant, layoff, tariff, earnings, revenue, partnership, investment, ceo, werk, usine, fábrica]
+  sustainability: [sustainab, emissions, recycl, "carbon", nachhaltig, durable, sostenib]
+  # Reputational risk, by keyword (see config/brands.yaml).
+  risk: [recall, lawsuit, sued, "class action", investigation, probe, crash, fire, nhtsa, injur,
+         rückruf, rappel, retirada, richiamo, "geri çağır", dava]
+  awards: [award, "car of the year", winner, "best of", auszeichnung, premio, prix, ödül]

@@ -18,3 +18,5 @@ data/external/
 # Trained models and evaluation outputs
 models/
 data/annotations/*.duckdb
+data/demo/*.duckdb
+data/demo/*.duckdb.wal

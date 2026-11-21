@@ -1,8 +1,15 @@
 # PR Radar
 
-Media monitoring for a PR team: it collects public news coverage of a brand and its competitors in 14 markets, finds where competitors get coverage the brand does not, scores the tone of each brand mention, and has a small local LLM write a weekly brief that is checked against the data before it is published.
+Media monitoring for a PR team, for any brand in any market: it collects public news coverage of a brand and its competitors, finds where competitors get coverage the brand does not, scores the tone of each brand mention, and has a small local LLM write a weekly brief that is checked against the data before it is published.
 
-**[Live dashboard](https://etipufhu.github.io/pr-radar/)** · **[Latest report](https://etipufhu.github.io/pr-radar/report.html)** · **[Brief model card](adapters/brief-lora-qwen3-1.7b)**
+Nothing in the code is tied to one company or industry. The market is one YAML file, and the repo ships two that have nothing in common:
+
+| Demo | Brands | Coverage, 30 days | Dashboard |
+|---|---|---:|---|
+| Beauty tech | FOREO vs NuFACE, CurrentBody, Therabody, PMD Beauty, Solawave | ~280 articles | [open](https://etipufhu.github.io/pr-radar/) · [report](https://etipufhu.github.io/pr-radar/report.html) |
+| Electric cars | Polestar vs Tesla, BYD, Rivian, Lucid, NIO | ~2,700 articles | [open](https://etipufhu.github.io/pr-radar/demo-ev/) · [report](https://etipufhu.github.io/pr-radar/demo-ev/report.html) |
+
+**[Brief model card](adapters/brief-lora-qwen3-1.7b)** · **[Use it for your own market](#one-tool-any-market)**
 
 ![Dashboard: share of voice, reach and volume for the last 7 days](docs/img/dashboard.png)
 
@@ -10,9 +17,35 @@ Media monitoring for a PR team: it collects public news coverage of a brand and 
 |---|---|---|
 | Weekly brief (LLM fine-tuning) | Qwen3-1.7B with a LoRA adapter distilled from Qwen3-4B, plus rule checks for every number, outlet and piece of advice | First drafts that pass every check: 1 of 21 → 11 of 21, level with the 4B teacher; LLM judge 3.5 → 4.2 out of 5 |
 | Sentiment (encoder fine-tuning) | XLM-R fine-tuned on DimABSA (SemEval-2026), valence and arousal per brand mention, then adapted to news headlines | 6–53% lower error than the baseline on all 10 official test sets; on news headlines (LLM labels, spot-checked by a person), Pearson 0.53 for valence and 0.63 for arousal |
-| Collection | Google News (14 market editions, brand and product-line queries) and 97 outlet RSS feeds, deduplicated and clustered into stories | About 280 articles in the last 30 days, history kept as Parquet in the repo |
+| Collection | Google News (up to 14 market editions, brand and product-line queries) and outlet RSS feeds, deduplicated and clustered into stories | ~280 articles in 30 days for beauty tech, ~2,700 for electric cars; history kept as Parquet in the repo |
 
 ![The weekly brief card on the dashboard](docs/img/brief.png)
+
+## One tool, any market
+
+The first demo is beauty tech, but the problem is generic: a PR or marketing team wants to know where its competitors are getting coverage, in which markets and on which topics, and what to do about it this week. That question is the same for a car maker, a fintech app, a sportswear label, a game studio, a university or a non-profit.
+
+To show it, the same code runs a second market with no code changes, only `config/examples/ev-makers.yaml`: Polestar against five other electric-car makers, ten market editions, five auto-news RSS feeds and a topic list for the sector (charging, software, sales, recalls...).
+
+![Electric-car demo: Polestar vs competitors](docs/img/demo-ev.png)
+
+The brief model was trained only on beauty-tech brands. On the electric-car week it wrote this on its first attempt, and it passed every check:
+
+> **Summary:** Polestar had 138 mentions and 14% share of voice, behind BYD at 41%. Competitors lead in TR, GB, and AU. BYD has a risk headline on autojosh.com, and NIO has a risk headline on frandroid.com. Polestar's headline tone is 6.6, slightly above neutral.
+>
+> **Actions:**
+>
+> - Re-pitch electrek.co, which covered Polestar before and ran 30 competitor articles.
+> - Pitch finance.yahoo.com, which ran 13 competitor articles and has not covered Polestar.
+> - Offer a Polestar story on charging to counter competitors' 7% coverage in that topic.
+
+That is one week, not an evaluation; the held-out results below are all beauty tech.
+
+**Your own market in three steps:**
+
+1. Copy `config/examples/ev-makers.yaml` and set your brands (`query` for Google News, `aliases` for matching), the editions (countries and languages), RSS feeds of the outlets that matter, and keywords per topic. Keep a `risk` topic for recall/lawsuit alerts.
+2. `pr-radar --config my.yaml --db data/my.duckdb --archive data/my-archive collect --lookback-days 30`
+3. `pr-radar --config my.yaml --db data/my.duckdb report`, plus `score-sentiment`, `brief --adapter adapters/brief-lora-qwen3-1.7b` and `export-web --out <folder>` for the dashboard (the last three need a GPU).
 
 ## Fine-tuning a small LLM to write the brief
 
@@ -59,7 +92,7 @@ A small local LLM also writes a short weekly brief from these numbers. The brief
 
 Outputs: a static web dashboard and an HTML report, both published to GitHub Pages by a daily GitHub Action, and a Streamlit app.
 
-> Independent student project, not affiliated with or endorsed by any brand named in the configuration or reports. It uses only public news headlines and metadata. The brands in `config/brands.yaml` are a demo; edit the file to track another market. Matching is automatic and can be wrong, so check a report before sharing it.
+> Independent student project, not affiliated with or endorsed by any brand named in the configuration or reports. It uses only public news headlines and metadata. The brands in `config/brands.yaml` and `config/examples/` are demos; edit or copy a file to track another market. Matching is automatic and can be wrong, so check a report before sharing it.
 
 ## How it works
 
@@ -255,7 +288,8 @@ The dashboard on GitHub Pages is a snapshot: its data was exported once on a loc
 ## Project layout
 
 ```
-config/brands.yaml          brands, market editions, topic taxonomy
+config/brands.yaml          brands, market editions, topic taxonomy (beauty-tech demo)
+config/examples/            other markets (electric cars)
 src/pr_radar/
   collectors/               google_news.py, rss.py, gdelt.py
   matching.py               brand + topic tagging
