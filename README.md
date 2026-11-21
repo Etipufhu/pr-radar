@@ -184,7 +184,12 @@ Errors in first drafts, final checks:
 | Action promotes a competitor's story | 1 | 1 | 0 | 1 |
 | Risk headline not mentioned | 1 | 1 | 1 | 1 |
 
-**What is left.** The main remaining error is "re-pitch", in 6 of the 21 first drafts. 98 of the 154 teacher briefs contain a re-pitch action, since every week with a warm outlet gets one, and the adapter picked that up as a habit: it writes "Re-pitch hurriyet.com.tr, which covered competitors but not FOREO". Labelling cold outlets "never covered FOREO" in the fact sheet and retraining did not help (same 11 of 21, more competitor-story errors; kept as `results/brief_eval_lora-cold-labels.json`), so the next step is to balance the training data rather than change the prompt.
+**What is left.** The main remaining error is "re-pitch", in 6 of the 21 first drafts. 98 of the 154 teacher briefs contain a re-pitch action, since every week with a warm outlet gets one, and the adapter picked that up as a habit: it writes "Re-pitch hurriyet.com.tr, which covered competitors but not FOREO". Two fixes were tried and not shipped:
+
+- Labelling cold outlets "never covered FOREO" in the fact sheet: same 11 of 21, re-pitch errors unchanged, more competitor-story errors (`results/brief_eval_lora-cold-labels.json`).
+- Training on an equal number of weeks with and without a warm outlet (`scripts/balance_brief_sft.py`, 112 examples): re-pitch errors fell from 6 to 4 drafts, but competitor-story errors rose from 0 to 3. Again 11 of 21, with 76% published against 86% and a judge mean of 4.14 (`results/brief_eval_lora-balanced.json`).
+
+With 21 test weeks a difference of one or two drafts is within noise. The next useful steps are more teacher briefs for weeks without a warm outlet, instead of dropping examples, and a larger test set.
 
 **What the checks do not catch.** They test whether a brief is grounded in the data and catch the bad advice seen so far, not every kind. Two patterns found by reading drafts are not checked yet: outlet names that are not domains ("The Verge"), and vague targets ("outlets that covered FOREO before, such as [outlet name]"). A brief should still be read before it is shared, and the weekly report on GitHub Pages keeps the rule-based takeaways.
 
