@@ -51,14 +51,28 @@ p { margin: 0; }
     radial-gradient(60% 50% at 70% 72%, rgba(29, 110, 220, 0.28), transparent 70%),
     radial-gradient(40% 35% at 18% 12%, rgba(90, 130, 255, 0.10), transparent 70%),
     var(--bg); }
-.swirl { position: absolute; width: 125vmax; height: 125vmax; left: 50%; top: 50%;
-  transform: translate(-50%, -52%); opacity: 1; }
-.swirl-spin { transform-origin: 760px 720px; }
-.fibers use { mix-blend-mode: screen; }
 .hero-image { position: absolute; inset: 0; background: center / cover no-repeat; opacity: 0;
   transition: opacity 0.8s ease; }
 body.has-hero .hero-image { background-image: url("assets/hero.webp"); opacity: 1; }
-body.has-hero .swirl { opacity: 0; }
+body.has-hero .radar { opacity: 0; }
+/* Radar: static rings and a conic sweep that only rotates (compositor-only). Each layer
+   carries its own round mask, so rotating it never re-rasterizes anything. */
+.radar { position: absolute; left: 50%; top: 44%; width: min(150vmax, 1800px); aspect-ratio: 1;
+  transform: translate(-50%, -50%); transition: opacity 0.8s ease; }
+.radar > * { position: absolute; inset: 0; border-radius: 50%;
+  -webkit-mask: radial-gradient(closest-side, #000 30%, rgba(0, 0, 0, 0.55) 62%, transparent 100%);
+  mask: radial-gradient(closest-side, #000 30%, rgba(0, 0, 0, 0.55) 62%, transparent 100%); }
+.radar-rings { background:
+  radial-gradient(closest-side, rgba(69, 200, 255, 0.16), transparent 22%),
+  linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(140, 200, 255, 0.10) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+  linear-gradient(0deg, transparent calc(50% - 0.5px), rgba(140, 200, 255, 0.10) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+  repeating-radial-gradient(circle, transparent 0 119px, rgba(140, 200, 255, 0.13) 119px 120px); }
+.radar-sweep { background: conic-gradient(from 0deg, transparent 0deg 280deg, rgba(69, 200, 255, 0.035) 300deg,
+  rgba(69, 200, 255, 0.12) 352deg, rgba(190, 240, 255, 0.3) 359.4deg, transparent 360deg);
+  transform: rotate(38deg); will-change: transform; }
+.blip { position: absolute; left: var(--x); top: var(--y); width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%;
+  background: var(--them); box-shadow: 0 0 16px 4px rgba(229, 103, 47, 0.55); opacity: 0.35; }
+.blip.us { background: var(--us-hi); box-shadow: 0 0 16px 4px rgba(69, 200, 255, 0.6); }
 .grain { position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .backdrop::after { content: ""; position: absolute; inset: 0;
@@ -66,10 +80,10 @@ body.has-hero .swirl { opacity: 0; }
 
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
-  .swirl-spin { animation: spin 90s linear infinite; }
-  .swirl { animation: breathe 14s ease-in-out infinite alternate; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes breathe { from { opacity: 0.88; } to { opacity: 1; } }
+  .radar-sweep { animation: sweep 12s linear infinite; }
+  .blip { opacity: 0.12; animation: blip 12s linear var(--d) infinite backwards; }
+  @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes blip { 0% { opacity: 1; transform: scale(1.35); } 35% { opacity: 0.12; transform: scale(1); } 100% { opacity: 0.12; } }
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in { opacity: 1; transform: none; }
 }
@@ -181,6 +195,20 @@ main section, .section-title { scroll-margin-top: 84px; }
 .checks.large { gap: 16px; }
 .checks.large li { font-size: 15px; color: var(--ink); }
 .checks strong { color: #fff; font-weight: 600; }
+
+/* ---------- Weekly brief ---------- */
+.brief { border-color: rgba(69, 200, 255, 0.32);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 40px 80px -40px rgba(10, 80, 180, 0.6); }
+.brief-summary { max-width: 860px; font-size: clamp(15.5px, 1.45vw, 18px); line-height: 1.6; color: var(--ink); }
+.brief-summary strong { font-weight: 600; color: #fff; }
+.brief-actions { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; counter-reset: a; }
+.brief-actions li { counter-increment: a; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; align-items: start;
+  padding: 13px 16px 13px 14px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+.brief-actions li::before { content: counter(a); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 12.5px; font-weight: 700; color: #04121c; background: linear-gradient(135deg, #b9f3ff, var(--us-hi)); }
+.brief-foot { margin-top: 18px; }
+.brief-foot a { color: var(--us-hi); text-underline-offset: 3px; white-space: nowrap; }
 
 /* ---------- Share of voice ---------- */
 .sov-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: start; }

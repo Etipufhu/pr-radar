@@ -127,3 +127,34 @@ def test_gdelt_respects_time_budget(settings):
 
 def test_gdelt_is_opt_in(settings):
     assert settings.gdelt.enabled is False
+
+
+def test_google_news_runs_extra_queries_only_when_the_brand_has_coverage():
+    from pr_radar.collectors.google_news import GoogleNewsCollector
+    from pr_radar.config import Settings
+
+    payload = (FIXTURES / "google_news.xml").read_bytes()
+    asked = []
+
+    class Http:
+        min_interval: dict = {}
+
+        def get(self, url):
+            q = parse_qs(urlparse(url).query)["q"][0]
+            asked.append((q, parse_qs(urlparse(url).query)["gl"][0]))
+
+            class R:
+                content = payload if parse_qs(urlparse(url).query)["gl"] == ["US"] else b"<rss/>"
+
+            return R()
+
+    brand = Brand(id="foreo", name="FOREO", query='"FOREO"', extra_queries=['"FOREO LUNA"'])
+    de = Edition(hl="de", gl="DE", ceid="DE:de")
+    settings = Settings(primary_brand="foreo", brands=[brand], editions=[US, de])
+    articles = GoogleNewsCollector(settings, Http()).collect()
+    assert asked == [
+        ('"FOREO" when:7d', "US"),
+        ('"FOREO LUNA" when:7d', "US"),
+        ('"FOREO" when:7d', "DE"),  # nothing in DE, so no product query there
+    ]
+    assert len(articles) == 4

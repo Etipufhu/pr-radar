@@ -15,7 +15,7 @@ class Article:
     source_name: str
     source_domain: str
     published_at: datetime  # naive UTC
-    collector: str  # "google_news" | "gdelt"
+    collector: str  # "google_news" | "gdelt" | "rss"
     query_brand: str
     language: str | None = None
     country: str | None = None

@@ -76,6 +76,8 @@ COUNTRY_WORDS = {
     "SE": r"\b(?:SE|Swedish|Sweden)\b",
     "JP": r"\b(?:JP|Japanese|Japan)\b",
     "BR": r"\b(?:BR|Brazilian|Brazil)\b",
+    "HK": r"\b(?:HK|Hong Kong)\b",
+    "NL": r"\b(?:NL|Dutch|Netherlands)\b",
 }
 EXAMPLE_NAMES = ["Acme", "Brightline", "Novaskin", "glamour.de", "wired.com", "review units"]
 MAX_WORDS = 170

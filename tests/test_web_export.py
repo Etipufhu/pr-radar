@@ -102,6 +102,45 @@ def test_aspect_sentiment_passthrough(seeded, settings):
     assert data["aspect_sentiment"] == rows
 
 
+def _save_brief(tmp_path, start, end, published):
+    from pr_radar.narrative.writer import Brief, save_brief
+
+    text = "Summary: FOREO had 2 mentions.\nActions:\n- Pitch bild.de.\n- Pitch stern.de."
+    brief = Brief(
+        text, "Qwen/Qwen3-1.7B + LoRA", published, [], [], 1, {"start": start, "end": end}
+    )
+    save_brief(brief, tmp_path / "briefs")
+
+
+def test_published_brief_is_in_its_window_only(seeded, settings, tmp_path):
+    _save_brief(tmp_path, "2026-11-13", "2026-11-19", published=True)
+    data = build_payload(seeded.con, settings, END, briefs_dir=tmp_path / "briefs")
+    brief = data["windows"]["7"]["brief"]
+    assert brief["summary"] == "FOREO had 2 mentions."
+    assert brief["actions"] == ["Pitch bild.de.", "Pitch stern.de."]
+    assert brief["model"] == "Qwen3-1.7B + LoRA" and brief["checks_passed"] is True
+    assert brief["created_at"]
+    assert brief["start"] == "2026-11-13" and brief["end"] == "2026-11-19"
+    assert data["windows"]["28"]["brief"] is None  # a 7-day brief does not fill a 28-day window
+
+
+def test_newest_fitting_brief_is_used(seeded, settings, tmp_path):
+    # The dashboard is rebuilt on a schedule, so the window rarely matches a brief exactly.
+    _save_brief(tmp_path, "2026-11-10", "2026-11-16", published=True)
+    _save_brief(tmp_path, "2026-11-11", "2026-11-17", published=False)
+    _save_brief(tmp_path, "2026-11-01", "2026-11-07", published=True)  # older than the window
+    data = build_payload(seeded.con, settings, END, briefs_dir=tmp_path / "briefs")
+    assert data["windows"]["7"]["brief"]["end"] == "2026-11-16"
+
+
+def test_unpublished_or_missing_brief_is_null(seeded, settings, tmp_path):
+    data = build_payload(seeded.con, settings, END, briefs_dir=tmp_path / "briefs")
+    assert data["windows"]["7"]["brief"] is None
+    _save_brief(tmp_path, "2026-11-13", "2026-11-19", published=False)
+    data = build_payload(seeded.con, settings, END, briefs_dir=tmp_path / "briefs")
+    assert data["windows"]["7"]["brief"] is None
+
+
 def test_write_web_data_writes_json_and_script(seeded, settings, tmp_path):
     path = write_web_data(seeded.con, settings, tmp_path / "web", END)
     data = json.loads(path.read_text(encoding="utf-8"))

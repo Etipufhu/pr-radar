@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
-from .collectors import GdeltCollector, GoogleNewsCollector
+from .collectors import GdeltCollector, GoogleNewsCollector, RssCollector
 from .config import Settings
 from .dedup import assign_clusters, merge_duplicates
 from .http import HttpClient
@@ -68,7 +68,7 @@ def run_collection(
     settings: Settings,
     store: Store,
     archive_dir: str | Path | None = None,
-    sources: tuple[str, ...] = ("google_news", "gdelt"),
+    sources: tuple[str, ...] = ("google_news", "gdelt", "rss"),
     http: HttpClient | None = None,
 ) -> RunStats:
     http = http or HttpClient()
@@ -84,6 +84,8 @@ def run_collection(
         collectors.append(GoogleNewsCollector(settings, http))
     if "gdelt" in sources and settings.gdelt.enabled:
         collectors.append(GdeltCollector(settings, http))
+    if "rss" in sources and settings.rss.enabled and settings.rss.feeds:
+        collectors.append(RssCollector(settings, http))
 
     raw: list[Article] = []
     for collector in collectors:

@@ -69,15 +69,23 @@ class GoogleNewsCollector:
         self.http.min_interval.setdefault(HOST, 1.5)
         self.errors = 0
 
-    def fetch(self, brand: Brand, edition: Edition) -> list[Article]:
-        url = build_url(brand.query, edition, self.settings.lookback_days)
+    def fetch_query(self, query: str, brand: Brand, edition: Edition) -> list[Article]:
+        url = build_url(query, edition, self.settings.lookback_days)
         try:
             response = self.http.get(url)
         except requests.RequestException as exc:
             self.errors += 1
-            log.warning("Google News %s/%s failed: %s", brand.id, edition.ceid, exc)
+            log.warning("Google News %s/%s failed: %s", query, edition.ceid, exc)
             return []
         return parse_feed(response.content, brand_id=brand.id, edition=edition)
+
+    def fetch(self, brand: Brand, edition: Edition) -> list[Article]:
+        articles = self.fetch_query(brand.query, brand, edition)
+        if not articles:
+            return []  # extra queries all contain the brand name, so they would be empty too
+        for query in brand.extra_queries:
+            articles.extend(self.fetch_query(query, brand, edition))
+        return articles
 
     def collect(self) -> list[Article]:
         results: list[Article] = []

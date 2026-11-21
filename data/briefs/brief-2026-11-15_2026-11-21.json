@@ -1,52 +1,50 @@
 {
-  "text": "Summary: FOREO had 15 mentions and 19% share of voice, tied with CurrentBody. Therabody leads in AU with 100% coverage, and in the US, Therabody leads with 40% coverage. Competitors dominate in skin science and business topics, with 23% and 15% respectively. A Therabody recall headline is in the news.  \nActions:  \n- Pitch popsugar.com, which covered competitors but not FOREO, with a story on skin science and product safety.  \n- Pitch wareable.com, which covered competitors but not FOREO, with a story on skin science and business topics.  \n- Offer a skin science story to menshealth.com, which covered competitors but not FOREO, to address the 23% competitor lead.",
+  "text": "Summary: FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU with 100% coverage, and in the US, Therabody leads with 35% to FOREO’s 15%. CurrentBody leads in skin science with 25% coverage, and Solawave in reviews with 10%. A recall headline about Therabody’s charger is in the news.  \nActions:  \n- Pitch forbes.com, which covered competitors and did not cover FOREO.  \n- Pitch harpersbazaar.com, which covered competitors and has covered FOREO before.",
   "model": "Qwen/Qwen3-1.7B + LoRA",
   "published": true,
   "errors": [],
-  "style": [
-    "two actions say the same thing"
-  ],
-  "attempts": 4,
+  "style": [],
+  "attempts": 5,
   "facts": {
     "primary": "FOREO",
     "start": "2026-11-15",
     "end": "2026-11-21",
     "baseline": false,
-    "total_mentions": 80,
+    "total_mentions": 109,
     "brands": [
       {
         "brand": "Therabody",
         "primary": false,
         "rank": 1,
-        "mentions": 39,
-        "share_pct": 49,
-        "headline_mentions": 18,
-        "change_pts": null
-      },
-      {
-        "brand": "CurrentBody",
-        "primary": false,
-        "rank": 2,
-        "mentions": 15,
-        "share_pct": 19,
-        "headline_mentions": 6,
+        "mentions": 45,
+        "share_pct": 41,
+        "headline_mentions": 21,
         "change_pts": null
       },
       {
         "brand": "FOREO",
         "primary": true,
-        "rank": 3,
-        "mentions": 15,
-        "share_pct": 19,
+        "rank": 2,
+        "mentions": 25,
+        "share_pct": 23,
         "headline_mentions": 4,
+        "change_pts": null
+      },
+      {
+        "brand": "CurrentBody",
+        "primary": false,
+        "rank": 3,
+        "mentions": 24,
+        "share_pct": 22,
+        "headline_mentions": 11,
         "change_pts": null
       },
       {
         "brand": "Solawave",
         "primary": false,
         "rank": 4,
-        "mentions": 7,
-        "share_pct": 9,
+        "mentions": 8,
+        "share_pct": 7,
         "headline_mentions": 0,
         "change_pts": null
       },
@@ -54,8 +52,8 @@
         "brand": "NuFACE",
         "primary": false,
         "rank": 5,
-        "mentions": 3,
-        "share_pct": 4,
+        "mentions": 6,
+        "share_pct": 6,
         "headline_mentions": 0,
         "change_pts": null
       },
@@ -79,36 +77,36 @@
       {
         "country": "US",
         "leader": "Therabody",
-        "leader_pct": 40,
-        "primary_pct": 14
+        "leader_pct": 35,
+        "primary_pct": 15
       }
     ],
     "outlet_gaps": {
-      "count": 47,
-      "warm": 0,
+      "count": 50,
+      "warm": 5,
       "top": [
         {
           "outlet": "shopping.yahoo.com",
-          "competitor_articles": 4,
+          "competitor_articles": 5,
+          "warm": true
+        },
+        {
+          "outlet": "forbes.com",
+          "competitor_articles": 3,
           "warm": false
+        },
+        {
+          "outlet": "harpersbazaar.com",
+          "competitor_articles": 2,
+          "warm": true
         },
         {
           "outlet": "popsugar.com",
           "competitor_articles": 2,
-          "warm": false
-        },
-        {
-          "outlet": "uk.style.yahoo.com",
-          "competitor_articles": 2,
-          "warm": false
+          "warm": true
         },
         {
           "outlet": "wareable.com",
-          "competitor_articles": 2,
-          "warm": false
-        },
-        {
-          "outlet": "menshealth.com",
           "competitor_articles": 2,
           "warm": false
         }
@@ -117,15 +115,15 @@
     "topic_gaps": [
       {
         "topic": "skin science",
-        "competitor_pct": 23,
-        "primary_pct": 13,
+        "competitor_pct": 25,
+        "primary_pct": 16,
         "leader": "CurrentBody"
       },
       {
-        "topic": "business",
-        "competitor_pct": 15,
-        "primary_pct": 7,
-        "leader": "Therabody"
+        "topic": "reviews",
+        "competitor_pct": 10,
+        "primary_pct": 4,
+        "leader": "Solawave"
       }
     ],
     "risks": [
@@ -139,19 +137,19 @@
     ],
     "tone": [
       {
-        "brand": "CurrentBody",
-        "valence": 7.4,
-        "scored": 6
-      },
-      {
         "brand": "FOREO",
         "valence": 7.4,
         "scored": 4
       },
       {
+        "brand": "CurrentBody",
+        "valence": 7.3,
+        "scored": 11
+      },
+      {
         "brand": "Therabody",
-        "valence": 6.7,
-        "scored": 18
+        "valence": 6.8,
+        "scored": 21
       }
     ],
     "stories": [
@@ -163,14 +161,14 @@
         ]
       },
       {
-        "title": "Our editors use Therabody recovery gear every single day and it’s up to $230 off for Black Friday",
+        "title": "Blank Label Team Seeks One Brand for Its Next Global Growth Partnership",
         "outlets": 2,
         "brands": [
-          "Therabody"
+          "FOREO"
         ]
       },
       {
-        "title": "Therabody Acquires Embr Labs' Thermal Technology Portfolio to Expand Women's Health Offerings",
+        "title": "Our editors use Therabody recovery gear every single day and it’s up to $230 off for Black Friday",
         "outlets": 2,
         "brands": [
           "Therabody"
@@ -180,53 +178,38 @@
   },
   "drafts": [
     {
-      "text": "Summary: FOREO had 15 mentions and 19% share of voice, tied with CurrentBody. Therabody leads in AU and US with 100% and 40% respectively. Competitors dominate in skin science and business topics.  \nActions:  \n- Pitch shopping.yahoo.com, which covered competitors but not FOREO.  \n- Pitch popsugar.com, which covered competitors but not FOREO.  \n- Pitch uk.style.yahoo.com, which covered competitors but not FOREO.  \n- Pitch wareable.com, which covered competitors but not FOREO.  \n- Pitch menshealth.com, which covered competitors but not FOREO.",
+      "text": "Summary: FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU and US, with 100% and 35% respectively. Competitors dominate in skin science and reviews.  \nActions:  \n- Pitch shopping.yahoo.com, which covered FOREO before and ran 5 competitor articles.  \n- Pitch forbes.com, which covered competitors but not FOREO, to cover a skin science story.  \n- Pitch harpersbazaar.com, which covered FOREO before and ran 2 competitor articles, to cover a skin science story.",
       "errors": [
-        "does not mention the risk headline",
-        "expected 2-4 action bullets, got 5"
-      ],
-      "style": [
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing"
-      ]
-    },
-    {
-      "text": "Summary: FOREO had 15 mentions and 19% share of voice, tied with CurrentBody. Therabody leads in AU and US with 100% and 40% respectively. Competitors dominate skin science and business topics.  \nActions:  \n- Re-pitch shopping.yahoo.com, which covered competitors but not FOREO.  \n- Pitch popsugar.com, which covered competitors and not FOREO, on a skin science story.  \n- Pitch wareable.com, which covered competitors and not FOREO, on a business topic.",
-      "errors": [
-        "does not mention the risk headline",
-        "says re-pitch, but no listed outlet covered the brand before",
-        "re-pitch for an outlet that never covered the brand: shopping.yahoo.com"
+        "does not mention the risk headline"
       ],
       "style": []
     },
     {
-      "text": "Summary: FOREO had 15 mentions and 19% share of voice, tied with CurrentBody. Therabody leads in AU and US with 100% and 40% respectively. Competitors dominate in skin science and business topics.  \nActions:  \n- Pitch shopping.yahoo.com, which covered competitors but not FOREO.  \n- Pitch popsugar.com, which covered competitors but not FOREO.  \n- Pitch uk.style.yahoo.com, which covered competitors but not FOREO.  \n- Pitch wareable.com, which covered competitors but not FOREO.  \n- Pitch menshealth.com, which covered competitors but not FOREO.",
+      "text": "Summary: FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU with 100% coverage, and Therabody leads in US with 35% share. Competitors dominate in skin science (25% vs. 16%) and reviews (10% vs. 4%).  \nActions:  \n- Re-pitch shopping.yahoo.com, which covered FOREO before and ran 5 competitor articles.  \n- Pitch forbes.com, which ran 3 competitor articles and has not covered FOREO.  \n- Offer a skin science story to outlets in AU and US, targeting CurrentBody and Solawave.",
       "errors": [
-        "does not mention the risk headline",
-        "expected 2-4 action bullets, got 5"
+        "does not mention the risk headline"
       ],
-      "style": [
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing",
-        "two actions say the same thing"
-      ]
+      "style": []
     },
     {
-      "text": "Summary: FOREO had 15 mentions and 19% share of voice, tied with CurrentBody. Therabody leads in AU with 100% coverage, and in the US, Therabody leads with 40% coverage. Competitors dominate in skin science and business topics, with 23% and 15% respectively. A Therabody recall headline is in the news.  \nActions:  \n- Pitch popsugar.com, which covered competitors but not FOREO, with a story on skin science and product safety.  \n- Pitch wareable.com, which covered competitors but not FOREO, with a story on skin science and business topics.  \n- Offer a skin science story to menshealth.com, which covered competitors but not FOREO, to address the 23% competitor lead.",
+      "text": "Summary: FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU and US, with 100% and 35% respectively. Competitors dominate in skin science and reviews.  \nActions:  \n- Pitch shopping.yahoo.com, which covered FOREO before and ran 5 competitor articles.  \n- Pitch forbes.com, which covered competitors but not FOREO, to cover a skin science story.  \n- Pitch harpersbazaar.com, which covered FOREO before and ran 2 competitor articles, to cover a skin science story.",
+      "errors": [
+        "does not mention the risk headline"
+      ],
+      "style": []
+    },
+    {
+      "text": "Summary: FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU with 100% coverage, and in the US, Therabody leads with 35% to FOREO’s 15%. CurrentBody leads in skin science with 25% coverage, and Solawave in reviews with 10%. A recall headline about Therabody’s charger is in the news.  \nActions:  \n- Pitch shopping.yahoo.com, which covered competitors and has covered FOREO before.  \n- Pitch forbes.com, which covered competitors and did not cover FOREO.  \n- Pitch harpersbazaar.com, which covered competitors and has covered FOREO before.",
       "errors": [],
       "style": [
         "two actions say the same thing"
       ]
+    },
+    {
+      "text": "Summary: FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU with 100% coverage, and in the US, Therabody leads with 35% to FOREO’s 15%. CurrentBody leads in skin science with 25% coverage, and Solawave in reviews with 10%. A recall headline about Therabody’s charger is in the news.  \nActions:  \n- Pitch forbes.com, which covered competitors and did not cover FOREO.  \n- Pitch harpersbazaar.com, which covered competitors and has covered FOREO before.",
+      "errors": [],
+      "style": []
     }
   ],
-  "created_at": "2026-11-21T00:46:17+00:00"
+  "created_at": "2026-11-21T01:36:36+00:00"
 }

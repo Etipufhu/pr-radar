@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Example Beauty &amp; Style</title>
+    <link>https://www.examplebeauty.com</link>
+    <item>
+      <title>The 12 best LED masks, tested by our editors</title>
+      <link>https://www.examplebeauty.com/led-masks</link>
+      <description>&lt;p&gt;From &lt;strong&gt;CurrentBody&lt;/strong&gt; to Solawave, these are the ones worth it.&lt;/p&gt;</description>
+      <pubDate>Tue, 17 Nov 2026 09:30:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>&lt;strong&gt;FOREO&lt;/strong&gt; launches a new cleansing brush</title>
+      <link>https://www.examplebeauty.com/foreo-brush</link>
+      <description>A short teaser.</description>
+      <pubDate>Wed, 18 Nov 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>How to build a winter skincare routine</title>
+      <link>https://www.examplebeauty.com/winter-routine</link>
+      <description>No devices named here.</description>
+      <pubDate>Wed, 18 Nov 2026 13:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>An old FOREO review</title>
+      <link>https://www.examplebeauty.com/old-review</link>
+      <pubDate>Mon, 02 Mar 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>FOREO item without a date</title>
+      <link>https://www.examplebeauty.com/no-date</link>
+    </item>
+  </channel>
+</rss>

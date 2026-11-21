@@ -16,7 +16,7 @@ import pandas as pd
 
 from . import analytics as an
 from .config import Settings
-from .report import default_window
+from .report import default_window, load_published_brief
 
 WINDOWS = (7, 28)
 SCHEMA_VERSION = 1
@@ -33,7 +33,25 @@ def _iso(value: datetime) -> str:
     return value.strftime("%Y-%m-%d")
 
 
-def window_payload(con, settings: Settings, window: an.Window) -> dict[str, Any]:
+def brief_payload(briefs_dir: str | Path, window: an.Window) -> dict[str, Any] | None:
+    """The LLM brief for this window, only if it passed the fact checks."""
+    brief = load_published_brief(briefs_dir, window)
+    if brief is None:
+        return None
+    return {
+        "summary": brief["summary"],
+        "actions": brief["actions"],
+        "model": brief["model"].split("/")[-1],  # "Qwen/Qwen3-1.7B + LoRA" -> "Qwen3-1.7B + LoRA"
+        "created_at": brief["created_at"],
+        "start": brief["start"],
+        "end": brief["end"],
+        "checks_passed": True,
+    }
+
+
+def window_payload(
+    con, settings: Settings, window: an.Window, briefs_dir: str | Path = "data/briefs"
+) -> dict[str, Any]:
     primary = settings.primary_brand
     names = settings.brand_names
     sov = an.share_of_voice(con, window)
@@ -71,6 +89,7 @@ def window_payload(con, settings: Settings, window: an.Window) -> dict[str, Any]
         "outlet_gaps": _records(an.outlet_gaps(con, window, primary, limit=50)),
         "topic_gaps": _records(an.topic_gaps(con, window, primary)),
         "top_stories": _records(an.top_stories(con, window, limit=10)),
+        "brief": brief_payload(briefs_dir, window),
     }
 
 
@@ -80,11 +99,13 @@ def build_payload(
     end: datetime | None = None,
     windows: tuple[int, ...] = WINDOWS,
     aspect_sentiment: list[dict[str, Any]] | None = None,
+    briefs_dir: str | Path = "data/briefs",
 ) -> dict[str, Any]:
     """Everything the web dashboard shows, keyed by window length in days.
 
     `aspect_sentiment` is reserved for DimABSA results; the page shows a
-    "coming soon" card while it is empty.
+    "coming soon" card while it is empty. Each window carries the newest published
+    LLM brief that fits it (see report.load_published_brief), or null.
     """
     return {
         "schema": SCHEMA_VERSION,
@@ -93,14 +114,19 @@ def build_payload(
         "brands": settings.brand_names,
         "default_window": str(windows[0]),
         "windows": {
-            str(days): window_payload(con, settings, default_window(days, end)) for days in windows
+            str(days): window_payload(con, settings, default_window(days, end), briefs_dir)
+            for days in windows
         },
         "aspect_sentiment": aspect_sentiment or [],
     }
 
 
 def write_web_data(
-    con, settings: Settings, out_dir: str | Path, end: datetime | None = None
+    con,
+    settings: Settings,
+    out_dir: str | Path,
+    end: datetime | None = None,
+    briefs_dir: str | Path = "data/briefs",
 ) -> Path:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -115,7 +141,9 @@ def write_web_data(
         }
         for r in sentiment.to_dict("records")
     ]
-    payload = build_payload(con, settings, end, aspect_sentiment=aspect_sentiment)
+    payload = build_payload(
+        con, settings, end, aspect_sentiment=aspect_sentiment, briefs_dir=briefs_dir
+    )
     text = json.dumps(payload, ensure_ascii=False, indent=1)
     target = out_dir / "data.json"
     target.write_text(text, encoding="utf-8")

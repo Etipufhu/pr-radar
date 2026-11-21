@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>PR Radar · FOREO · 15 Nov–21 Nov 2026</title>
+<style>
+  :root {
+    --bg: #030407; --ink: #f4f7fb; --ink-2: rgba(232, 240, 250, .74); --muted: rgba(214, 226, 242, .58);
+    --line: rgba(255, 255, 255, .14); --line-soft: rgba(255, 255, 255, .08);
+    --glass: rgba(18, 22, 32, .45); --glass-hi: rgba(46, 58, 82, .45);
+    --us: #1d96d6; --us-hi: #45c8ff; --bar: rgba(214, 226, 242, .32);
+    --good: #7ee2a8; --bad: #ff9b7a; --warm: #ffd27a;
+    --radius: 26px;
+    --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font); overflow-x: hidden; }
+
+  /* Background: glowing swirl + giant type (pure CSS/SVG, no JS) */
+  .backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+    background: radial-gradient(60% 50% at 70% 72%, rgba(29, 110, 220, .28), transparent 70%),
+                radial-gradient(40% 35% at 18% 12%, rgba(90, 130, 255, .10), transparent 70%), var(--bg); }
+  .backdrop svg { position: absolute; width: 125vmax; height: 125vmax; left: 50%; top: 50%; transform: translate(-50%, -52%); }
+  .backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(3, 4, 7, .65)); }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 36px clamp(16px, 4vw, 32px) 64px; position: relative; }
+  .hero { position: relative; padding-top: clamp(40px, 9vw, 110px); }
+  .hero-type { position: absolute; z-index: -1; left: 50%; top: 0; transform: translateX(-50%); white-space: nowrap;
+    font-size: clamp(80px, 19vw, 210px); font-weight: 800; letter-spacing: -.065em; line-height: .9; user-select: none;
+    background: linear-gradient(180deg, rgba(150, 190, 255, .34), rgba(70, 110, 190, .06) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-accent { position: absolute; z-index: -1; right: 0; top: 0; font-size: clamp(20px, 3.6vw, 40px); font-weight: 700; letter-spacing: -.03em;
+    background: linear-gradient(100deg, #7fe0ff, #2b8cff 45%, #b9f3ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .16em; font-weight: 600; color: var(--muted); margin: 0; }
+  h1 { font-size: clamp(30px, 5vw, 46px); margin: 10px 0 6px; letter-spacing: -.04em; line-height: 1.1; }
+  h2 { font-size: 20px; margin: 0 0 6px; letter-spacing: -.02em; }
+  .muted { color: var(--muted); }
+  .lede { color: var(--ink-2); margin: 0; }
+
+  .glass { background: linear-gradient(160deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .015) 55%), var(--glass);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 30px 60px -30px rgba(0, 0, 0, .7); }
+  .card { padding: clamp(18px, 3vw, 28px); margin-top: 22px; }
+  .card > p.muted { margin: 0 0 16px; font-size: 14px; }
+  .scroll { overflow-x: auto; }
+
+  .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 30px; }
+  .kpi { padding: 18px 18px 16px; border-radius: 22px; }
+  .kpi.featured { background: linear-gradient(160deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .03) 60%), var(--glass-hi);
+    border-color: rgba(255, 255, 255, .26); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 30px 60px -28px rgba(10, 80, 180, .55); }
+  .kpi .v { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; letter-spacing: -.04em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .kpi .l { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+  .up { color: var(--good); } .down { color: var(--bad); }
+
+  ul.insights { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  ul.insights li { position: relative; padding-left: 32px; }
+  ul.insights li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff;
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .2); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.hl td { color: #fff; font-weight: 650; }
+  tr.hl td:first-child { box-shadow: inset 3px 0 0 var(--us-hi); }
+  tr.warm td:first-child { box-shadow: inset 3px 0 0 var(--warm); }
+  a { color: #bfeaff; text-decoration: none; } a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .warm-badge { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 11px; font-weight: 650; color: #1a1205; background: var(--warm); }
+
+  .chart { width: 100%; max-width: 620px; height: auto; display: block; }
+  .chart .bar { fill: var(--bar); }
+  .chart .bar.hl { fill: url(#pr-hl); }
+  .chart .lbl, .chart .val { fill: var(--ink); font-size: 13px; font-family: var(--font); }
+  .pill { display: inline-block; padding: 1px 9px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .04); color: var(--ink-2); font-size: 11.5px; margin: 1px 3px 1px 0; white-space: nowrap; }
+  .pill.us { color: #fff; border-color: rgba(69, 200, 255, .6); background: rgba(29, 150, 214, .22); }
+  footer { margin-top: 28px; padding: 20px 24px; font-size: 13px; color: var(--ink-2); border-radius: 22px; }
+  footer strong { color: #fff; }
+
+  @media (max-width: 760px) {
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi.featured { grid-column: 1 / -1; order: -1; }
+    .hero-accent { top: 4px; }
+  }
+  @media (prefers-reduced-transparency: reduce) { .glass { -webkit-backdrop-filter: none; backdrop-filter: none; background: #121620; } }
+
+  /* Print: plain, ink-friendly, no glow. */
+  @media print {
+    :root { --ink: #111; --ink-2: #333; --muted: #555; --line: #ccc; --line-soft: #ddd; --bar: #b8bcc6; --good: #146c3c; --bad: #b0361c; }
+    @page { margin: 14mm; }
+    body { background: #fff; color: #111; font-size: 11.5pt; }
+    .backdrop, .hero-type { display: none; }
+    .hero { padding-top: 0; }
+    .hero-accent { position: static; display: block; color: #0b5ea8; background: none; -webkit-text-fill-color: #0b5ea8; font-size: 14pt; }
+    main { max-width: none; padding: 0; }
+    .glass, .kpi.featured { background: #fff; border: 1px solid #ccc; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .card, .kpi, tr { break-inside: avoid; }
+    tr.hl td, footer strong { color: #000; }
+    .chart .bar.hl { fill: #0b5ea8; }
+    a { color: #0b5ea8; }
+    .pill { color: #333; border-color: #bbb; background: none; }
+    .pill.us { color: #0b5ea8; border-color: #0b5ea8; background: none; }
+    .warm-badge { background: none; border: 1px solid #a07000; color: #6b4a00; }
+    ul.insights li::before { color: #111; background: none; border-color: #999; }
+  }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true">
+  <svg viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="pr-core" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#9fe6ff" stop-opacity=".9"/><stop offset=".35" stop-color="#1d7fd6" stop-opacity=".55"/><stop offset="1" stop-color="#05070c" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="pr-arc" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0b2a6b" stop-opacity="0"/><stop offset=".45" stop-color="#2a7bff"/><stop offset=".75" stop-color="#7ee3ff"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/>
+      </linearGradient>
+      <linearGradient id="pr-arc2" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#5b8cff" stop-opacity="0"/><stop offset=".6" stop-color="#1fb6ff"/><stop offset="1" stop-color="#e8fbff"/>
+      </linearGradient>
+      <filter id="pr-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="pr-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    </defs>
+    <circle cx="760" cy="720" r="460" fill="url(#pr-core)" filter="url(#pr-soft)" opacity=".85"/>
+    <path d="M260 980 C 380 520, 820 300, 1120 560 S 900 1180, 560 1000" fill="none" stroke="url(#pr-arc)" stroke-width="130" filter="url(#pr-soft)" opacity=".9"/>
+    <path d="M300 900 C 470 560, 840 420, 1040 620 S 880 1040, 600 940" fill="none" stroke="url(#pr-arc2)" stroke-width="34" filter="url(#pr-glow)" opacity=".9"/>
+    <path d="M420 1060 C 620 760, 980 700, 1180 860" fill="none" stroke="url(#pr-arc)" stroke-width="70" filter="url(#pr-soft)" opacity=".55"/>
+    <path d="M520 860 C 640 700, 860 640, 960 760" fill="none" stroke="#e9fbff" stroke-width="6" filter="url(#pr-glow)" opacity=".7"/>
+  </svg>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="pr-hl" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#1d96d6"/><stop offset="1" stop-color="#45c8ff"/></linearGradient></defs>
+</svg>
+<main>
+  <header class="hero">
+    <div class="hero-type" aria-hidden="true">Coverage</div>
+    <div class="hero-accent">FOREO Radar</div>
+    <p class="eyebrow">PR Radar · weekly coverage report</p>
+    <h1>FOREO vs competitors</h1>
+    <p class="lede">15 Nov 2026 – 21 Nov 2026 (UTC) · 109 brand mentions tracked across Google News and GDELT</p>
+  </header>
+
+  <section class="kpis">
+    <div class="kpi glass"><div class="v">25</div><div class="l">FOREO mentions</div></div>
+    <div class="kpi glass featured"><div class="v">23%</div><div class="l">Share of voice</div></div>
+    <div class="kpi glass"><div class="v muted">–</div><div class="l">SoV change (first period)</div></div>
+    <div class="kpi glass"><div class="v">24</div><div class="l">Outlets</div></div>
+    <div class="kpi glass"><div class="v">5</div><div class="l">Markets</div></div>
+  </section>
+
+  <section class="card glass">
+    <h2>Weekly brief</h2>
+    <p>FOREO had 25 mentions and 23% share of voice, behind Therabody at 41%. Therabody leads in AU with 100% coverage, and in the US, Therabody leads with 35% to FOREO’s 15%. CurrentBody leads in skin science with 25% coverage, and Solawave in reviews with 10%. A recall headline about Therabody’s charger is in the news.</p>
+    <ul class="insights">
+<li>Pitch forbes.com, which covered competitors and did not cover FOREO.</li><li>Pitch harpersbazaar.com, which covered competitors and has covered FOREO before.</li>    </ul>
+    <p class="muted">Written by Qwen/Qwen3-1.7B + LoRA running locally, from the numbers in this report only. Every number, outlet and trend claim was checked against the data before publishing.</p>
+  </section>
+
+  <section class="card glass">
+    <h2>Key takeaways</h2>
+    <p class="muted">Generated from this period's coverage.</p>
+    <ul class="insights">
+<li>FOREO share of voice is 23% (first tracked period, no comparison yet), ranked #2 of 6 brands with 25 mentions.</li><li>Therabody leads the conversation with 41%.</li><li>Biggest market gap: AU, where Therabody holds 100% vs FOREO 0%.</li><li>50 outlets covered competitors but not FOREO; top: shopping.yahoo.com (5 competitor articles). 5 of them have covered FOREO before (warm re-pitch targets).</li><li>Narrative gap: &#39;skin_science&#39; is 25% of competitor coverage but 16% of FOREO&#39;s (led by CurrentBody).</li><li>Risk signal for Therabody: &#39;Therabody Recalls Therabody Theragun G4PRO Charger&#39; (ccpc.ie).</li><li>FOREO headline tone: valence 7.4/9, 100% positive and 0% negative across 4 scored mentions (competitors average 7.0).</li>    </ul>
+  </section>
+
+  <section class="card glass">
+    <h2>Share of voice</h2>
+    <p class="muted">Share of all brand mentions in the period. One article naming two brands counts for both. "In headline" counts only articles that name the brand in the title; the rest mention it in the body (gift guides, round-ups).</p>
+    <svg class="chart" viewBox="0 0 574 168" role="img" aria-label="bar chart" xmlns="http://www.w3.org/2000/svg"><text class="lbl" x="140" y="19" text-anchor="end">Therabody</text><rect class="bar" x="150" y="6" width="360.0" height="16" rx="3"/><text class="val" x="518.0" y="19">41%</text><text class="lbl" x="140" y="47" text-anchor="end">FOREO</text><rect class="bar hl" x="150" y="34" width="200.0" height="16" rx="3"/><text class="val" x="358.0" y="47">23%</text><text class="lbl" x="140" y="75" text-anchor="end">CurrentBody</text><rect class="bar" x="150" y="62" width="192.0" height="16" rx="3"/><text class="val" x="350.0" y="75">22%</text><text class="lbl" x="140" y="103" text-anchor="end">Solawave</text><rect class="bar" x="150" y="90" width="64.0" height="16" rx="3"/><text class="val" x="222.0" y="103">7%</text><text class="lbl" x="140" y="131" text-anchor="end">NuFACE</text><rect class="bar" x="150" y="118" width="48.0" height="16" rx="3"/><text class="val" x="206.0" y="131">6%</text><text class="lbl" x="140" y="159" text-anchor="end">PMD Beauty</text><rect class="bar" x="150" y="146" width="8.0" height="16" rx="3"/><text class="val" x="166.0" y="159">1%</text></svg>
+    <div class="scroll">
+    <table style="margin-top:14px">
+      <tr><th>Brand</th><th class="n">Mentions</th><th class="n">In headline</th><th class="n">Prev.</th><th class="n">Share</th><th class="n">Δ pts</th></tr>
+      <tr class="">
+        <td>Therabody</td>
+        <td class="n">45</td>
+        <td class="n">21</td>
+        <td class="n">–</td>
+        <td class="n">41%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="hl">
+        <td>FOREO</td>
+        <td class="n">25</td>
+        <td class="n">4</td>
+        <td class="n">–</td>
+        <td class="n">23%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>CurrentBody</td>
+        <td class="n">24</td>
+        <td class="n">11</td>
+        <td class="n">–</td>
+        <td class="n">22%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>Solawave</td>
+        <td class="n">8</td>
+        <td class="n">0</td>
+        <td class="n">–</td>
+        <td class="n">7%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>NuFACE</td>
+        <td class="n">6</td>
+        <td class="n">0</td>
+        <td class="n">–</td>
+        <td class="n">6%</td>
+<td class="n muted">–</td>      </tr>
+      <tr class="">
+        <td>PMD Beauty</td>
+        <td class="n">1</td>
+        <td class="n">0</td>
+        <td class="n">–</td>
+        <td class="n">1%</td>
+<td class="n muted">–</td>      </tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Market gaps</h2>
+    <p class="muted">Markets where a competitor out-shouts FOREO (min. 5 mentions).</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Market</th><th class="n">Mentions</th><th class="n">FOREO</th><th>Leader</th><th class="n">Leader share</th><th class="n">Gap</th></tr>
+      <tr><td>AU</td><td class="n">12</td><td class="n">0%</td>
+          <td>Therabody</td><td class="n">100%</td><td class="n down">100 pts</td></tr>
+      <tr><td>US</td><td class="n">65</td><td class="n">15%</td>
+          <td>Therabody</td><td class="n">35%</td><td class="n down">20 pts</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Outlet gaps: pitch targets</h2>
+    <p class="muted">Outlets that wrote about competitors this period but not about FOREO. "Covered us before" marks warm contacts.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Outlet</th><th class="n">Competitor articles</th><th>Competitors</th><th class="n">Covered us before</th></tr>
+      <tr class="warm"><td>shopping.yahoo.com</td><td class="n">5</td>
+          <td><span class="pill">NuFACE</span><span class="pill">PMD Beauty</span><span class="pill">Solawave</span><span class="pill">Therabody</span></td>
+          <td class="n"><span class="warm-badge">1</span></td></tr>
+      <tr class=""><td>forbes.com</td><td class="n">3</td>
+          <td><span class="pill">CurrentBody</span><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+      <tr class="warm"><td>harpersbazaar.com</td><td class="n">2</td>
+          <td><span class="pill">CurrentBody</span><span class="pill">Therabody</span></td>
+          <td class="n"><span class="warm-badge">2</span></td></tr>
+      <tr class="warm"><td>popsugar.com</td><td class="n">2</td>
+          <td><span class="pill">Solawave</span><span class="pill">Therabody</span></td>
+          <td class="n"><span class="warm-badge">1</span></td></tr>
+      <tr class=""><td>wareable.com</td><td class="n">2</td>
+          <td><span class="pill">CurrentBody</span><span class="pill">Solawave</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>elle.com</td><td class="n">2</td>
+          <td><span class="pill">CurrentBody</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>menshealth.com</td><td class="n">2</td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>globalnews.ca</td><td class="n">1</td>
+          <td><span class="pill">CurrentBody</span><span class="pill">Solawave</span><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>nymag.com</td><td class="n">1</td>
+          <td><span class="pill">CurrentBody</span><span class="pill">Solawave</span><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>goodhousekeeping.com</td><td class="n">1</td>
+          <td><span class="pill">CurrentBody</span><span class="pill">Solawave</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>9to5toys.com</td><td class="n">1</td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>abc7.com</td><td class="n">1</td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>aptapassengertransport.com</td><td class="n">1</td>
+          <td><span class="pill">NuFACE</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>arizonafoothillsmagazine.com</td><td class="n">1</td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+      <tr class=""><td>athletechnews.com</td><td class="n">1</td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">–</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Narrative gaps by topic</h2>
+    <p class="muted">Share of each side's coverage in a topic. Positive gap = a story competitors own that FOREO is missing.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Topic</th><th class="n">FOREO</th><th class="n">Competitors</th><th class="n">Gap</th><th>Top competitor</th></tr>
+      <tr><td>skin science</td>
+          <td class="n">16% <span class="muted">(4)</span></td>
+          <td class="n">25% <span class="muted">(20)</span></td>
+          <td class="n down">+9 pts</td>
+          <td>CurrentBody</td></tr>
+      <tr><td>reviews</td>
+          <td class="n">4% <span class="muted">(1)</span></td>
+          <td class="n">10% <span class="muted">(8)</span></td>
+          <td class="n down">+6 pts</td>
+          <td>CurrentBody</td></tr>
+      <tr><td>business</td>
+          <td class="n">8% <span class="muted">(2)</span></td>
+          <td class="n">11% <span class="muted">(9)</span></td>
+          <td class="n down">+3 pts</td>
+          <td>Therabody</td></tr>
+      <tr><td>awards</td>
+          <td class="n">0% <span class="muted">(0)</span></td>
+          <td class="n">1% <span class="muted">(1)</span></td>
+          <td class="n down">+1 pts</td>
+          <td>CurrentBody</td></tr>
+      <tr><td>gift guides</td>
+          <td class="n">16% <span class="muted">(4)</span></td>
+          <td class="n">15% <span class="muted">(12)</span></td>
+          <td class="n up">-1 pts</td>
+          <td>Therabody</td></tr>
+      <tr><td>launch</td>
+          <td class="n">4% <span class="muted">(1)</span></td>
+          <td class="n">0% <span class="muted">(0)</span></td>
+          <td class="n up">-4 pts</td>
+          <td>–</td></tr>
+      <tr><td>deals pricing</td>
+          <td class="n">52% <span class="muted">(13)</span></td>
+          <td class="n">35% <span class="muted">(28)</span></td>
+          <td class="n up">-17 pts</td>
+          <td>Therabody</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Headline tone (DimABSA)</h2>
+    <p class="muted">How headlines talk about each brand they name, scored by a multilingual model trained on SemEval-2026 DimABSA data and adapted to news headlines. Valence: 1 very negative, 5 neutral, 9 very positive. Arousal: 1 calm, 9 intense. Indicative only: the model under-rates bad news, so reputational risks are flagged separately by keyword (see Key takeaways).</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Brand</th><th class="n">Scored</th><th class="n">Valence</th><th class="n">Arousal</th><th class="n">Positive</th><th class="n">Negative</th></tr>
+      <tr class="hl"><td>FOREO</td><td class="n">4</td>
+          <td class="n">7.4</td><td class="n">6.2</td>
+          <td class="n up">100%</td><td class="n down">0%</td></tr>
+      <tr class=""><td>CurrentBody</td><td class="n">11</td>
+          <td class="n">7.3</td><td class="n">6.2</td>
+          <td class="n up">100%</td><td class="n down">0%</td></tr>
+      <tr class=""><td>Therabody</td><td class="n">21</td>
+          <td class="n">6.8</td><td class="n">5.7</td>
+          <td class="n up">100%</td><td class="n down">0%</td></tr>
+    </table>
+    </div>
+    <h3 style="margin-top:18px">Lowest-scoring headlines</h3>
+    <div class="scroll">
+    <table>
+      <tr><th>Headline</th><th>Brand</th><th class="n">V</th><th class="n">A</th></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNaV9ScXVXSHN3V3VNWEZ0Q2NDN25EZlY5OVNoTVRQVHBCMnNza0JzeHlaNDlGc1hHb2JHbHhQWEtzM1hOczRrLVpaQURIWXN3V2dVWUQ3bTVRdmRRTUxITTNhNjZaSUZUc3oyazkzdGxrbWJGVlVBMW5XYUFGdHhrVjRkNGtQcWVTaW4zNg?oc=5" rel="noopener">Omnilux Vs. CurrentBody: I Tested Both To See Which LED Face Mask Is Better</a> <span class="muted">forbes.com</span></td>
+          <td>CurrentBody</td><td class="n">5.8</td><td class="n">5.1</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxNb3oyYWM3dXBHNjdPLU1nakVVTzV5bV9NdWptY1NQdms1c3hEVm9mb2dIeWNocElxejM0cmdiMGFsTXM3aUhKSGhkdVA2X3V3ZFc5MjY1WExoU2FGT0haWWdBR05vQWpFclVpZE5NVm1ZdU02bHgxQ3F2OHd1SWIzcnhBV1JvQm1lQjR5WVM1cGRDaXJ5czdUTUI1TXBKVXhxQ09YSTg0TDMwVjdNQXRzX1ZVa0VLY2FDdkhOSHhMYmJTZTBoaENpOHFsT3NReHY2Tnpxcw?oc=5" rel="noopener">Therabody Recalls Therabody Theragun G4PRO Charger</a> <span class="muted">ccpc.ie</span></td>
+          <td>Therabody</td><td class="n">5.8</td><td class="n">5.0</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBhbVJfWGhoRnU2Snl1QldQbWtva0Q2S3pJalZrbmhreUx5WGp4X0JhMGJJSUtIUTM1T3Y4QUZaajFCSXhrR3F3VFFCNGpVT0FoQlpMak1oOHI5MElZT01abUFwZkZ4ZUF3c0luS0JXTnd0TWtLNXc?oc=5" rel="noopener">Therabody Acquires Embr Labs’ Thermal Technology</a> <span class="muted">pulse2.com</span></td>
+          <td>Therabody</td><td class="n">5.9</td><td class="n">4.9</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNV1lkU0ptRVlSNEExOUZBclVXamR0SmtGblloU3p0WjRFRFFSZVZlY084RWxsb243ZDdZdTVKa0poeVRrcUJaWkVCM1hyMHROYTNkWkVOLUhSWFhfX0ZfMGhENWp4bmJlbldGTDN4aWJQWnVGWnZqYVBadWVpWUppX0FaQ3hXekJya2ZtTDhyNksyOVlDTDVDSE8wcUtMcW8yN2lCRTdR?oc=5" rel="noopener">Therabody Acquires Embr Labs Thermal Health Patents</a> <span class="muted">wisevoter.com</span></td>
+          <td>Therabody</td><td class="n">6.0</td><td class="n">5.1</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxQZkFyYlc4eGJmdmVnNVlINmV3bVVRcEhmSERxYmQtMk55T3drUkFNOHFiZ3hFbjhNUkVob3F5QkU2RHBCc1hVMlJfMGp0bXlkOVhBcWxYd0RSSUx5OUxNVmJ0US1TZmRqYUNNcmJLeG1KV2FTWkZ5TE9BN0o0T0pGZWkydXBHTTEtVW9MTUFfdlc2bk5wTWozYTJFX3FKUkhFWGkwdHV3NXlwWFJtVHQxNHZ3?oc=5" rel="noopener">Therabody acquires Embr Labs technology to expand menopause innovation</a> <span class="muted">femtechworld.co.uk</span></td>
+          <td>Therabody</td><td class="n">6.1</td><td class="n">5.1</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2>Most syndicated stories</h2>
+    <p class="muted">Distinct stories ranked by how many outlets carried them.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Story</th><th>Brands</th><th class="n">Outlets</th><th>Markets</th></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1kVWZ0WTNZeGdjS3NBMUc5MDcwN193NmlPMVVIcnVraVBJMG4zQXVVZ29DUjBmUEE4aTJTNHFFTS0xdU1aX2hNelF6dy01ekNnZHhtLVdTdnRGNk9WNHZlRHREa1Nhd1BSbHlrclduTUJjZVU?oc=5" rel="noopener">CurrentBody Black Friday Deals 2026: Best Offers &amp; Discounts</a></td>
+          <td><span class="pill">CurrentBody</span></td>
+          <td class="n">2</td><td>US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxOMFY0T0w4QmN4b05pZzZDcHBFWkd0Nm0xa1V1Z3hEdUVXYUQ2MUJjX2ZjSjFmakp0R0pqLVB3TWlHWHZ1eEVmLXVVeEhwcGhfZXBLdmVDMHU1YWVNT1EzcG9hbE41Q1RSZ2xjX2VvSzVLd1ByUVRsM0s5STlqT0hCU1RkVjhTbG9jQzlaT1k2X194YlV2Y2JXcUFQeDZROVl5WlNhempETHhrTHZSMDNaUUpRb09BbXFIY08td2NOWEN1dzZFdVlYSEhJelBNSUZPd1puMg?oc=5" rel="noopener">Blank Label Team Seeks One Brand for Its Next Global Growth Partnership</a></td>
+          <td><span class="pill us">FOREO</span></td>
+          <td class="n">2</td><td>US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNTk4wSXJIYVhyU3FoWUpjMk9qS0MxTkF3MVB2MGlqemI2c3VBM29oMzc0XzNBaThTUzNBMTVNRm1MNjZ5bklqcS1lSU5vdmh5T1lWZGhQTEhMU2hkR1ZSOGlQeFRxZWh3SFA3c2NUTi1mQmhNTGh0WVlrRmVEb0NEZTNUT0E2Q2NBbHIwRHg5RklYemthR09YRzFPX0RWakdCRTlSV2VR?oc=5" rel="noopener">Our editors use Therabody recovery gear every single day and it’s up to $230 off for Black Friday</a></td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">2</td><td>GB, US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxORm5UeFhwOUdoY0s1aWxTNUJWX3pIZ29pbUFVZGhNZC0xakxqeWg3RW9hX3Y1cHd1T2lWeTlPSGNlQWduY1NPQXpwREd1MVZkWTU4NlZTWkxrajR4WEdiUDVnbWZ0QmplNHNrZkpVSjQ2Tmc0N012c3B2OXprZ1FLckpWd1pOWE5pV2djSXRkSm5Vb0d3aS1nRDJxdUFWYlpTajBTWWdwYWxiQk5TZ0xFZm9jMU1WODhTTDhlZnprOUFacVVBOHlhdGFn?oc=5" rel="noopener">Therabody Acquires Embr Labs&#39; Thermal Technology Portfolio to Expand Women&#39;s Health Offerings</a></td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">2</td><td>US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNdzMyLV9neF83WUdNLUY1Q2JnYjNmT2ZGZ0hucHNYWXZ5NGEtTU9zekplS1VpZmtQNlZVTHhkUjVBZEdCNWZLS0lNODM4Uy1HWElveDlZMEFWYUZqbjZSaFNKd0UwTEUxVEpwU3hqcE43ZmZYZHJoVUNTZkR4WGVkQkhCeXZITGNfYkZsV2VjQ2F6MEFiWHBaMkEza3pPcDlVdk1CREVxYkJldE5CQkVWV3Fn?oc=5" rel="noopener">CurrentBody’s viral LED mask everyone wants is now 20% off for Black Friday</a></td>
+          <td><span class="pill">CurrentBody</span></td>
+          <td class="n">2</td><td>US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxQWDlKdWdQOWxnQUJ2TFRqdXRETllaWEpNR3hEU1FmNFVTc2phYlhFZWFqWHZYZnNqVW5TWnF5dzFPNEVweVhheGQ2Ykd0dkRaaEo2REx3UXZjckMyRmNhNWZSWDJqUGFlaEJHMzZ4Q1VIUUdwcEk2ZkVKYnZ1LUgzaC1jSGx1czVaT2RGb2kyY3Jvc1J1RTdV?oc=5" rel="noopener">If You Buy One Beauty Tech Tool, Make It One of These Editor-Loved Microcurrent Devices</a></td>
+          <td><span class="pill us">FOREO</span><span class="pill">NuFACE</span></td>
+          <td class="n">2</td><td>US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE1UY251UGFjZk5GUjFoSTZVWFZpQnNnaXg0cm9GVUZDYVBZOXp3V2FQMUpZa3VMd1lRVzF2MkNEbnYxUGpISTZVRGxkdmxBY1UtZzdGQkQzM0VYNWh1Qk9yc1VLOHRaR1Frakg4VVRDRTBGRG1NSXd1THJLSmpYbmc?oc=5" rel="noopener">Therabody’s ThermFace Massage saved me from a chronic case of tech neck – but its intensity will surprise you</a></td>
+          <td><span class="pill">Therabody</span></td>
+          <td class="n">2</td><td>US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPbUNiZDdpNnBfSDEwOURucXpUcVVxNWNqRU42eEFoZ2xfN0hCUklWTG1YcXZPMWZkOVZJWTE3S1lYbGdJS3RNM1QzazVsc1JTc1JOWDRic2dBUDd1UjItRVRuWVh2Q2hyMF9qY2hSWjFuU2pRWWJmUldyMk9JT1JzbXFaMWhNYXQwWkk4anRaVmk?oc=5" rel="noopener">Editor-Approved LED Masks Are on Major Sale for Black Friday, With BOGO Deals and Up to $250 Off</a></td>
+          <td><span class="pill">CurrentBody</span><span class="pill">Solawave</span></td>
+          <td class="n">2</td><td>US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE9tZ1ZPOXBnTWhEZUhJcTZyRXFvX21zbEdKS0t0SHUtREhuemNKUDQ4NDdoUVFuSUtZcm5od1NranRZcjFPYlFPb2RkTi01anJaYjJDZjUxZkU1VF9OZmtPVEE3Y3ZuWG4wMXVWZFhhREkzTGkw?oc=5" rel="noopener">No, Not All LED Face Masks Work on Dark Skin—But These 5 Definitely Do</a></td>
+          <td><span class="pill us">FOREO</span></td>
+          <td class="n">2</td><td>GB, US</td></tr>
+      <tr><td><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxQSmE1ajVWb2dYR1MtdzFTTHZqaGEzSHp6eUl5LW05U1hXM2FPVlBGSV9DRW9QMlZKY2h0SkJuVDNHQ1BiNFhJWGJtYXNuOFdBNWpmQXJsX2pHTHVxM2t3czNzbWtoN0EtN0J6TnI5OExSa0VfT1hTWnFVdjVhWk5VNmFVbW9uQ2RNTFNzb3VuTUdfUFgzbjVyUFEtOA?oc=5" rel="noopener">Nordstrom&#39;s Early Black Friday Beauty Deals Include Major Discounts on Dyson, Medicube, and More</a></td>
+          <td><span class="pill">NuFACE</span></td>
+          <td class="n">1</td><td>US</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <footer class="glass">
+    Generated 2026-11-21 01:36 UTC by PR Radar. Mentions = articles naming a brand (in the headline or matched by the brand's news query);
+    stories = clusters of near-identical headlines. Markets come from Google News editions and GDELT source countries.
+    <br><br>
+    <strong>Independent project:</strong> not affiliated with, endorsed by, or built for any brand named in this report. Based only on publicly available news headlines;
+    automated matching can contain false positives.
+  </footer>
+</main>
+</body>
+</html>

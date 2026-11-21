@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -60,18 +60,42 @@ def _records(df: pd.DataFrame) -> list[dict]:
 
 
 def load_published_brief(briefs_dir: str | Path, window: an.Window) -> dict | None:
-    """The LLM brief for this window, if one was generated and passed the checks."""
+    """The newest published LLM brief that fits this window.
+
+    Briefs are written locally (they need a GPU) while the published report and
+    dashboard are rebuilt on a schedule, so the windows rarely match exactly. A
+    brief fits if it covers a period of the same length as the window and ends
+    inside it, so it is never more than one window old.
+    """
     from .narrative.writer import load_brief
 
-    end = (window.end - timedelta(seconds=1)).date().isoformat()
-    brief = load_brief(briefs_dir, window.start.date().isoformat(), end)
-    if brief is None or not brief.published:
+    days = (window.end - window.start).days
+    first, last = window.start.date(), (window.end - timedelta(seconds=1)).date()
+    candidates = []
+    for path in Path(briefs_dir).glob("brief-*_*.json"):
+        start, _, end = path.stem.removeprefix("brief-").partition("_")
+        try:
+            s, e = date.fromisoformat(start), date.fromisoformat(end)
+        except ValueError:
+            continue
+        if (e - s).days + 1 == days and first <= e <= last:
+            candidates.append((e, start, end))
+    for _, start, end in sorted(candidates, reverse=True):
+        brief = load_brief(briefs_dir, start, end)
+        if brief is not None and brief.published:
+            break
+    else:
         return None
     summary, _, actions = brief.text.partition("Actions:")
     return {
         "summary": summary.replace("Summary:", "", 1).strip(),
-        "actions": [a.strip()[1:].strip() for a in actions.splitlines() if a.strip()[:1] in "-*"],
+        "actions": [
+            a.strip()[1:].strip() for a in actions.splitlines() if a.strip()[:1] in ("-", "*")
+        ],
         "model": brief.model,
+        "created_at": brief.created_at,
+        "start": start,
+        "end": end,
     }
 
 

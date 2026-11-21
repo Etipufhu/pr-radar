@@ -95,6 +95,21 @@
     list("insights", (w.insights || []).map((t) => li(esc(t).replace(/(\d+(?:\.\d+)?%|[+-]\d+(?:\.\d+)? pts|(?<![&\w])#\d+)/g, "<strong>$1</strong>"))).join(""));
   }
 
+  /* LLM brief: the newest one that fits this window and passed the checks. */
+  function renderBrief(w) {
+    const box = $("#brief");
+    const b = w.brief;
+    if (!b || !b.summary) { box.hidden = true; return; }
+    box.hidden = false;
+    const strong = (t) => esc(t).replace(/(\d+(?:\.\d+)?%|(?<![&\w])#\d+)/g, "<strong>$1</strong>");
+    $('[data-bind="brief-summary"]').innerHTML = strong(b.summary);
+    list("brief-actions", (b.actions || []).map((a) => li(`<span>${strong(a)}</span>`)).join(""));
+    const span = b.start && b.end ? `${fmtDate(b.start, { day: "numeric", month: "short" })} – ${fmtDate(b.end, { day: "numeric", month: "short" })}` : `the last ${w.days} days`;
+    bind("brief-note", `What ${name(DATA.primary)}'s PR team could do next, written from the coverage of ${span}.`);
+    const when = b.created_at ? ` on ${fmtDate(b.created_at, { day: "numeric", month: "short", year: "numeric" })}` : "";
+    bind("brief-meta", `Written by ${b.model || "a local LLM"} running locally${when}, from that period's numbers only, and checked automatically against the data before publishing.`);
+  }
+
   function renderSov(w) {
     const rows = w.share_of_voice;
     const peak = Math.max(...rows.map((r) => r.share), 0.0001);
@@ -242,6 +257,7 @@
     const w = DATA.windows[key];
     renderHero(w);
     renderInsights(w);
+    renderBrief(w);
     renderSov(w);
     renderMarkets(w);
     renderOutlets(w);

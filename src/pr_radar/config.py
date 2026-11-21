@@ -12,6 +12,9 @@ class Brand(BaseModel):
     id: str
     name: str
     query: str
+    # Google News returns about 10 results per query, so product-line queries
+    # ("FOREO LUNA") surface articles the brand query alone does not.
+    extra_queries: list[str] = Field(default_factory=list)
     aliases: list[str] = Field(default_factory=list)
     exclude: list[str] = Field(default_factory=list)
 
@@ -36,6 +39,17 @@ class GdeltSettings(BaseModel):
     time_budget_seconds: float = Field(180, gt=0)
 
 
+class RssFeed(BaseModel):
+    url: str
+    country: str
+    language: str | None = None  # fallback when a headline is too short to detect
+
+
+class RssSettings(BaseModel):
+    enabled: bool = True
+    feeds: list[RssFeed] = Field(default_factory=list)
+
+
 class Settings(BaseModel):
     primary_brand: str
     lookback_days: int = Field(7, ge=1, le=30)
@@ -43,6 +57,7 @@ class Settings(BaseModel):
     editions: list[Edition]
     topics: dict[str, list[str]] = Field(default_factory=dict)
     gdelt: GdeltSettings = Field(default_factory=GdeltSettings)
+    rss: RssSettings = Field(default_factory=RssSettings)
     # Outlets that only match by accident (e.g. unrelated sites), dropped everywhere.
     exclude_domains: list[str] = Field(default_factory=list)
 

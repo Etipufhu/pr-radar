@@ -1,6 +1,20 @@
 # PR Radar
 
-Tracks news coverage of a brand and its competitors in 12 Google News market editions (GDELT is optional). A weekly report shows:
+Media monitoring for a PR team: it collects public news coverage of a brand and its competitors in 14 markets, finds where competitors get coverage the brand does not, scores the tone of each brand mention, and has a small local LLM write a weekly brief that is checked against the data before it is published.
+
+**[Live dashboard](https://etipufhu.github.io/pr-radar/)** · **[Latest report](https://etipufhu.github.io/pr-radar/report.html)** · updated daily by GitHub Actions
+
+![Dashboard: share of voice, reach and volume for the last 7 days](docs/img/dashboard.png)
+
+| | What was built | Result |
+|---|---|---|
+| Collection | Google News (14 market editions, brand and product-line queries) and 97 outlet RSS feeds, deduplicated and clustered into stories | About 280 articles in the last 30 days, history kept as Parquet in the repo |
+| Sentiment | XLM-R fine-tuned on DimABSA (SemEval-2026), valence and arousal per brand mention, then adapted to news headlines | 6–53% lower error than the baseline on all 10 official test sets; on news headlines (labels still being reviewed), Pearson 0.53 for valence and 0.63 for arousal |
+| Weekly brief | Qwen3-1.7B with a LoRA adapter distilled from Qwen3-4B, plus rule checks for every number, outlet and piece of advice | First drafts that pass every check: 1 of 21 → 11 of 21, level with the 4B teacher; LLM judge 3.5 → 4.2 out of 5 |
+
+![The weekly brief card on the dashboard](docs/img/brief.png)
+
+Tracks news coverage of a brand and its competitors in 14 Google News market editions and about 100 outlet RSS feeds (GDELT is optional). The dashboard and report show:
 
 - **Share of voice** against competitors, and the change since the previous week.
 - **Market gaps:** markets where a competitor gets more coverage.
@@ -10,7 +24,7 @@ Tracks news coverage of a brand and its competitors in 12 Google News market edi
 
 A small local LLM also writes a short weekly brief from these numbers. The brief is checked against the data before it is published.
 
-Outputs: a weekly HTML report (built and published to GitHub Pages by a scheduled GitHub Action), a static web dashboard and a Streamlit app.
+Outputs: a static web dashboard and an HTML report, both published to GitHub Pages by a daily GitHub Action, and a Streamlit app.
 
 > Independent student project, not affiliated with or endorsed by any brand named in the configuration or reports. It uses only public news headlines and metadata. The brands in `config/brands.yaml` are a demo; edit the file to track another market. Matching is automatic and can be wrong, so check a report before sharing it.
 
@@ -18,7 +32,8 @@ Outputs: a weekly HTML report (built and published to GitHub Pages by a schedule
 
 ```mermaid
 flowchart LR
-    GN[Google News RSS<br/>12 market editions] --> C[Collect]
+    GN[Google News RSS<br/>14 market editions] --> C[Collect]
+    RS[Outlet RSS feeds<br/>~100 beauty and tech outlets] --> C
     GD[GDELT DOC 2.0<br/>100+ languages] --> C
     C --> T[Tag brands & topics<br/>Unicode word-boundary rules]
     T --> M[Merge duplicates<br/>same headline + outlet]
@@ -31,9 +46,9 @@ flowchart LR
 
 | Step | What happens | Why |
 |---|---|---|
-| Collect | One Google News search feed per brand × market edition, plus an optional GDELT query per brand. Polite per-host rate limiting, retries, and cool-downs on HTTP 429. | Google News gives market-specific visibility; GDELT adds global, non-English sources. |
+| Collect | Google News search feeds per brand × market edition (the brand plus a few product lines, since each query returns only about 10 results), outlet RSS feeds filtered to items that name a tracked brand, and an optional GDELT query per brand. Polite per-host rate limiting, retries, and cool-downs on HTTP 429. | Google News gives market-specific visibility; GDELT adds global, non-English sources. |
 | Tag | Brands named in the headline are added to the brand whose query found the article. Topics come from a multilingual keyword taxonomy (EN/DE/FR/ES/IT/PL/TR/SV/JA/PT). | One article can mention several brands, and head-to-head coverage matters. |
-| Merge | The same headline from the same outlet is one article, whichever collector or edition found it. | Without this, one article shows up in up to 12 editions and inflates share of voice. |
+| Merge | The same headline from the same outlet is one article, whichever collector or edition found it. | Without this, one article shows up in up to 14 editions and inflates share of voice. |
 | Cluster | Syndicated copies of a story across outlets are grouped with character 4-gram Jaccard similarity, which also works for languages without spaces (Japanese). | **Mentions** count placements; **stories** count distinct news events. |
 | Store | DuckDB for fast local analytics. Every run also writes the rows it touched to `data/archive/*.parquet`. | The weekly GitHub Action commits these small files, so history survives with no database server, and a fresh clone rebuilds the database from them. |
 
@@ -43,7 +58,7 @@ Commercial media-monitoring platforms (Meltwater, Cision, Onclusive, Muck Rack, 
 
 | | Typical commercial platform | PR Radar |
 |---|---|---|
-| Sources | Licensed news, broadcast, print, social | Public news headlines (Google News, GDELT) |
+| Sources | Licensed news, broadcast, print, social | Public news headlines (Google News, outlet RSS feeds, GDELT) |
 | Main output | Mention dashboards and search | A weekly to-do list: outlets to pitch, warm contacts, markets and narratives where competitors lead |
 | Sentiment | Usually one positive/negative/neutral label per article | Valence and arousal per brand mention in a headline (DimABSA) |
 | Customisation | Vendor-defined categories | Brands, markets and topic taxonomy in one YAML file |
@@ -65,7 +80,7 @@ pr-radar report                    # reports/weekly-YYYY-Www.html
 pr-radar dashboard                 # interactive Streamlit app
 ```
 
-Options: `--config`, `--db`, `--archive`, `collect --skip gdelt`, `report --days 14 --end 2026-11-20 --publish docs/index.html`.
+Options: `--config`, `--db`, `--archive`, `collect --skip gdelt rss`, `collect --lookback-days 30` (one-off backfill), `report --days 14 --end 2026-11-20 --publish docs/index.html`.
 
 ## Web dashboard
 
@@ -76,7 +91,7 @@ pr-radar export-web                # writes web/data.json (+ web/data.js) for th
 python -m http.server 8766 --directory web   # or just open web/index.html
 ```
 
-It shows the headline KPIs with a 7 / 28-day switch, key takeaways, share of voice with a weekly split, market gaps, pitch targets (warm contacts highlighted), narrative gaps by topic, the most syndicated stories, and headline tone per brand (DimABSA). `export-web` only reads, so it opens an existing database read-only. `data.js` carries the same payload as `data.json` so the page also works from `file://`. Drop a background render at `web/assets/hero.webp` and it replaces the CSS swirl automatically. The weekly HTML report uses the same visual language and switches to a plain ink-friendly layout when printed.
+It shows the headline KPIs with a 7 / 28-day switch, key takeaways, share of voice with a weekly split, market gaps, pitch targets (warm contacts highlighted), narrative gaps by topic, the most syndicated stories, and headline tone per brand (DimABSA). `export-web` only reads, so it opens an existing database read-only. `data.js` carries the same payload as `data.json` so the page also works from `file://`. The background is a CSS-only radar (rings and a slow sweep that only rotates, still under `prefers-reduced-motion`); a render at `web/assets/hero.webp` replaces it automatically. When a weekly brief passed the fact checks, the 7-day view shows it as "This week's brief". The weekly HTML report uses the same visual language and switches to a plain ink-friendly layout when printed.
 
 ## Headline sentiment (DimABSA)
 
@@ -191,23 +206,23 @@ Errors in first drafts, final checks:
 
 With 21 test weeks a difference of one or two drafts is within noise. The next useful steps are more teacher briefs for weeks without a warm outlet, instead of dropping examples, and a larger test set.
 
-**What the checks do not catch.** They test whether a brief is grounded in the data and catch the bad advice seen so far, not every kind. Two patterns found by reading drafts are not checked yet: outlet names that are not domains ("The Verge"), and vague targets ("outlets that covered FOREO before, such as [outlet name]"). A brief should still be read before it is shared, and the weekly report on GitHub Pages keeps the rule-based takeaways.
+**What the checks do not catch.** They test whether a brief is grounded in the data and catch the bad advice seen so far, not every kind. Two patterns found by reading drafts are not checked yet: outlet names that are not domains ("The Verge"), and vague targets ("outlets that covered FOREO before, such as [outlet name]"). A brief should still be read before it is shared, and the published report keeps the rule-based takeaways.
 
 ## Automation
 
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `ci.yml` | push / PR | `ruff format --check`, `ruff check`, `pytest` |
-| `weekly.yml` | Mondays 06:00 UTC + manual | collect → append to Parquet archive → build report → commit to `docs/` (GitHub Pages) |
+| `publish.yml` | daily 06:00 UTC + manual | collect → append to Parquet archive → build report → copy the dashboard → commit to `docs/` (GitHub Pages) |
 
-To publish the report, enable **Settings → Pages → Deploy from branch → `main` / `docs`**.
+The dashboard data is exported locally (`pr-radar score-sentiment`, `pr-radar brief`, `pr-radar export-web`), because the sentiment model and the brief need a GPU, and committed in `web/`. The workflow copies it to `docs/` as is, next to the daily report (`docs/report.html`). To publish, enable **Settings → Pages → Deploy from branch → `main` / `docs`**.
 
 ## Project layout
 
 ```
 config/brands.yaml          brands, market editions, topic taxonomy
 src/pr_radar/
-  collectors/               google_news.py, gdelt.py
+  collectors/               google_news.py, rss.py, gdelt.py
   matching.py               brand + topic tagging
   dedup.py                  duplicate merge + story clustering
   storage.py                DuckDB + Parquet archive

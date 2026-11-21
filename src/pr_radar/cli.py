@@ -28,7 +28,9 @@ def _date(value: str) -> datetime:
 
 def cmd_collect(args: argparse.Namespace) -> int:
     settings = load_config(args.config)
-    sources = tuple(s for s in ("google_news", "gdelt") if s not in args.skip)
+    sources = tuple(s for s in ("google_news", "gdelt", "rss") if s not in args.skip)
+    if args.lookback_days:
+        settings.lookback_days = args.lookback_days
     store = Store(args.db)
     try:
         stats = run_collection(settings, store, archive_dir=args.archive, sources=sources)
@@ -299,8 +301,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("-v", "--verbose", action="store_true")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    p = sub.add_parser("collect", help="fetch coverage from Google News and GDELT")
-    p.add_argument("--skip", nargs="*", default=[], choices=["google_news", "gdelt"])
+    p = sub.add_parser("collect", help="fetch coverage from Google News, outlet feeds and GDELT")
+    p.add_argument("--skip", nargs="*", default=[], choices=["google_news", "gdelt", "rss"])
+    p.add_argument(
+        "--lookback-days",
+        type=int,
+        choices=range(1, 31),
+        metavar="1-30",
+        help="override lookback_days for this run, e.g. a one-off 30-day backfill",
+    )
     p.set_defaults(func=cmd_collect)
 
     for name, func, text in (

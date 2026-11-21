@@ -9,14 +9,17 @@ brands:
   - id: foreo
     name: FOREO
     query: '"FOREO"'
+    extra_queries: ['"FOREO LUNA"', '"FOREO UFO"', '"FOREO BEAR"', '"FOREO FAQ"']
     aliases: ["FOREO"]
   - id: nuface
     name: NuFACE
     query: '"NuFACE"'
+    extra_queries: ['"NuFACE Trinity"', '"NuFACE Mini"', '"NuFACE FIX"']
     aliases: ["NuFACE"]
   - id: currentbody
     name: CurrentBody
     query: '"CurrentBody"'
+    extra_queries: ['"CurrentBody Skin"', '"CurrentBody LED"']
     aliases: ["CurrentBody", "Current Body Skin"]
   - id: therabody
     name: Therabody
@@ -29,10 +32,14 @@ brands:
   - id: solawave
     name: Solawave
     query: '"Solawave"'
+    extra_queries: ['"Solawave Radiant"', '"Solawave wand"', '"Solawave mask"']
     aliases: ["Solawave"]
 
 # Outlets to drop everywhere (accidental matches). Re-tagging applies this to history too.
-exclude_domains: []
+exclude_domains:
+  - salutbonjour.ca           # horoscopes with a Therabody widget
+  - motorvsmotor.com          # product listings, brand only in site furniture
+  - thegentlemansjournal.com  # brand only in a sidebar on most pages
 
 # Google News market editions (hl = interface language, gl = market, ceid = edition id).
 editions:
@@ -48,6 +55,8 @@ editions:
   - { hl: sv, gl: SE, ceid: "SE:sv" }
   - { hl: ja, gl: JP, ceid: "JP:ja" }
   - { hl: pt-BR, gl: BR, ceid: "BR:pt-419" }
+  - { hl: nl, gl: NL, ceid: "NL:nl" }
+  - { hl: zh-Hant, gl: HK, ceid: "HK:zh-Hant" }
 
 # GDELT adds global, non-English sources but rate-limits heavily (one request per
 # 5 s, long bans after bursts). Off by default; when on, it gets a time budget
@@ -56,6 +65,121 @@ gdelt:
   enabled: false
   max_records: 250
   time_budget_seconds: 180
+
+# Outlet feeds (RSS/Atom), checked 2026-11-21. An item is kept only if it names a
+# tracked brand in its title or summary. Feeds hold the last few days of items.
+rss:
+  enabled: true
+  feeds:
+    # US
+    - { url: "https://www.allure.com/feed/rss", country: US, language: en }
+    - { url: "https://www.vogue.com/feed/rss", country: US, language: en }
+    - { url: "https://www.glamour.com/feed/rss", country: US, language: en }
+    - { url: "https://www.self.com/feed/rss", country: US, language: en }
+    - { url: "https://www.elle.com/rss/beauty.xml/", country: US, language: en }
+    - { url: "https://www.harpersbazaar.com/rss/beauty.xml/", country: US, language: en }
+    - { url: "https://www.cosmopolitan.com/rss/style-beauty.xml/", country: US, language: en }
+    - { url: "https://www.womenshealthmag.com/rss/beauty.xml/", country: US, language: en }
+    - { url: "https://www.menshealth.com/rss/all.xml/", country: US, language: en }
+    - { url: "https://www.goodhousekeeping.com/rss/all.xml/", country: US, language: en }
+    - { url: "https://www.refinery29.com/en-us/rss.xml", country: US, language: en }
+    - { url: "https://www.popsugar.com/beauty/feed", country: US, language: en }
+    - { url: "https://www.theverge.com/rss/index.xml", country: US, language: en }
+    - { url: "https://www.engadget.com/rss.xml", country: US, language: en }
+    - { url: "https://www.wired.com/feed/rss", country: US, language: en }
+    - { url: "https://www.cnet.com/rss/news/", country: US, language: en }
+    - { url: "https://www.tomsguide.com/feeds/all", country: US, language: en }
+    - { url: "https://gizmodo.com/rss", country: US, language: en }
+    - { url: "https://www.businessinsider.com/rss", country: US, language: en }
+    - { url: "https://nypost.com/shopping/feed/", country: US, language: en }
+    # GB
+    - { url: "https://www.glamourmagazine.co.uk/feed/rss", country: GB, language: en }
+    - { url: "https://www.vogue.co.uk/feed/rss", country: GB, language: en }
+    - { url: "https://www.t3.com/feeds/all", country: GB, language: en }
+    - { url: "https://www.techradar.com/rss", country: GB, language: en }
+    - { url: "https://www.marieclaire.co.uk/feeds/all", country: GB, language: en }
+    - { url: "https://www.stylist.co.uk/feed", country: GB, language: en }
+    - { url: "https://www.cosmopolitan.com/uk/rss/all.xml/", country: GB, language: en }
+    - { url: "https://www.harpersbazaar.com/uk/rss/all.xml/", country: GB, language: en }
+    - { url: "https://www.elle.com/uk/rss/all.xml/", country: GB, language: en }
+    - { url: "https://www.standard.co.uk/shopping/rss", country: GB, language: en }
+    - { url: "https://www.telegraph.co.uk/beauty/rss.xml", country: GB, language: en }
+    - { url: "https://www.theguardian.com/fashion/beauty/rss", country: GB, language: en }
+    - { url: "https://www.mirror.co.uk/lifestyle/?service=rss", country: GB, language: en }
+    - { url: "https://www.goodhousekeeping.com/uk/rss/all.xml/", country: GB, language: en }
+    # AU
+    - { url: "https://www.marieclaire.com.au/feed", country: AU, language: en }
+    - { url: "https://www.elle.com.au/feed", country: AU, language: en }
+    - { url: "https://www.womensweekly.com.au/feed", country: AU, language: en }
+    - { url: "https://www.smh.com.au/rss/lifestyle.xml", country: AU, language: en }
+    - { url: "https://www.theguardian.com/au/lifeandstyle/rss", country: AU, language: en }
+    # DE
+    - { url: "https://www.glamour.de/feed/rss", country: DE, language: de }
+    - { url: "https://www.vogue.de/feed/rss", country: DE, language: de }
+    - { url: "https://www.gq-magazin.de/feed/rss", country: DE, language: de }
+    - { url: "https://www.stern.de/feed/standard/all/", country: DE, language: de }
+    - { url: "https://www.brigitte.de/feed.rss", country: DE, language: de }
+    - { url: "https://www.bild.de/feed/ratgeber.xml", country: DE, language: de }
+    - { url: "https://www.focus.de/gesundheit/rss", country: DE, language: de }
+    # FR
+    - { url: "https://www.vogue.fr/feed/rss", country: FR, language: fr }
+    - { url: "https://www.gqmagazine.fr/feed/rss", country: FR, language: fr }
+    - { url: "https://www.journaldesfemmes.fr/rss/", country: FR, language: fr }
+    - { url: "https://www.frandroid.com/feed", country: FR, language: fr }
+    - { url: "https://www.01net.com/feed/", country: FR, language: fr }
+    - { url: "https://www.numerama.com/feed/", country: FR, language: fr }
+    - { url: "https://www.madmoizelle.com/feed", country: FR, language: fr }
+    # ES
+    - { url: "https://www.vogue.es/feed/rss", country: ES, language: es }
+    - { url: "https://www.glamour.es/feed/rss", country: ES, language: es }
+    - { url: "https://www.revistavanityfair.es/feed/rss", country: ES, language: es }
+    - { url: "https://www.xataka.com/index.xml", country: ES, language: es }
+    - { url: "https://www.elle.com/es/rss/all.xml/", country: ES, language: es }
+    - { url: "https://www.harpersbazaar.com/es/rss/all.xml/", country: ES, language: es }
+    - { url: "https://www.cosmopolitan.com/es/rss/all.xml/", country: ES, language: es }
+    - { url: "https://www.telva.com/rss/belleza.xml", country: ES, language: es }
+    - { url: "https://www.trendencias.com/index.xml", country: ES, language: es }
+    # IT
+    - { url: "https://www.vogue.it/feed/rss", country: IT, language: it }
+    - { url: "https://www.gqitalia.it/feed/rss", country: IT, language: it }
+    - { url: "https://www.wired.it/feed/rss", country: IT, language: it }
+    - { url: "https://www.elle.com/it/rss/all.xml/", country: IT, language: it }
+    - { url: "https://www.cosmopolitan.com/it/rss/all.xml/", country: IT, language: it }
+    - { url: "https://www.hdblog.it/feed/", country: IT, language: it }
+    - { url: "https://www.iodonna.it/feed/", country: IT, language: it }
+    # PL
+    - { url: "https://www.elle.pl/rss", country: PL, language: pl }
+    - { url: "https://www.glamour.pl/rss", country: PL, language: pl }
+    - { url: "https://spidersweb.pl/feed", country: PL, language: pl }
+    - { url: "https://www.chip.pl/feed", country: PL, language: pl }
+    - { url: "https://www.komputerswiat.pl/.feed", country: PL, language: pl }
+    - { url: "https://www.twojstyl.pl/rss", country: PL, language: pl }
+    # TR
+    - { url: "https://www.elle.com.tr/rss", country: TR, language: tr }
+    - { url: "https://www.webtekno.com/rss.xml", country: TR, language: tr }
+    - { url: "https://shiftdelete.net/feed", country: TR, language: tr }
+    - { url: "https://www.hurriyet.com.tr/rss/anasayfa", country: TR, language: tr }
+    - { url: "https://www.donanimhaber.com/rss/tum/", country: TR, language: tr }
+    - { url: "https://www.chip.com.tr/rss", country: TR, language: tr }
+    # SE
+    - { url: "https://feber.se/rss/", country: SE, language: sv }
+    - { url: "https://www.expressen.se/rss/halsa", country: SE, language: sv }
+    - { url: "https://www.sweclockers.com/feeds/nyheter", country: SE, language: sv }
+    - { url: "https://www.expressen.se/rss/noje", country: SE, language: sv }
+    # JP
+    - { url: "https://www.vogue.co.jp/feed/rss", country: JP, language: ja }
+    - { url: "https://www.gqjapan.jp/feed/rss", country: JP, language: ja }
+    - { url: "https://www.elle.com/jp/rss/all.xml/", country: JP, language: ja }
+    - { url: "https://www.gizmodo.jp/index.xml", country: JP, language: ja }
+    - { url: "https://www.harpersbazaar.com/jp/rss/all.xml/", country: JP, language: ja }
+    # BR
+    - { url: "https://vogue.globo.com/rss/vogue/", country: BR, language: pt }
+    - { url: "https://olhardigital.com.br/feed/", country: BR, language: pt }
+    - { url: "https://www.tudocelular.com/feed/", country: BR, language: pt }
+    - { url: "https://claudia.abril.com.br/feed/", country: BR, language: pt }
+    - { url: "https://capricho.abril.com.br/feed/", country: BR, language: pt }
+    - { url: "https://canaltech.com.br/rss/", country: BR, language: pt }
+    - { url: "https://revistaglamour.globo.com/rss/glamour/", country: BR, language: pt }
 
 # Topic taxonomy. Keywords are case-insensitive prefixes matched at word starts,
 # so "sustainab" matches "sustainable" and "sustainability".
